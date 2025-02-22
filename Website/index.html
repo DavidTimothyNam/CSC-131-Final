@@ -6,13 +6,26 @@
 </head>
 <link rel="stylesheet" href="index.css">
 <body>
-    <div id="navBar">
-        <a href="http://"><img src="Pictures/Placeholder.png" style="position: fixed; left: 25px; top:10px; cursor: pointer" width="130" height="110"></a>
-        <a class="navBarLinks" href="http://">Home </a>
-        <a class="navBarLinks" href="http://">About Us</a>
-        <a class="navBarLinks" href="http://">Resources</a>
-        <a class="navBarLinks" href="http://">Contact Us</a>
-        <button id="loginButton">Login</button>
+    <div id="bigNavBar">
+        <a href="#"><img class="logoPicture" src="Pictures/Placeholder.png" alt="Logo is not working"></a>
+        <a class="bigNavBarLinks" href="http://">Home </a>
+        <a class="bigNavBarLinks" href="http://">About Us</a>
+        <a class="bigNavBarLinks" href="http://">Resources</a>
+        <a class="bigNavBarLinks" href="http://">Contact Us</a>
+        <button class="loginButton">Login</button>
+    </div>
+    <div id="smallNavBar">
+        <a class="smallNavBarLinks" href="http://">Home </a>
+        <a class="smallNavBarLinks" href="http://">About Us</a>
+        <a class="smallNavBarLinks" href="http://">Resources</a>
+        <a class="smallNavBarLinks" href="http://">Contact Us</a>
+        <button class="loginButton" style="padding: 6px 20px; font-size: 14px">Login</button>
+    </div>
+
+    <div id="menuIcon" onclick="openSmallNavBar()">
+        <div style="width: 35px; height: 4px; background-color: white; margin: 6px 0;"></div>
+        <div style="width: 35px; height: 4px; background-color: white; margin: 6px 0;"></div>
+        <div style="width: 35px; height: 4px; background-color: white; margin: 6px 0;"></div>
     </div>
 </body>
 <script src="index.js"></script>
