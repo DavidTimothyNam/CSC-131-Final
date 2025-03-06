@@ -1,12 +1,12 @@
 body {
   overflow-y: auto;
-  height: 2000px;
+  /*height: 2000px;*/
 }
 body {
   text-align: left;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  /*min-height: 100vh;*/
   padding-top: 115px; /* Adds space between navbar and body */
 }
 .container,
@@ -22,6 +22,7 @@ body {
   width: 100%;
   padding: 15px;
   display: flex;
+  margin-left: 15px;
   justify-content: flex-end;
   gap: 30px; /* Adds spacing between links */
 }
@@ -31,6 +32,9 @@ body {
   width: 100%;
   z-index: 1000;
 }
+.navbar .navbar-brand{
+  margin-left: 30px !important;
+  }
 footer {
   margin-top: auto;
   width: 100%;
