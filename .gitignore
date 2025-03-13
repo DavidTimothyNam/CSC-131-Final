@@ -1,6 +1,6 @@
 # extra: remove .idea/ folder for IntelliJ
 
-./idea/*
+./.idea/*
 
 # add this for Prettier extension in VSCode
 
