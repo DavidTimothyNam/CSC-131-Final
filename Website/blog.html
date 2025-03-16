@@ -22,7 +22,7 @@
     </style>
   </head>
   <body>
-    <h1>Blog</h1>
+    <h1 class="text-center">Our Blog</h1>
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
@@ -100,19 +100,32 @@
       </div>
     </nav>
 
-    <!-- <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"></div>
+    <!-- holds content of main page blog-->
+    <div class="container mt-5">
+      <!-- holds hero - SINGLE, IMPORTANT blog-->
+      <div class="row">
+        <!-- hero -->
+        <div class="col-12 mb-4">
+          <div class="card text-white">
+            <img
+              src="./Pictures/temp/04.jpg"
+              class="card-img"
+              alt="Featured Blog"
+            />
+            <div
+              class="card-img-overlay d-flex flex-column justify-content-center text-center bg-dark bg-opacity-50"
+            >
+              <h1 class="fw-bold">Featured Blog Title</h1>
+              <p class="lead">A short excerpt from the featured article...</p>
+              <a href="./read_blog.html" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div> -->
 
-    <!-- holds a SINGLE, IMPORTANT blog-->
-    <div class="container"></div>
-
-    <!-- hold the FEATURED blog cards-->
-    <div class="container mt-4">
-      <h2 class="mb-4 text-center">Featured</h2>
-      <div class="row" id="blog-list">
+      <h2 class="mb-4 text-center">Other Posts</h2>
+      <!-- holds blog pages-->
+      <div class="row">
         <!-- blog cards -->
         <div class="col-md-4">
           <div class="card mb-4">
