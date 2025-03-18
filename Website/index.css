@@ -1,6 +1,5 @@
 body {
   overflow-y: auto;
-  /*height: 2000px;*/
 }
 body {
   text-align: left;
@@ -31,6 +30,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 1000;
+  box-shadow: black 0 -5px 18px;
 }
 .navbar .navbar-brand{
   margin-left: 30px !important;
