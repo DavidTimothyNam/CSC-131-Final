@@ -90,7 +90,7 @@
         <label for="floatingSelectTopic">Topic</label>
       </form>
       <form class="form-floating">
-        <textarea class="form-control" id="floatingInputComment" style="height: 100px" placeholder="Leave a comment here" onkeypress="commentCharacterLimit(id)" onkeyup="checkIfValid(id)"></textarea>
+        <textarea class="form-control" id="floatingInputComment" maxlength="500" style="height: 100px" placeholder="Leave a comment here" onkeydown="commentCharacterLimit(id)" onkeyup="checkIfValid(id)"></textarea>
         <label for="floatingInputComment">Comments</label>
       </form>
 
