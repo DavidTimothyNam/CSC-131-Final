@@ -44,34 +44,34 @@ function checkIfValid(id){
     let input = document.getElementById(id)
     if(id === 'floatingInputName'){
         if(!input.value){ // if invalid
-            input.className += ' is-invalid'
+            input.className = 'form-control is-invalid'
         }
         else { // valid
-            input.className = 'form-control'
+            input.className = 'form-control is-valid'
         }
     }
     else if(id === 'floatingInputEmail'){
         if(!input.value || !isValidEmail(input.value)){ // if invalid
-            input.className += ' is-invalid'
+            input.className = 'form-control is-invalid'
         }
         else { // valid
-            input.className = 'form-control'
+            input.className = 'form-control is-valid'
         }
     }
     else if(id === 'floatingSelectTopic'){
         if(input.value === 'Select An Option'){ // if invalid
-            input.className += ' is-invalid'
+            input.className = 'form-control is-invalid'
         }
         else { // valid
-            input.className = 'form-control'
+            input.className = 'form-control is-valid'
         }
     }
     else if(id === 'floatingInputComment'){
         if(!input.value){ // if invalid
-            input.className += ' is-invalid'
+            input.className = 'form-control is-invalid'
         }
         else { // valid
-            input.className = 'form-control'
+            input.className = 'form-control is-valid'
         }
     }
 }
@@ -79,7 +79,7 @@ function checkIfValid(id){
 function checkBoxes(){
     let input = document.getElementById('floatingInputName')
     if(!input.value){ // if invalid
-        input.className += ' is-invalid'
+        input.className = 'form-control is-invalid'
     }
     else { // valid
         input.className = 'form-control'
@@ -87,25 +87,25 @@ function checkBoxes(){
 
     input = document.getElementById('floatingInputEmail')
     if(!input.value || !isValidEmail(input.value)){ // if invalid
-        input.className += ' is-invalid'
+        input.className = 'form-control is-invalid'
     }
     else { // valid
-        input.className = 'form-control'
+        input.className = 'form-control is-valid'
     }
 
     input = document.getElementById('floatingSelectTopic')
     if(input.value === 'Select An Option'){ // if invalid
-        input.className += ' is-invalid'
+        input.className = 'form-control is-invalid'
     }
     else { // valid
-        input.className = 'form-control'
+        input.className = 'form-control is-valid'
     }
 
     input = document.getElementById('floatingInputComment')
     if(!input.value){ // if invalid
-        input.className += ' is-invalid'
+        input.className = 'form-control is-invalid'
     }
     else { // valid
-        input.className = 'form-control'
+        input.className = 'form-control is-valid'
     }
 }
