@@ -64,17 +64,17 @@
   <div class="container" style="width: 60%;">
     <div id="contactTitle">Contact Us</div>
     <div class="content">
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingNameInput" placeholder="First and Last Name">
-        <label for="floatingInputDisabled">First and Last Name</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInputDisabled" placeholder="name@example.com">
-        <label for="floatingInputDisabled">Email address</label>
-      </div>
-      <div class="form-floating" >
-        <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example">
-          <option selected>Select Option</option>
+      <form class="form-floating">
+        <input type="text" class="form-control" id="floatingInputName" placeholder="First and Last Name" onkeyup="checkIfValid(id)">
+        <label for="floatingInputName">First and Last Name</label>
+      </form>
+      <form class="form-floating">
+        <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" onkeyup="checkIfValid(id)">
+        <label for="floatingInputEmail">Email address</label>
+      </form>
+      <form class="form-floating" >
+        <select class="form-select" id="floatingSelectTopic" onchange="checkIfValid(id)">
+          <option selected>Select An Option</option>
           <option value="1">401k</option>
           <option value="2">College Plan</option>
           <option value="3">Comprehensive Planning</option>
@@ -87,18 +87,19 @@
           <option value="10">Traditional Website</option>
           <option value="11">Other</option>
         </select>
-        <label for="floatingSelectDisabled">Works with selects</label>
-      </div>
-      <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2Disabled" style="height: 100px" onkeydown="commentCharacterLimit()"></textarea>
-        <label for="floatingTextarea2Disabled">Comments</label>
-      </div>
+        <label for="floatingSelectTopic">Topic</label>
+      </form>
+      <form class="form-floating">
+        <textarea class="form-control" id="floatingInputComment" style="height: 100px" placeholder="Leave a comment here" onkeypress="commentCharacterLimit(id)" onkeyup="checkIfValid(id)"></textarea>
+        <label for="floatingInputComment">Comments</label>
+      </form>
+
       <div id="the-count">
         <span id="current">0</span>
         <span id="maximum">/ 500</span>
       </div>
       <div class="submitButton">
-        <input type="button" value="Send Now">
+        <input type="button" value="Send Now" onclick="checkBoxes()">
       </div>
     </div>
   </div>

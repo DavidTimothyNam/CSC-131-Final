@@ -18,7 +18,8 @@
 }
 
 .form-floating input,
-.form-floating select{
+.form-floating select,
+.form-floating textarea{
     margin-bottom: 20px;
 }
 
