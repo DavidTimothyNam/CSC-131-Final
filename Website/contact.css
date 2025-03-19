@@ -3,9 +3,9 @@
 *{
     font-family: "Poppins" , sans-serif;
 }
-
 .container{
-    margin: 100px;
+    margin-top: 50px;
+    margin-bottom: 75px;
     border-radius: 6px;
     min-width: 600px;
     padding: 20px;
@@ -13,70 +13,31 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .container .content {
-    margin-left: 75px;
-    margin-right: 75px;
-}
-.content .topic-text{
-    font-size: 23px;
-    font-weight: 600;
-    color: #3e2093;
-}
-.content .name-box{
-    height: 50px;
-    margin-bottom: 12px;
-}
-.content .email-box {
-    height: 50px;
-    margin-bottom: 40px;
+    margin: 35px 75px 55px;
 }
 
-.content .message-box{
-    height: 100px;
-    margin-bottom: 35px;
-    text-align: center;
+#contactTitle{
+    font-size: 28px;
+    margin: 20px 75px;
 }
 
-.content .message-box textarea,
-.content .name-box textarea,
-.content .email-box textarea{
-    height: 100%;
-    width: 50%;
-    border: none;
-    outline: none;
-    text-wrap: wrap;
-    font-size: 16px;
-    background: #F0F1F8;
-    border-radius: 6px;
-    padding: 13px 15px 0;
-    resize: none;
+.form-floating input,
+.form-floating select{
+    margin-bottom: 20px;
 }
 
-.content .message-box textarea{
-    width: 100%;
-}
 
-#the-count {
+#the-count{
     float: right;
-    margin-top: -30px;
-    padding: 0.1rem 0 0 0;
-    font-size: 0.775rem;
+    margin-top: -10px;
 }
-
-.content .button{
-    display: inline-block;
-    margin-top: 12px;
+.submitButton input{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px;
+    background-color: lightgray;
+    transition: background-color 200ms;
 }
-.content .button input[type="button"]{
-    color: #fff;
-    font-size: 18px;
-    outline: none;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    background: #3e2093;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.button input[type="button"]:hover{
-    background: #5029bc;
-}
+.submitButton input:hover{
+    background-color: darkgray;
+ }

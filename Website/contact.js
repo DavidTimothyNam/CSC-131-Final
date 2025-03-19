@@ -1,7 +1,7 @@
 function commentCharacterLimit(){
     $('textarea').keyup(function() {
 
-        var characterCount = $('.message-box textarea').val().length,
+        var characterCount = $('#floatingTextarea2Disabled').val().length,
             current = $('#current');
 
         current.text(characterCount);
