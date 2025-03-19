@@ -1,13 +1,9 @@
-/* Google Font CDN Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    font-family: "Poppins" , sans-serif;
-}
 .container{
     margin-top: 50px;
     margin-bottom: 75px;
     border-radius: 6px;
-    min-width: 600px;
+    min-width: 100vh;
+
     padding: 20px;
     justify-content: center;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
