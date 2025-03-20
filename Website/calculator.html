@@ -8,72 +8,11 @@
   <link rel="stylesheet" href="index.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <style>
-    .calculator-holder{
-      background-color: rgba(123, 216, 111, 0.637);
-      height: 800px;
-      padding: 50px 100px 50px 200px; 
+  <script>
+    function calcChange(x, y){
+      document.getElementById('calculatorFrame').src = "./calculatorFrames/".concat(y);
     }
-
-    .calculator-layout{
-      display: grid;
-      grid-template-columns: auto 300px auto;
-     }
-
-     .calculator-options{
-        background-color: rgba(42, 197, 21, 0.637);
-        width: 300px;
-        text-align: center;
-     }
-
-     button.genreButton{
-        border: none;
-        background-color: rgba(38, 179, 19, 0.986);  /*Button Color*/
-        color: rgb(0, 0, 0);  /*Text Color*/
-        width: 270px;
-        height: auto;
-        font-size: 30px;
-        padding: 0px;
-     }
-     
-     button.genreButton:hover{
-        background-color: rgba(32, 151, 16, 0.986); 
-     }
-
-     button.calcButton{
-        border: none;
-        background-color: rgba(69, 173, 56, 0.986); 
-        color: black;
-        padding: 1px 0px;
-        margin-bottom: 0px;
-        width: 100%;
-        height: 100%;
-     }
-
-     button.calcButton:hover{
-        background-color: rgba(62, 153, 50, 0.986); 
-     }
-
-     ul.calc{
-        list-style-type: none;
-        padding: 0px;
-        margin: 0px 0px 0px ;
-        width: 270px;
-        background-color: rgba(69, 173, 56, 0.986); 
-        display: inline-block;
-     }
-
-     li.calc{
-        margin-bottom: 0px;
-        padding: 0px;
-     }
-
-     li.genre{
-        padding: 0px;
-        margin-bottom: 1px; 
-        /*The really small gap between Genres*/
-     }
-  </style>
+  </script>
 </head>
 
 <body>
@@ -131,39 +70,149 @@
     </div>
   </nav>
 
-  <!--Calculator Start-->
-  <div class = "calculator-holder">
-    <div class="calculator-layout">
-        <div class="calculator-options">
-            <h3 style="color: rgb(0, 0, 0); padding: 10px 10px 0px;">Calculators</h3>
-            <ul style="list-style-type: none; padding: 0px; margin: 0px 0px 0px ;">
-                <!--Category Button Start-->
-                <li class="genre">
-                    <button type="button" class="genreButton">Genre1</button>
-                    <ul class="calc">
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                    </ul>
-                </li>
-                <!--Category Button End-->
-                <!--Category Button Start-->
-                <li class="genre">
-                    <button type="button" class="genreButton">Genre1</button>
-                    <ul class="calc" style="height: 0px;">
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                        <li class="calc"><button type="button" class="calcButton">Calculator1</button></li>
-                    </ul>
-                </li>
-                <!--Category Button End-->
+  <!--Accordian Calculator-->
+  <div class="container">
+    <div class="row">
+      <div class="caluclator-selection col-3">
+        <div class="accordion" id="accordionExample">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="loanCredit">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#loansCred"
+                aria-expanded="true" aria-controls="loansCred">
+                Loans & Credit Cards
+              </button>
+            </h2>
+            <div id="loansCred" class="accordion-collapse collapse show" aria-labelledby="loanCredit"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group"
+                  style="display:inline-block">
+                  <input type="radio" class="btn-check" name="btnradio" id="loanPayoff" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="loanPayoff"
+                    onclick="calcChange(this, 'loanPayoff.html')">Loan Payoff</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="homeAfford" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="homeAfford"
+                    onclick="calcChange(this, 'homeAfford.html')">Home Affordability</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="mortRef" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="mortRef"
+                    onclick="calcChange(this, 'mortRef.html')">Mortage Refinancing</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="mortAccel" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="mortAccel"
+                    onclick="calcChange(this, 'mortAccel.html')">Mortage Acceleration</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="creditDebt" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="creditDebt"
+                    onclick="calcChange(this, 'creditDebt.html')">Credit Card Debt</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="leasePay" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="leasePay"
+                    onclick="calcChange(this, 'leasePay.html')">Lease Payment</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="carAfford" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="carAfford"
+                    onclick="calcChange(this, 'carAfford.html')">Car Affordability</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="saveInvest">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#saveInv" aria-expanded="false" aria-controls="saveInv">
+                Saving & Investing
+              </button>
+            </h2>
+            <div id="saveInv" class="accordion-collapse collapse" aria-labelledby="saveInvest"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group"
+                  style="display:inline-block">
+                  <input type="radio" class="btn-check" name="btnradio" id="collegeFund" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="collegeFund"
+                    onclick="calcChange(this, 'collegeFund.html')">College Funding</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="saveGoal" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="saveGoal"
+                    onclick="calcChange(this, 'saveGoal.html')">Savings Goals</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="saveAccum" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="saveAccum"
+                    onclick="calcChange(this, 'saveAccum.html')">Savings Accumulatoin</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="taxEqYield" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="taxEqYield"
+                    onclick="calcChange(this, 'taxEqYield.html')">Taxable Equivalent Yield</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="cashManage">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#cashMan" aria-expanded="false" aria-controls="cashMan">
+                Cash Management
+              </button>
+            </h2>
+            <div id="cashMan" class="accordion-collapse collapse" aria-labelledby="cashManage"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group"
+                  style="display:inline-block">
+                  <input type="radio" class="btn-check" name="btnradio" id="cashFlow" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="cashFlow" onclick="calcChange(this, 'cashFlow.html')">Cash
+                    Flow Management</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="netWorth" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="netWorth" onclick="calcChange(this, 'netWorth.html')">Net
+                    Worth</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="lifeEarn" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="lifeEarn"
+                    onclick="calcChange(this, 'lifeEarn.html')">Lifetime Earnings</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="taxesIra">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#taxIra" aria-expanded="false" aria-controls="taxIra">
+                Taxes & IRAS
+              </button>
+            </h2>
+            <div id="taxIra" class="accordion-collapse collapse" aria-labelledby="taxesIra"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group"
+                  style="display:inline-block">
+                  <input type="radio" class="btn-check" name="btnradio" id="fedIncTax" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="fedIncTax"
+                    onclick="calcChange(this, 'cashFfedIncTaxlow.html')">Federal Income Tax</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="taxDefSav" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="taxDefSav"
+                    onclick="calcChange(this, 'taxDefSav.html')">Tax-Deferred Savings</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="iraElig" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="iraElig" onclick="calcChange(this, 'iraElig.html')">IRA
+                    Eligibility</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="rothIraConv" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="rothIraConv"
+                    onclick="calcChange(this, 'rothIraConv.html')">Roth IRA Conversion</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="estateTaxes" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="estateTaxes"
+                    onclick="calcChange(this, 'estateTaxes.html')">Estate Taxes</label>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
-        <div class="'divider"></div>
-        <iframe src="./calculatorFrames/loanPayoff.html" height="700" width="800" id="calculatorFrame"></iframe>
+      </div>
+
+      <div class="col-2"></div>
+      <div class="iframe col-3">
+        <iframe src="./calculatorFrames/loanPayoff.html" height="700" width="800" id="calculatorFrame" style="margin-bottom: 50px;"></iframe>
+      </div>
     </div>
   </div>
+
 
 
 
