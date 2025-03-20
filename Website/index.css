@@ -1,3 +1,10 @@
+html { /* for anchor buttons*/
+  scroll-padding-top: 5.5rem;
+}
+#myDiv{ /*for anchor buttons*/
+  position: fixed;
+  left: 40px;
+}
 body {
   overflow-y: auto;
 }
