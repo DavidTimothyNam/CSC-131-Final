@@ -1,104 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marketplace</title>
-  <link rel="stylesheet" href="index.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
+    <style>
+      .card-grid-holder {
+        background-color: rgba(123, 216, 111, 0.637);
+        padding: 25px 100px 25px 100px;
+      }
 
-<body>
-  <h1>Marketplace</h1>
-  <!--Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="./index.html">Logo Goes Here</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="./index.html">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              About Us
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./faq.html">FAQ</a></li>
-              <li>
-                <a class="dropdown-item" href="./testimonials.html">Testimonials</a>
-              </li>
-            </ul>
-          </li>
+      .resource-card {
+        background-color: rgb(50, 199, 87);
+        border: 5px solid rgba(0, 0, 0, 0.1);
+        /* text-align: center; */
+        /* height: 150px; */
+        /* width: 480px; */
+      }
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Resources
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="./services.html">Our Services</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="./events.html">Calendar</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="./marketplace.html">Marketplace</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="./blog.html">Blog</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-success" href="./login.html">Log In</a>
-          </li>
-        </ul>
+      .card-grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 50px;
+        padding: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="./index.html">Logo Goes Here</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                About Us
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="./faq.html">FAQ</a></li>
+                <li>
+                  <a class="dropdown-item" href="./testimonials.html"
+                    >Testimonials</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Resources
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="./services.html"
+                    >Our Services</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="./events.html">Calendar</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="./marketplace.html"
+                    >Marketplace</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="./blog.html">Blog</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-success" href="./login.html">Log In</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  <!--Links to FAQ & Social Media (unimplemented), Location & Contact Info-->
-  <footer class="bg-light p-4 text-start">
-    <div class="container-fluid">
+    </nav>
+
+    <!--Marketplace Start-->
+    <div class="container card-grid-holder">
+      <h1>Marketplace</h1>
       <div class="row">
-        <div class="col-md-3 text-center">
-          <h5>FAQ:</h5>
-          <p>What is Ron Smithey’s Financial Services?</p>
-          <p>Who is Ron Smithey?</p>
-          <p>Why us?</p>
+        <div class="card col-lg-4 resource-card">
+          <p
+            style="
+              padding: 10px;
+              width: 100%;
+              margin-bottom: 0px;
+              font-size: 24px;
+            "
+          >
+            <a href="./index.html">Article Name</a>
+          </p>
+          <p style="font-size: 14px">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            eget arcu at ipsum imperdiet eleifend. Sed non aliquet est. Cras
+            congue purus et mollis vestibulum.
+          </p>
         </div>
-        <div class="col-md-3 text-center">
-          <h5>Social Media:</h5>
-          <p>Facebook goes here</p>
-          <p>LinkedIn goes here</p>
-          <p>Instagram goes here</p>
-          <p>X goes here</p>
+        <div class="card col-lg-4 resource-card">
+          <p
+            style="
+              padding: 10px;
+              width: 100%;
+              margin-bottom: 0px;
+              font-size: 24px;
+            "
+          >
+            <a href="./index.html">Article Name</a>
+          </p>
+          <p style="font-size: 14px">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            eget arcu at ipsum imperdiet eleifend. Sed non aliquet est. Cras
+            congue purus et mollis vestibulum.
+          </p>
         </div>
-        <div class="col-md-3 text-center">
-          <h5>Locations:</h5>
-          <p>Address 1</p>
-          <p>Address 2</p>
+        <div class="card col-lg-4 resource-card">
+          <p
+            style="
+              padding: 10px;
+              width: 100%;
+              margin-bottom: 0px;
+              font-size: 24px;
+            "
+          >
+            <a href="./index.html">Article Name</a>
+          </p>
+          <p style="font-size: 14px">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            eget arcu at ipsum imperdiet eleifend. Sed non aliquet est. Cras
+            congue purus et mollis vestibulum.
+          </p>
         </div>
-        <div class="col-md-3 text-center">
-          <h5>Contact Info:</h5>
-          <p>Email goes here</p>
-          <p>Phone number goes here</p>
+        <div class="card col-lg-4 resource-card">
+          <p
+            style="
+              padding: 10px;
+              width: 100%;
+              margin-bottom: 0px;
+              font-size: 24px;
+            "
+          >
+            <a href="./index.html">Article Name</a>
+          </p>
+          <p style="font-size: 14px">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            eget arcu at ipsum imperdiet eleifend. Sed non aliquet est. Cras
+            congue purus et mollis vestibulum.
+          </p>
+        </div>
+        <div class="card col-lg-4 resource-card">
+          <p
+            style="
+              padding: 10px;
+              width: 100%;
+              margin-bottom: 0px;
+              font-size: 24px;
+            "
+          >
+            <a href="./index.html">Article Name</a>
+          </p>
+          <p style="font-size: 14px">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            eget arcu at ipsum imperdiet eleifend. Sed non aliquet est. Cras
+            congue purus et mollis vestibulum.
+          </p>
+        </div>
+        <div class="card col-lg-4 resource-card">
+          <p
+            style="
+              padding: 10px;
+              width: 100%;
+              margin-bottom: 0px;
+              font-size: 24px;
+            "
+          >
+            <a href="./index.html">Article Name</a>
+          </p>
+          <p style="font-size: 14px">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            eget arcu at ipsum imperdiet eleifend. Sed non aliquet est. Cras
+            congue purus et mollis vestibulum.
+          </p>
         </div>
       </div>
     </div>
-  </footer>
-  <!--Link to Legal Page-->
-  <div class="text-center p-4">
-    <a class="nav-link" href="./legal.html"><u>Important Legal Disclosures</u></a>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 
+    <!--Links to FAQ & Social Media (unimplemented), Location & Contact Info-->
+    <footer class="bg-light p-4 text-start">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <h5>FAQ:</h5>
+            <p>What is Ron Smithey’s Financial Services?</p>
+            <p>Who is Ron Smithey?</p>
+            <p>Why us?</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <h5>Social Media:</h5>
+            <p>Facebook goes here</p>
+            <p>LinkedIn goes here</p>
+            <p>Instagram goes here</p>
+            <p>X goes here</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <h5>Locations:</h5>
+            <p>Address 1</p>
+            <p>Address 2</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <h5>Contact Info:</h5>
+            <p>Email goes here</p>
+            <p>Phone number goes here</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--Link to Legal Page-->
+    <div class="text-center p-4">
+      <a class="nav-link" href="./legal.html"
+        ><u>Important Legal Disclosures</u></a
+      >
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

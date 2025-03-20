@@ -1,0 +1,40 @@
+.container{
+    margin-top: 50px;
+    margin-bottom: 75px;
+    border-radius: 6px;
+    min-width: 100vh;
+
+    padding: 20px;
+    justify-content: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.container .content {
+    margin: 35px 75px 55px;
+}
+
+#contactTitle{
+    font-size: 28px;
+    margin: 20px 75px;
+}
+
+.form-floating input,
+.form-floating select,
+.form-floating textarea{
+    margin-bottom: 20px;
+}
+
+
+#the-count{
+    float: right;
+    margin-top: -10px;
+}
+.submitButton input{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px;
+    background-color: lightgray;
+    transition: background-color 200ms;
+}
+.submitButton input:hover{
+    background-color: darkgray;
+ }
