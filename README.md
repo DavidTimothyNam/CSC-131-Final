@@ -1,5 +1,11 @@
 # React + Vite
 
+To start the local server, run the following command in this folder. Press `q` or Ctrl + C to quit after starting the server.
+
+`npm run dev`
+
+---
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
