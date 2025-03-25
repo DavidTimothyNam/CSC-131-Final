@@ -1,6 +1,7 @@
 import React from "react";
 import PageNavbar from "../components/Navbar";
 import { Container } from "react-bootstrap";
+import AboutHero from "../components/AboutHero";
 
 class Home extends React.Component {
   render() {
@@ -8,8 +9,7 @@ class Home extends React.Component {
       <>
         <PageNavbar />
         <Container>
-          <h1>Home page</h1>
-          <p>This is a paragraph.</p>
+          <AboutHero />
         </Container>
       </>
     );
