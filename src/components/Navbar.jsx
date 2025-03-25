@@ -1,4 +1,12 @@
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Container,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function PageNavbar() {
@@ -10,7 +18,7 @@ function PageNavbar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="me-auto">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
@@ -25,10 +33,36 @@ function PageNavbar() {
                 FAQs
               </NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title="Resources" id="resources-dropdown">
+              <NavDropdown.Item as={Link} to="/services">
+                Services
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/calendar">
+                Calendar
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/marketplace">
+                Marketplace
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/calculators">
+                Calculators
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/blog">
+                Blog
+              </NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link as={Link} to="/contact">
-              Contact
+              Contact Us
             </Nav.Link>
           </Nav>
+          <Form className="d-flex">
+            <FormControl
+              type="search"
+              placeholder="Search..."
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-light">Search</Button>
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

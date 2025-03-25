@@ -6,6 +6,7 @@ class Home extends React.Component {
     return (
       <>
         <PageNavbar />
+        <h1>Home page</h1>
       </>
     );
   }
