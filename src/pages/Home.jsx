@@ -6,7 +6,10 @@ class Home extends React.Component {
     return (
       <>
         <PageNavbar />
-        <h1>Home page</h1>
+        <div className="container mt-5">
+          <h1>Home page</h1>
+          <p>This is a paragraph.</p>
+        </div>
       </>
     );
   }
