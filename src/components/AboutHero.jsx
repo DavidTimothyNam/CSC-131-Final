@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import person1 from "../assets/images/person1.jpg";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
@@ -17,10 +18,10 @@ const AboutUs = () => {
               volutpat sapien a quam tempor, at consequat enim rhoncus.
             </p>
             <div className="d-flex gap-3">
-              <Button href="#contact" variant="primary" size="lg">
+              <Button as={Link} to="/contact" variant="primary" size="lg">
                 Meet With Us
               </Button>
-              <Button href="./about.html" variant="outline-dark" size="lg">
+              <Button as={Link} to="/about" variant="outline-dark" size="lg">
                 Our Team
               </Button>
             </div>
