@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import person1 from "../assets/images/person1.jpg";
 import { Link } from "react-router-dom";
 
 const AboutUs = () => {
@@ -30,7 +29,7 @@ const AboutUs = () => {
           {/* Image Section */}
           <Col lg={6} className="text-center">
             <img
-              src={person1}
+              src="/images/person1.jpg"
               alt="Profile Photo"
               className="img-fluid rounded"
             />
