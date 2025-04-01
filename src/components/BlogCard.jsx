@@ -6,11 +6,10 @@ const BlogCard = ({ image, badges, date, title, excerpt, link }) => {
   return (
     <Card className="mb-4 shadow-sm">
       {/* Blog Image */}
-      <Card.Img variant="top" src={image} alt={title} />
+      <Card.Img variant="top" src={image} alt={title} className="blog-image" />
 
       <Card.Body>
-        {/* Badges */}
-        <div className="mb-2">
+        <div className="mb-1">
           {badges.map((badge, index) => (
             <Badge key={index} bg="primary" className="me-2">
               {badge}
@@ -18,16 +17,12 @@ const BlogCard = ({ image, badges, date, title, excerpt, link }) => {
           ))}
         </div>
 
-        {/* Blog Title */}
         <Card.Title>{title}</Card.Title>
 
-        {/* Post Date */}
         <Card.Subtitle className="text-muted mb-2">{date}</Card.Subtitle>
 
-        {/* Blog Excerpt */}
         <Card.Text>{excerpt}</Card.Text>
 
-        {/* Read More Button */}
         <Link to={link} className="btn btn-primary">
           Read More
         </Link>
