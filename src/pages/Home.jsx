@@ -12,7 +12,7 @@ class Home extends React.Component {
         <Container>
           <AboutHero />
           <BlogCard
-            image="/images/blog1.jpg"
+            image="/images/01.jpg"
             badges={["Finance", "Investing"]}
             date="March 7, 2025"
             title="How to Make Smart Investments"
