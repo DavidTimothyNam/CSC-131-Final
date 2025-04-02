@@ -6,6 +6,7 @@ import { Container, Row, Col } from "react-bootstrap"; // Bootstrap grid
 const BlogList = () => {
   return (
     <Container className="mt-4">
+      <h2 className="text-center section-title">Read Our Blog</h2>
       <Row className="gy-4">
         {blogData.map((blog) => (
           <Col key={blog.id} md={6} lg={4}>
