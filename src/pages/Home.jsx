@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import AboutHero from "../components/AboutHero";
 import BlogCard from "../components/BlogCard";
 import BlogList from "../components/BlogList";
+import BlogCarousel from "../components/BlogCarousel";
 
 class Home extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class Home extends React.Component {
             link="/blog/smart-investments"
           /> */}
         </Container>
+        <BlogCarousel />
       </>
     );
   }
