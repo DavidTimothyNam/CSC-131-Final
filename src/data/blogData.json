@@ -2,28 +2,91 @@
   {
     "id": 1,
     "image": "/images/01.jpg",
-    "badges": ["Finance", "Investing"],
-    "date": "March 7, 2025",
-    "title": "How to Make Smart Investments",
-    "excerpt": "Learn the secrets to making better financial decisions and growing your wealth.",
-    "link": "smart-investments"
+    "badges": ["Finance"],
+    "date": "February 2, 2025",
+    "title": "Understanding Your Finances",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "link": "understanding-your-finances"
   },
   {
     "id": 2,
     "image": "/images/02.jpg",
-    "badges": ["Savings"],
-    "date": "April 1, 2025",
-    "title": "Building a Strong Savings Plan",
-    "excerpt": "Discover effective ways to save money and prepare for the future.",
-    "link": "savings-plan"
+    "badges": ["Investing"],
+    "date": "February 7, 2025",
+    "title": "How to Start Investing Wisely",
+    "excerpt": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+    "link": "how-to-start-investing-wisely"
   },
   {
     "id": 3,
     "image": "/images/03.jpg",
+    "badges": ["Savings"],
+    "date": "February 12, 2025",
+    "title": "The Importance of Saving Early",
+    "excerpt": "Curabitur ullamcorper ultricies nisi. Nam eget dui.",
+    "link": "the-importance-of-saving-early"
+  },
+  {
+    "id": 4,
+    "image": "/images/04.jpg",
     "badges": ["Budgeting"],
-    "date": "April 10, 2025",
-    "title": "Mastering Budgeting for Financial Success",
-    "excerpt": "A step-by-step guide to managing your expenses wisely.",
-    "link": "budgeting"
+    "date": "February 18, 2025",
+    "title": "Creating a Monthly Budget",
+    "excerpt": "Praesent libero. Sed cursus ante dapibus diam.",
+    "link": "creating-a-monthly-budget"
+  },
+  {
+    "id": 5,
+    "image": "/images/05.jpg",
+    "badges": ["Finance", "Budgeting"],
+    "date": "February 25, 2025",
+    "title": "How to Balance Spending & Saving",
+    "excerpt": "Nulla quis sem at nibh elementum imperdiet.",
+    "link": "how-to-balance-spending-and-saving"
+  },
+  {
+    "id": 6,
+    "image": "/images/06.jpg",
+    "badges": ["Investing"],
+    "date": "March 3, 2025",
+    "title": "Investment Strategies for Beginners",
+    "excerpt": "Duis sagittis ipsum. Praesent mauris.",
+    "link": "investment-strategies-for-beginners"
+  },
+  {
+    "id": 7,
+    "image": "/images/07.jpg",
+    "badges": ["Savings"],
+    "date": "March 8, 2025",
+    "title": "Best High-Interest Savings Accounts",
+    "excerpt": "Fusce nec tellus sed augue semper porta.",
+    "link": "best-high-interest-savings-accounts"
+  },
+  {
+    "id": 8,
+    "image": "/images/08.jpg",
+    "badges": ["Finance"],
+    "date": "March 14, 2025",
+    "title": "Managing Debt Responsibly",
+    "excerpt": "Mauris massa. Vestibulum lacinia arcu eget nulla.",
+    "link": "managing-debt-responsibly"
+  },
+  {
+    "id": 9,
+    "image": "/images/09.jpg",
+    "badges": ["Budgeting"],
+    "date": "March 20, 2025",
+    "title": "Cutting Costs Without Sacrificing Lifestyle",
+    "excerpt": "Class aptent taciti sociosqu ad litora torquent per conubia nostra.",
+    "link": "cutting-costs-without-sacrificing-lifestyle"
+  },
+  {
+    "id": 10,
+    "image": "/images/10.jpg",
+    "badges": ["Investing", "Finance"],
+    "date": "March 25, 2025",
+    "title": "Long-Term Investment Plans",
+    "excerpt": "Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.",
+    "link": "long-term-investment-plans"
   }
 ]

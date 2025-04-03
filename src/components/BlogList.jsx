@@ -3,12 +3,14 @@ import BlogCard from "./BlogCard"; // Import BlogCard component
 import blogData from "../data/blogData.json"; // Import blog JSON data
 import { Container, Row, Col } from "react-bootstrap"; // Bootstrap grid
 
-const BlogList = () => {
+const BlogList = ({ limit = 3 }) => {
+  const displayedBlogs = blogData.slice(0, limit);
+
   return (
     <Container className="mt-4">
       <h2 className="text-center section-title">Read Our Blog</h2>
       <Row className="gy-4">
-        {blogData.map((blog) => (
+        {displayedBlogs.map((blog) => (
           <Col key={blog.id} md={6} lg={4}>
             <BlogCard
               image={blog.image}
