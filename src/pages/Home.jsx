@@ -8,6 +8,9 @@ import BlogCarousel from "../components/BlogCarousel";
 
 import ResourceCard from "../components/ResourceSection/ResourceCard";
 import ResourceSection from "../components/ResourceSection/ResourceSection";
+import ServiceCard from "../components/ServicesSection/ServiceCard";
+import ServiceSection from "../components/ServicesSection/ServicesSection";
+import Footer from "../components/Footer/Footer";
 
 class Home extends React.Component {
   render() {
@@ -28,6 +31,14 @@ class Home extends React.Component {
         </Container>
         {/* <BlogCarousel /> */}
         <ResourceSection />
+        {/* <ServiceCard
+          image="/images/senior_advisor.jpg"
+          title="Retirement Planning"
+          description="Nullam ultrices risus id accumsan cursus. Maecenas scelerisque mi lacus, nec pellentesque nibh rutrum sit amet. "
+        /> */}
+
+        <ServiceSection />
+        <Footer />
       </>
     );
   }
