@@ -1,7 +1,9 @@
 import React from "react";
 import BlogCard from "./BlogCard"; // Import BlogCard component
 import blogData from "../data/blogData.json"; // Import blog JSON data
-import { Container, Row, Col } from "react-bootstrap"; // Bootstrap grid
+import { Container, Row, Col, Button } from "react-bootstrap"; // Bootstrap grid
+
+import { Link } from "react-router-dom";
 
 const BlogList = ({ limit = 3 }) => {
   const displayedBlogs = blogData.slice(0, limit);
@@ -23,6 +25,13 @@ const BlogList = ({ limit = 3 }) => {
           </Col>
         ))}
       </Row>
+      <div className="text-center mt-4">
+        <Link to="/services">
+          <Button variant="primary" size="md">
+            View All Posts
+          </Button>
+        </Link>
+      </div>
     </Container>
   );
 };

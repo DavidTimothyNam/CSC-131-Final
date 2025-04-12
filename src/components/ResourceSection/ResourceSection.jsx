@@ -1,5 +1,7 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 import ResourceCard from "./ResourceCard";
 
 const ResourceSection = () => {
@@ -45,6 +47,13 @@ const ResourceSection = () => {
             />
           </Col>
         </Row>
+        <div className="text-center mt-4">
+          <Link to="/services">
+            <Button variant="primary" size="md">
+              All Resources
+            </Button>
+          </Link>
+        </div>
       </Container>
     </section>
   );
