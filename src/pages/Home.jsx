@@ -6,6 +6,9 @@ import BlogCard from "../components/BlogCard";
 import BlogList from "../components/BlogList";
 import BlogCarousel from "../components/BlogCarousel";
 
+import ResourceCard from "../components/ResourceSection/ResourceCard";
+import ResourceSection from "../components/ResourceSection/ResourceSection";
+
 class Home extends React.Component {
   render() {
     return (
@@ -23,7 +26,8 @@ class Home extends React.Component {
             link="/blog/smart-investments"
           /> */}
         </Container>
-        <BlogCarousel />
+        {/* <BlogCarousel /> */}
+        <ResourceSection />
       </>
     );
   }
