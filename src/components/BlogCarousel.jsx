@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel, Button } from "react-bootstrap";
-import BlogCard from "./BlogCard";
+import BlogCard from "./BlogSection";
 import blogData from "../data/blogData.json";
 
 const BlogCarousel = () => {
