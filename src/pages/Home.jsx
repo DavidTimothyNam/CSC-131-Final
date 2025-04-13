@@ -2,15 +2,10 @@ import React from "react";
 import PageNavbar from "../components/Navbar";
 import { Container } from "react-bootstrap";
 import AboutHero from "../components/AboutHero";
-import BlogCard from "../components/BlogCard";
-import BlogList from "../components/BlogList";
-import BlogCarousel from "../components/BlogCarousel";
-
-import ResourceCard from "../components/ResourceSection/ResourceCard";
 import ResourceSection from "../components/ResourceSection/ResourceSection";
-import ServiceCard from "../components/ServicesSection/ServiceCard";
 import ServiceSection from "../components/ServicesSection/ServicesSection";
 import Footer from "../components/Footer/Footer";
+import BlogList from "../components/BlogSection";
 
 class Home extends React.Component {
   render() {
