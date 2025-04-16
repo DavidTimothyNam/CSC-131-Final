@@ -27,4 +27,19 @@
         "inputTitles": ["Original Value of Loan", "Original Interest Rate (%)", "Original Loan Term (Months)", "Payments Made (Months)", "Addition to Monthly Payment"],
         "outputTitles":["Interest Saved", "Time Saved (Months)"]
     }
+    {
+        "id": 5,
+        "title": "Credit Card Debt",
+        "description": "Estimate how long it will take to pay off your balance.",
+        "inputTitles": ["Current Credit Card Balance", "Interest Rate on Your Card (%)", "Amount You'll Pay Each Month ($)"],
+        "outputTitles":["Total Months", "Total Interest Paid"]
+    }
+    {
+        "id": 6,
+        "title": "Lease Payment",
+        "description": "Estimate how much your monthly lease payment would be.",
+        "inputTitles": ["Lease Amount ($)", "Downpayment ($)", "Lease Period (Months)", "Interest Rate (%)"],
+        "outputTitles":["Monthly Payment", "Total Lease Interest Payments"]
+    }
+  
 ]
