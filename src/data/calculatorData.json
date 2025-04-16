@@ -41,5 +41,26 @@
         "inputTitles": ["Lease Amount ($)", "Downpayment ($)", "Lease Period (Months)", "Interest Rate (%)"],
         "outputTitles":["Monthly Payment", "Total Lease Interest Payments"]
     }
+    {
+        "id": 7,
+        "title": "Car Affordability",
+        "description": "Estimate how much you can afford to pay for a car.",
+        "inputTitles": ["Monthly Amount Willing to Pay ($)", "Downpayment ($)", "Current Interest Rate (%)", "Number of Months of the Loan"],
+        "outputTitles":["Total Amount You Can Afford", "Total Interest You Would Pay"]
+    }
+    {
+        "id": 8,
+        "title": "College Funding",
+        "description": "Estimate the cost of your child's college education.",
+        "inputTitles": ["Number of Years Until Child Enters College", "Number of Years Child Will Attend College", "Estimated Annual Cost of College ($)", "Amount Currently Saved ($)"],
+        "outputTitles":["Total Cost Of Child's Education", "Amount Needed to Save Each Year to Cover the Costs"]
+    }
+   {
+        "id": 9,
+        "title": "Saving Goals",
+        "description": "Estimate how much you need to save in order to meet your savings goals.",
+        "inputTitles": ["Total Amount of Current Savings ($)", "Amount You'd Like to Have ($)", "Number of Years You Have to Save Up"],
+        "outputTitles":["Total Amount Needed to Save Each Year ($)"]
+    }
   
 ]
