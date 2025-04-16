@@ -8,8 +8,8 @@ import "./About.css";
 const About = () => {
   return (
     <>
+      <PageNavbar />
       <Container>
-        <PageNavbar />
         <Row>
           <Col md={3}>
             <AboutSidebar />
