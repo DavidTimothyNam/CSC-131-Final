@@ -5,9 +5,8 @@ import ServiceCard from "./ServiceCard";
 
 const ServiceSection = () => {
   return (
-    <section className="py-5" id="services">
+    <section id="services">
       <Container>
-        <h2 className="text-center mb-4">What We Offer</h2>
         <Row className="gy-4">
           <Col lg={3} md={6}>
             <ServiceCard
