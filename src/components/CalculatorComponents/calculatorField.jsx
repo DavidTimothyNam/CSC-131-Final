@@ -37,6 +37,14 @@ const CalculatorField= ({data}) => {
     4: (inputs) => [
       calcFunctions.mortgageAcceleration(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], 1),
       calcFunctions.mortgageAcceleration(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], 2)
+    ],
+    5: (inputs) => [
+      calcFunctions.creditCardDebtTotalMonths(inputs[0], inputs[1], inputs[2]),
+      calcFunctions.creditCardDebtTotalInterest(inputs[0], inputs[1], inputs[2])
+    ],
+    6: (inputs) => [
+      calcFunctions.leaseMonthlyPayment(inputs[0], inputs[1], inputs[2], inputs[3]).toFixed(2),
+      calcFunctions.leaseTotalInterest(inputs[0], inputs[1], inputs[2], inputs[3])
     ]
   };
   
