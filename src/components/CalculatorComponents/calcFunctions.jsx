@@ -71,3 +71,33 @@ export function mortgageAcceleration(loan, rate, months, payments, extra, mode) 
         return timeSaved
     }
   }
+
+  export function creditCardDebtTotalMonths(balance, rate, monthlyPayment){
+    const monthlyRate = rate/1200;
+    let months = 0;
+    let currentBalance = balance;
+
+    while (currentBalance > 0 && months < 1000) {
+        const interest = currentBalance * monthlyRate;
+        currentBalance = currentBalance + interest - monthlyPayment;
+        if (currentBalance < 0) currentBalance = 0;
+            months ++;
+   }
+  return months;
+}
+  export function creditCardDebtTotalInterest(balance, rate, monthlyPayment) {
+    const totalMonths = creditCardDebtTotalMonths(balance, rate, monthlyPayment);
+    const totalPaid = monthlyPayment * totalMonths;
+    return (totalPaid - balance).toFixed(2);
+}
+  export function leaseMonthlyPayment(leaseAmount, downPayment, leasePeriod, rate) {
+    const principal = leaseAmount - downPayment;
+    return MonthlyPaymentWithMonths(principal, rate, leasePeriod);
+}
+
+  export function leaseTotalInterest(leaseAmount, downPayment, leasePeriod, rate) {
+    const monthlyPayment = leaseMonthlyPayment(leaseAmount, downPayment, leasePeriod, rate);
+    const totalPaid = monthlyPayment * leasePeriod;
+    const principal = leaseAmount - downPayment;
+    return (totalPaid - principal).toFixed(2);
+}
