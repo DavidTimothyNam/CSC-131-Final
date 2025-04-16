@@ -4,12 +4,12 @@ import PageNavbar from "../../components/Navbar";
 import TestimonialsSection from "../../components/Testimonials/TestimonialsSection";
 import Footer from "../../components/Footer/Footer";
 import { Container } from "react-bootstrap";
+import Layout from "../../components/Layout";
 
 const Testimonials = () => {
   return (
     <>
-      <PageNavbar />
-      <Container className="my-5">
+      <Layout>
         <h1 className="text-center mb-4">Testimonials</h1>
         {/* <h1>Testimonials</h1> */}
         {/* <TestimonialCard
@@ -28,8 +28,7 @@ const Testimonials = () => {
         name="Jessica M."
       /> */}
         <TestimonialsSection />
-      </Container>
-      <Footer />
+      </Layout>
     </>
   );
 };

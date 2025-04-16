@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageNavbar from "../../components/Navbar";
+import Layout from "../../components/Layout";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -8,8 +9,18 @@ const Calendar = () => {
   const [currYear, setCurrYear] = useState(currentDate.getFullYear());
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   useEffect(() => {
@@ -19,7 +30,11 @@ const Calendar = () => {
   const renderCalendar = () => {
     const firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
     const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
-    const lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
+    const lastDayofMonth = new Date(
+      currYear,
+      currMonth,
+      lastDateofMonth
+    ).getDay();
     const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
 
     let days = [];
@@ -69,8 +84,8 @@ const Calendar = () => {
 
   return (
     <>
-      <PageNavbar />
-      <style>{`
+      <Layout>
+        <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded');
 
@@ -177,33 +192,42 @@ const Calendar = () => {
         }
       `}</style>
 
-      <div className="wrapper">
-        <header>
-          <p className="current-date">{months[currMonth]} {currYear}</p>
-          <div className="icons">
-            <span className="material-symbols-rounded" onClick={handlePrev}>chevron_left</span>
-            <span className="material-symbols-rounded" onClick={handleNext}>chevron_right</span>
-          </div>
-        </header>
+        <div className="wrapper">
+          <header>
+            <p className="current-date">
+              {months[currMonth]} {currYear}
+            </p>
+            <div className="icons">
+              <span className="material-symbols-rounded" onClick={handlePrev}>
+                chevron_left
+              </span>
+              <span className="material-symbols-rounded" onClick={handleNext}>
+                chevron_right
+              </span>
+            </div>
+          </header>
 
-        <div className="calendar">
-          <ul className="weeks">
-            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-              <li key={day}>{day}</li>
-            ))}
-          </ul>
-          <ul className="days">
-            {calendarDays.map((d, idx) => (
-              <li
-                key={idx}
-                className={`${d.inactive ? "inactive" : ""} ${d.active ? "active" : ""}`}
-              >
-                {d.day}
-              </li>
-            ))}
-          </ul>
+          <div className="calendar">
+            <ul className="weeks">
+              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                <li key={day}>{day}</li>
+              ))}
+            </ul>
+            <ul className="days">
+              {calendarDays.map((d, idx) => (
+                <li
+                  key={idx}
+                  className={`${d.inactive ? "inactive" : ""} ${
+                    d.active ? "active" : ""
+                  }`}
+                >
+                  {d.day}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };
