@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 
-function HeroCard({ image, title, excerpt, link }) {
+function BlogHeroCard({ image, title, excerpt, link }) {
   return (
     <Card className="text-white">
       <Card.Img src={image} alt={title} />
@@ -16,4 +16,4 @@ function HeroCard({ image, title, excerpt, link }) {
   );
 }
 
-export default HeroCard;
+export default BlogHeroCard;
