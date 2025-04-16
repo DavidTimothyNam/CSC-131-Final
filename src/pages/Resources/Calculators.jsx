@@ -1,11 +1,14 @@
 import React from "react";
 import PageNavbar from "../../components/Navbar";
+import Footer from "../../components/Footer/Footer"
+import CalculatorSelector from "../../components/CalculatorComponents/CalculatorSelector";
 
 const Calculators = () => {
   return (
     <>
-      <PageNavbar />
-      <h1>Calculators page</h1>
+        <PageNavbar />
+        <CalculatorSelector />
+        <Footer/>
     </>
   );
 };
