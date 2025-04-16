@@ -1,18 +1,18 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import NavbarComponent from "./NavbarComponent";
-import FooterComponent from "./FooterComponent";
+import Footer from "./Footer/Footer";
+import PageNavbar from "./Navbar";
 
 function Layout({ children }) {
   return (
     <>
-      <NavbarComponent />
+      <PageNavbar />
 
       <main>
         <Container className="my-5">{children}</Container>
       </main>
 
-      <FooterComponent />
+      <Footer />
     </>
   );
 }
