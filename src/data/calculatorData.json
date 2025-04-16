@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Loan Payoff",
+        "description": "Calculate the true cost of your loan.",
+        "inputTitles": ["Borrow Amount", "Interest Rate (%)", "Length (Months)"],
+        "outputTitles":["Monthly Payment", "Total Interest Payments"]
+    },
+    {
+        "id": 2,
+        "title": "Home Affordability",
+        "description": "Estimate the amount of financing to expect on a house.",
+        "inputTitles": ["Monthly Income", "Monthly Obligations", "Mortage Interest Rate (%)", "Length of Loan (Months)", "Down Payment"],
+        "outputTitles":["Monthly Payment", "Maximum House Price"]
+    },
+    {
+        "id": 3,
+        "title": "Mortage Refinancing",
+        "description": "Estimate the change in our loan if you refinanced.",
+        "inputTitles": ["Current Loan Balance", "New Interest Rate (%)", "New Loan Term (Months)", "Closing Costs"],
+        "outputTitles":["Monthly Payment", "Total Cost"]
+    },
+    {
+        "id": 4,
+        "title": "Mortage Acceleration",
+        "description": "Estimate how soon you could pay off your mortgage.",
+        "inputTitles": ["Original Value of Loan", "Original Interest Rate (%)", "Original Loan Term (Months)", "Payments Made (Months)", "Addition to Monthly Payment"],
+        "outputTitles":["Interest Saved", "Time Saved (Months)"]
+    }
+]
