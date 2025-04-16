@@ -25,7 +25,7 @@ const BlogSection = ({ limit = 3 }) => {
         ))}
       </Row>
       <div className="text-center mt-4">
-        <Link to="/services">
+        <Link to="/blog">
           <Button variant="primary" size="md">
             View All Posts
           </Button>

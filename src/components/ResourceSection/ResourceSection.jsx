@@ -47,7 +47,7 @@ const ResourceSection = () => {
           </Col>
         </Row>
         <div className="text-center mt-4">
-          <Link to="/services">
+          <Link to="/marketplace">
             <Button variant="primary" size="md">
               All Resources
             </Button>
