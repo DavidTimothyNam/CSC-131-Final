@@ -88,9 +88,41 @@ const ContactForm = () => {
 
     return (
         <>
-            <PageNavbar />
+          <PageNavbar />
 
-            <div className="container mt-5" style={{ width: '60%' }}>
+          <style>{`
+            .container .content {
+            margin: 35px 75px 55px;
+          }
+
+            #contactTitle{
+            font-size: 28px;
+            margin: 20px 75px;
+          }
+
+            .form-floating input,
+            .form-floating select,
+            .form-floating textarea{
+            margin-bottom: 20px;
+          }
+
+
+            #the-count{
+            float: right;
+            margin-top: -10px;
+          }
+            .submitButton input{
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: solid black 1px;
+            transition: background-color 200ms;
+          }
+            .submitButton input:hover{
+            background-color: darkgray;
+          }
+          `}</style>
+
+          <div className="container mt-5" style={{ width: '60%' }}>
                 <h1>Contact Us</h1>
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div className="form-floating mb-3">
@@ -158,7 +190,7 @@ const ContactForm = () => {
                         <span id="maximum"> / 500</span>
                     </div>
 
-                    <div className="submitButton text-center">
+                    <div className="submitButton">
                         <input
                             type="button"
                             value="Send Now"

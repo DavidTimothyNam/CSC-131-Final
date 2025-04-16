@@ -14,25 +14,19 @@ class Home extends React.Component {
         <PageNavbar />
         <Container>
           <AboutHero />
-          <BlogList />
-          {/* <BlogCard
-            image="/images/01.jpg"
-            badges={["Finance", "Investing"]}
-            date="March 7, 2025"
-            title="How to Make Smart Investments"
-            excerpt="Learn the secrets to making better financial decisions and growing your wealth."
-            link="/blog/smart-investments"
-          /> */}
         </Container>
-        {/* <BlogCarousel /> */}
-        <ResourceSection />
-        {/* <ServiceCard
-          image="/images/senior_advisor.jpg"
-          title="Retirement Planning"
-          description="Nullam ultrices risus id accumsan cursus. Maecenas scelerisque mi lacus, nec pellentesque nibh rutrum sit amet. "
-        /> */}
-
-        <ServiceSection />
+        <Container className="mt-4">
+          <h2 className="text-center section-title">Read Our Blog</h2>
+          <BlogList />
+        </Container>
+        <Container className="mt-4">
+          <h2 className="text-center mb-4">Financial Resources</h2>
+          <ResourceSection />
+        </Container>
+        <Container className="mt-4">
+          <h2 className="text-center mb-4">What We Offer</h2>
+          <ServiceSection />
+        </Container>
         <Footer />
       </>
     );

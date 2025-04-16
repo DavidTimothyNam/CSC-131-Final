@@ -6,9 +6,8 @@ import ResourceCard from "./ResourceCard";
 
 const ResourceSection = () => {
   return (
-    <section className="py-5" id="resources">
+    <section id="resources">
       <Container>
-        <h2 className="text-center mb-4">Financial Resources</h2>
         <Row className="gy-4">
           <Col lg={3} md={6}>
             <ResourceCard
@@ -48,7 +47,7 @@ const ResourceSection = () => {
           </Col>
         </Row>
         <div className="text-center mt-4">
-          <Link to="/services">
+          <Link to="/marketplace">
             <Button variant="primary" size="md">
               All Resources
             </Button>
