@@ -45,6 +45,19 @@ const CalculatorField= ({data}) => {
     6: (inputs) => [
       calcFunctions.leaseMonthlyPayment(inputs[0], inputs[1], inputs[2], inputs[3]).toFixed(2),
       calcFunctions.leaseTotalInterest(inputs[0], inputs[1], inputs[2], inputs[3])
+    ],
+    7: (inputs) => [
+      calcFunctions.carAffordabilityTotal(inputs[0], inputs[1], inputs[2], inputs[3]),
+      calcFunctions.carAffordabilityInterest(inputs[0], inputs[3], 
+      calcFunctions.carAffordabilityTotal(inputs[0], inputs[1], inputs[2], inputs[3]) - inputs[1])
+    ],
+    8: (inputs) => [
+      calcFunctions.collegeTotalCost(inputs[0], inputs[1], inputs[2], inputs[3]),
+      calcFunctions.collegeAnnualSavings(inputs[0], 
+      calcFunctions.collegeTotalCost(inputs[0], inputs[1], inputs[2], inputs[3]))
+    ],
+    9: (inputs) => [
+      calcFunctions.annualSavingsNeeded(inputs[0], inputs[1], inputs[2])
     ]
   };
   
