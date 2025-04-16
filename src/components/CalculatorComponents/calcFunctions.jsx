@@ -84,12 +84,12 @@ export function mortgageAcceleration(loan, rate, months, payments, extra, mode) 
             months ++;
    }
   return months;
-}
+ }
   export function creditCardDebtTotalInterest(balance, rate, monthlyPayment) {
     const totalMonths = creditCardDebtTotalMonths(balance, rate, monthlyPayment);
     const totalPaid = monthlyPayment * totalMonths;
     return (totalPaid - balance).toFixed(2);
-}
+ }
   export function leaseMonthlyPayment(leaseAmount, downPayment, leasePeriod, rate) {
     const principal = leaseAmount - downPayment;
     return MonthlyPaymentWithMonths(principal, rate, leasePeriod);
@@ -100,4 +100,35 @@ export function mortgageAcceleration(loan, rate, months, payments, extra, mode) 
     const totalPaid = monthlyPayment * leasePeriod;
     const principal = leaseAmount - downPayment;
     return (totalPaid - principal).toFixed(2);
+}
+
+  export function carAffordabilityTotal(monthlyPayment, downPayment, rate, months) {
+    const rateDEC = rate / 1200;
+    const loanAmount = (monthlyPayment * minusPowRateMonths(rateDEC, months)) / rateDEC;
+    return (loanAmount + downPayment).toFixed(2);
+}
+
+  export function carAffordabilityInterest(monthlyPayment, months, loanAmount) {
+    return (monthlyPayment * months - loanAmount).toFixed(2);
+}
+
+  export function collegeTotalCost(yearsUntilStart, yearsAttending, annualCost, saved) {
+    const inflation = 1.05; // 5% annual inflation
+    let totalCost = 0;
+    
+    for(let i = yearsUntilStart; i < yearsUntilStart + yearsAttending; i++) {
+        totalCost += annualCost * Math.pow(inflation, i);
+    }
+    return (totalCost - saved).toFixed(2);
+}
+
+  export function collegeAnnualSavings(yearsUntilStart, totalCost) {
+    const rate = 0.07; // 7% annual return assumption
+    return (totalCost / ((Math.pow(1 + rate, yearsUntilStart) - 1) / rate)).toFixed(2);
+}
+
+  export function annualSavingsNeeded(current, goal, years) {
+    const rate = 0.07; // 7% annual return assumption
+    const futureValue = goal - current * Math.pow(1 + rate, years);
+    return (futureValue / ((Math.pow(1 + rate, years) - 1) / rate)).toFixed(2);
 }
