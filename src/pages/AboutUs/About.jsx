@@ -4,12 +4,12 @@ import AboutSidebar from "../../components/PageAboutUs/AboutSidebar";
 import { Col, Container, Row, Image } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
 import "./About.css";
+import Layout from "../../components/Layout";
 
 const About = () => {
   return (
     <>
-      <PageNavbar />
-      <Container>
+      <Layout>
         <Row>
           <Col md={3}>
             <AboutSidebar />
@@ -96,8 +96,7 @@ const About = () => {
             </section>
           </Col>
         </Row>
-      </Container>
-      <Footer />
+      </Layout>
     </>
   );
 };
