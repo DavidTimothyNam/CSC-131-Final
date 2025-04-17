@@ -1,66 +1,111 @@
 [
-    {
-        "id": 1,
-        "title": "Loan Payoff",
-        "description": "Calculate the true cost of your loan.",
-        "inputTitles": ["Borrow Amount", "Interest Rate (%)", "Length (Months)"],
-        "outputTitles":["Monthly Payment", "Total Interest Payments"]
-    },
-    {
-        "id": 2,
-        "title": "Home Affordability",
-        "description": "Estimate the amount of financing to expect on a house.",
-        "inputTitles": ["Monthly Income", "Monthly Obligations", "Mortage Interest Rate (%)", "Length of Loan (Months)", "Down Payment"],
-        "outputTitles":["Monthly Payment", "Maximum House Price"]
-    },
-    {
-        "id": 3,
-        "title": "Mortage Refinancing",
-        "description": "Estimate the change in our loan if you refinanced.",
-        "inputTitles": ["Current Loan Balance", "New Interest Rate (%)", "New Loan Term (Months)", "Closing Costs"],
-        "outputTitles":["Monthly Payment", "Total Cost"]
-    },
-    {
-        "id": 4,
-        "title": "Mortage Acceleration",
-        "description": "Estimate how soon you could pay off your mortgage.",
-        "inputTitles": ["Original Value of Loan", "Original Interest Rate (%)", "Original Loan Term (Months)", "Payments Made (Months)", "Addition to Monthly Payment"],
-        "outputTitles":["Interest Saved", "Time Saved (Months)"]
-    },
-    {
-        "id": 5,
-        "title": "Credit Card Debt",
-        "description": "Estimate how long it will take to pay off your balance.",
-        "inputTitles": ["Current Credit Card Balance", "Interest Rate on Your Card (%)", "Amount You'll Pay Each Month ($)"],
-        "outputTitles":["Total Months", "Total Interest Paid"]
-    },
-    {
-        "id": 6,
-        "title": "Lease Payment",
-        "description": "Estimate how much your monthly lease payment would be.",
-        "inputTitles": ["Lease Amount ($)", "Downpayment ($)", "Lease Period (Months)", "Interest Rate (%)"],
-        "outputTitles":["Monthly Payment", "Total Lease Interest Payments"]
-    },
-    {
-        "id": 7,
-        "title": "Car Affordability",
-        "description": "Estimate how much you can afford to pay for a car.",
-        "inputTitles": ["Monthly Amount Willing to Pay ($)", "Downpayment ($)", "Current Interest Rate (%)", "Number of Months of the Loan"],
-        "outputTitles":["Total Amount You Can Afford", "Total Interest You Would Pay"]
-    },
-    {
-        "id": 8,
-        "title": "College Funding",
-        "description": "Estimate the cost of your child's college education.",
-        "inputTitles": ["Number of Years Until Child Enters College", "Number of Years Child Will Attend College", "Estimated Annual Cost of College ($)", "Amount Currently Saved ($)"],
-        "outputTitles":["Total Cost Of Child's Education", "Amount Needed to Save Each Year to Cover the Costs"]
-    },
-    {
-        "id": 9,
-        "title": "Saving Goals",
-        "description": "Estimate how much you need to save in order to meet your savings goals.",
-        "inputTitles": ["Total Amount of Current Savings ($)", "Amount You'd Like to Have ($)", "Number of Years You Have to Save Up"],
-        "outputTitles":["Total Amount Needed to Save Each Year ($)"]
-    }
-  
-];
+  {
+    "id": 1,
+    "title": "Loan Payoff",
+    "description": "Calculate the true cost of your loan.",
+    "inputTitles": ["Borrow Amount", "Interest Rate (%)", "Length (Months)"],
+    "outputTitles": ["Monthly Payment", "Total Interest Payments"]
+  },
+  {
+    "id": 2,
+    "title": "Home Affordability",
+    "description": "Estimate the amount of financing to expect on a house.",
+    "inputTitles": [
+      "Monthly Income",
+      "Monthly Obligations",
+      "Mortage Interest Rate (%)",
+      "Length of Loan (Months)",
+      "Down Payment"
+    ],
+    "outputTitles": ["Monthly Payment", "Maximum House Price"]
+  },
+  {
+    "id": 3,
+    "title": "Mortage Refinancing",
+    "description": "Estimate the change in our loan if you refinanced.",
+    "inputTitles": [
+      "Current Loan Balance",
+      "New Interest Rate (%)",
+      "New Loan Term (Months)",
+      "Closing Costs"
+    ],
+    "outputTitles": ["Monthly Payment", "Total Cost"]
+  },
+  {
+    "id": 4,
+    "title": "Mortage Acceleration",
+    "description": "Estimate how soon you could pay off your mortgage.",
+    "inputTitles": [
+      "Original Value of Loan",
+      "Original Interest Rate (%)",
+      "Original Loan Term (Months)",
+      "Payments Made (Months)",
+      "Addition to Monthly Payment"
+    ],
+    "outputTitles": ["Interest Saved", "Time Saved (Months)"]
+  },
+  {
+    "id": 5,
+    "title": "Credit Card Debt",
+    "description": "Estimate how long it will take to pay off your balance.",
+    "inputTitles": [
+      "Current Credit Card Balance",
+      "Interest Rate on Your Card (%)",
+      "Amount You'll Pay Each Month ($)"
+    ],
+    "outputTitles": ["Total Months", "Total Interest Paid"]
+  },
+  {
+    "id": 6,
+    "title": "Lease Payment",
+    "description": "Estimate how much your monthly lease payment would be.",
+    "inputTitles": [
+      "Lease Amount ($)",
+      "Downpayment ($)",
+      "Lease Period (Months)",
+      "Interest Rate (%)"
+    ],
+    "outputTitles": ["Monthly Payment", "Total Lease Interest Payments"]
+  },
+  {
+    "id": 7,
+    "title": "Car Affordability",
+    "description": "Estimate how much you can afford to pay for a car.",
+    "inputTitles": [
+      "Monthly Amount Willing to Pay ($)",
+      "Downpayment ($)",
+      "Current Interest Rate (%)",
+      "Number of Months of the Loan"
+    ],
+    "outputTitles": [
+      "Total Amount You Can Afford",
+      "Total Interest You Would Pay"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "College Funding",
+    "description": "Estimate the cost of your child's college education.",
+    "inputTitles": [
+      "Number of Years Until Child Enters College",
+      "Number of Years Child Will Attend College",
+      "Estimated Annual Cost of College ($)",
+      "Amount Currently Saved ($)"
+    ],
+    "outputTitles": [
+      "Total Cost Of Child's Education",
+      "Amount Needed to Save Each Year to Cover the Costs"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Saving Goals",
+    "description": "Estimate how much you need to save in order to meet your savings goals.",
+    "inputTitles": [
+      "Total Amount of Current Savings ($)",
+      "Amount You'd Like to Have ($)",
+      "Number of Years You Have to Save Up"
+    ],
+    "outputTitles": ["Total Amount Needed to Save Each Year ($)"]
+  }
+]
