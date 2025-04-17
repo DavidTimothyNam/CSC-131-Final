@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PageNavbar from "../components/Navbar";
 import Layout from "../components/Layout";
-import './contact.css'
+// import './contact.css'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

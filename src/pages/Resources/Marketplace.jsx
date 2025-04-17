@@ -1,7 +1,7 @@
 import React from "react";
 import PageNavbar from "../../components/Navbar";
 import Layout from "../../components/Layout";
-import './marketplace.css'
+// import './marketplace.css'
 
 const Marketplace = () => {
   return (

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import PageNavbar from "../../components/Navbar";
-import Layout from "../../components/Layout";
-import './calendar.css'
+import Layout from "../Layout";
+// import "./ResourceCalendar.css";
 
-const Calendar = () => {
+const ResourceCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [calendarDays, setCalendarDays] = useState([]);
   const [currMonth, setCurrMonth] = useState(currentDate.getMonth());
@@ -126,4 +125,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default ResourceCalendar;
