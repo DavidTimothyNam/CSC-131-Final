@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
   { path: "/testimonials", element: <Testimonials /> },
   { path: "/faq", element: <FAQ /> },
   { path: "/services", element: <Services /> },
-  { path: "/calendar", element: <ResourceCalendar /> },  // Resource Calendar Route
+  { path: "/calendar", element: <ResourceCalendar /> }, // Resource Calendar Route
   { path: "/marketplace", element: <Marketplace /> },
   { path: "/calculators", element: <Calculators /> },
   { path: "/blog", element: <Blog /> },
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
   // Admin Routes
   { path: "/admin", element: <AdminLogin /> },
   { path: "/admin/dashboard", element: <AdminDashboard /> },
-  { path: "/admin/documents", element: <Documents /> },  {/* Documents Section */}
-  { path: "/admin/calendar", element: <AdminCalendar /> },  {/* Admin Calendar Section */}
-  { path: "/admin/inbox", element: <Inbox /> },  {/* Inbox Section */}
+  { path: "/admin/documents", element: <Documents /> }, //* Documents Section */}
+  { path: "/admin/calendar", element: <AdminCalendar /> }, //* Admin Calendar Section */}
+  { path: "/admin/inbox", element: <Inbox /> }, //* Inbox Section */}
 ]);
