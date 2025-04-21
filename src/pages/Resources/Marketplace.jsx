@@ -1,33 +1,26 @@
 import React from "react";
-import PageNavbar from "../../components/Navbar";
 import Layout from "../../components/Layout";
-// import './marketplace.css'
+import ArticleCard from "../../components/ArticleCard";
+import articles from "../../data/marketplaceArticles.json";
 
 const Marketplace = () => {
   return (
-    <>
-      <Layout>
-        <div className="container card-grid-holder">
-          <h1>Marketplace</h1>
-          <div className="row">
-            {Array(6)
-              .fill()
-              .map((_, i) => (
-                <div className="card col-lg-4 resource-card" key={i}>
-                  <p className="card-title">
-                    <a href="./index.html">Article Name</a>
-                  </p>
-                  <p className="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus eget arcu at ipsum imperdiet eleifend. Sed non
-                    aliquet est. Cras congue purus et mollis vestibulum.
-                  </p>
-                </div>
-              ))}
-          </div>
+    <Layout>
+      <div className="container card-grid-holder">
+        <h1>Marketplace</h1>
+        <div className="row">
+          {articles.map((article) => (
+            <ArticleCard
+              key={article.id}
+              id={article.id}
+              slug={article.slug}
+              title={article.title}
+              description={article.description}
+            />
+          ))}
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 };
 

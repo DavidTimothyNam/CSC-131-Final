@@ -3,9 +3,17 @@ import { Card, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ image, badges, date, title, excerpt, link }) => {
+  const imgStyle = {
+    width: "100%",
+    height: "225px",
+    objectFit: "cover",
+    borderTopLeftRadius: "0.375rem",
+    borderTopRightRadius: "0.375rem",
+  };
+
   return (
     <Card className="mb-4 shadow-sm h-100">
-      <Card.Img variant="top" src={image} alt={title} className="blog-image" />
+      <Card.Img variant="top" src={image} alt={title} style={imgStyle} />
 
       <Card.Body className="d-flex flex-column">
         <div className="mb-1">
