@@ -1,16 +1,11 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
+import Layout from "../components/Layout";
+import Calendar from "../components/Calendar";
 
-const ResourceCalendar = lazy(() =>
-  import("../components/Calendar/ResourceCalendar")
+const CalendarPage = () => (
+  <Layout>
+    <Calendar />
+  </Layout>
 );
-
-// import ResourceCalendar from "../components/Calendar/ResourceCalendar";
-function CalendarPage() {
-  return (
-    <Suspense fallback={<div>Loading calendar...</div>}>
-      <ResourceCalendar />
-    </Suspense>
-  );
-}
 
 export default CalendarPage;
