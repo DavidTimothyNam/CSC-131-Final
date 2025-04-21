@@ -12,7 +12,8 @@ import ResourceCalendar from "./pages/CalendarPage.jsx";
 import Marketplace from "./pages/Resources/Marketplace.jsx";
 import Calculators from "./pages/Resources/Calculators.jsx";
 import Blog from "./pages/Resources/Blog.jsx";
-import BlogPost from "./BlogPost.jsx"; // New component for dynamic blog pages
+import BlogPost from "./pages/Resources/BlogPages/BlogPost.jsx";
+import ArticlePages from "./pages/Resources/MarketplacePages/ArticlePages.jsx";
 
 import Contact from "./pages/Contact.jsx";
 
@@ -43,10 +44,7 @@ export const router = createBrowserRouter([
   { path: "/admin/documents", element: <Documents /> },
   { path: "/admin/calendar", element: <AdminCalendar /> },
   { path: "/admin/inbox", element: <Inbox /> },
+  { path: "/article/:slug", element: <ArticlePages /> },
+  { path: "/blog/:slug", element: <BlogPost /> }
 
-  // Dynamic blog post routes from blogPosts.json
-  ...blogPosts.map((post) => ({
-    path: `/blog/${post.link}`,
-    element: <BlogPost />,
-  })),
 ]);

@@ -1,25 +1,34 @@
-import React from "react";
-import PageNavbar from "../../components/Navbar";
-import ContactForm from "../Contact";
-import { Container } from "react-bootstrap";
+import React, { useState } from "react";
+import Layout from "../../components/Layout";
 import BlogHeroCard from "../../components/PageBlog/BlogHeroCard";
 import BlogSection from "../../components/BlogSection";
-import Layout from "../../components/Layout";
+import blogData from "../../data/blogData.json";
 
 const Blog = () => {
+  const [showAll, setShowAll] = useState(false);
+
+  const heroPost = blogData[0];
+  const remainingPosts = blogData.slice(1); // everything after hero
+
+  const visiblePosts = showAll ? remainingPosts : remainingPosts.slice(0, 3); // 3 cards by default
+
+  const toggleShowAll = () => setShowAll((prev) => !prev);
+
   return (
-    <>
-      <Layout>
-        <h1>Blog</h1>
-        <BlogHeroCard
-          image="/images/04.jpg"
-          title="Blog Hero Card"
-          excerpt="Lorem ipsum dolor sit amet"
-          link="/"
-        />
-        <BlogSection />
-      </Layout>
-    </>
+    <Layout>
+      <BlogHeroCard
+        image={heroPost.image}
+        title={heroPost.title}
+        excerpt={heroPost.excerpt}
+        link={`/blog/${heroPost.link}`}
+      />
+
+      <BlogSection
+        posts={visiblePosts}
+        showAll={showAll}
+        onToggle={toggleShowAll}
+      />
+    </Layout>
   );
 };
 
