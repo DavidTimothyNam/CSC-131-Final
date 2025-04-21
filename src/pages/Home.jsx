@@ -1,29 +1,57 @@
 import React from "react";
-import PageNavbar from "../components/Navbar";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import AboutHero from "../components/AboutHero";
 import ResourceSection from "../components/ResourceSection/ResourceSection";
 import ServiceSection from "../components/ServicesSection/ServicesSection";
-import Footer from "../components/Footer/Footer";
-import BlogList from "../components/BlogSection";
 import Layout from "../components/Layout";
+import BlogCard from "../components/BlogCard"; // ⬅️ Make sure the path is correct
+import blogData from "../data/blogData.json";
 
 class Home extends React.Component {
   render() {
+    const previewPosts = blogData.slice(0, 3); // Only the first 3 posts
+
     return (
       <>
         <Layout>
           <Container>
             <AboutHero />
           </Container>
+
+          {/* 📰 Blog Preview Section */}
           <Container className="mt-4">
             <h2 className="text-center section-title">Read Our Blog</h2>
-            <BlogList />
+            <Row className="g-4 align-items-stretch">
+              {previewPosts.map((post) => (
+                <Col key={post.id} md={6} lg={4}>
+                  <BlogCard
+                    image={post.image}
+                    badges={post.badges}
+                    date={post.date}
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    link={`/blog/${post.link}`}
+                  />
+                </Col>
+              ))}
+            </Row>
+            <div className="text-center mt-4">
+              <Link to="/blog">
+                <Button variant="primary" size="md">
+                  View All Posts
+                </Button>
+              </Link>
+            </div>
           </Container>
+
+          {/* 📚 Resources */}
           <Container className="mt-4">
             <h2 className="text-center mb-4">Financial Resources</h2>
             <ResourceSection />
           </Container>
+
+          {/* 💼 Services */}
           <Container className="mt-4">
             <h2 className="text-center mb-4">What We Offer</h2>
             <ServiceSection />
