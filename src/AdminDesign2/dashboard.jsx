@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const App = () => {
+const AdminDesign2 = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [credentials, setCredentials] = useState({ username: '', password: '' });
 
@@ -78,4 +78,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AdminDesign2;
