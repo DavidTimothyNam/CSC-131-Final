@@ -1,22 +1,21 @@
-import React from "react";
+import React from 'react';
+
+const mockInbox = [
+  { subject: 'Meeting Reminder', sender: 'HR' },
+  { subject: 'New Assignment', sender: 'Manager' },
+  { subject: 'Team Outing', sender: 'Admin' },
+];
 
 const Inbox = () => {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Inbox</h1>
-      <ul>
-        <li>
-          <p><strong>Message from User1</strong></p>
-          <p>Subject: Inquiry about services</p>
-          <button>View</button>
-          <button>Delete</button>
-        </li>
-        <li>
-          <p><strong>Message from User2</strong></p>
-          <p>Subject: Question on availability</p>
-          <button>View</button>
-          <button>Delete</button>
-        </li>
+    <div className="p-6">
+      <h2 className="text-2xl font-semibold mb-4">Inbox</h2>
+      <ul className="space-y-2">
+        {mockInbox.map((mail, index) => (
+          <li key={index} className="p-3 border rounded">
+            <strong>{mail.subject}</strong> from {mail.sender}
+          </li>
+        ))}
       </ul>
     </div>
   );

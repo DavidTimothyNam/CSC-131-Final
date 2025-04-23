@@ -18,11 +18,7 @@ import ArticlePages from "./pages/Resources/MarketplacePages/ArticlePages.jsx";
 import Contact from "./pages/Contact.jsx";
 
 // Admin pages
-import AdminLogin from "./admin/AdminLogin";
-import AdminDashboard from "./admin/AdminDashboard";
-import Documents from "./admin/Documents";
-import AdminCalendar from "./admin/AdminCalendar";
-import Inbox from "./admin/Inbox";
+import Admin from "./admin/Admin";
 
 // Create the router with static and dynamic routes
 export const router = createBrowserRouter([
@@ -39,11 +35,7 @@ export const router = createBrowserRouter([
   { path: "/contact", element: <Contact /> },
 
   // Admin routes
-  { path: "/admin", element: <AdminLogin /> },
-  { path: "/admin/dashboard", element: <AdminDashboard /> },
-  { path: "/admin/documents", element: <Documents /> },
-  { path: "/admin/calendar", element: <AdminCalendar /> },
-  { path: "/admin/inbox", element: <Inbox /> },
+  { path: "/admin", element: <Admin />},
   { path: "/article/:slug", element: <ArticlePages /> },
   { path: "/blog/:slug", element: <BlogPost /> }
 
