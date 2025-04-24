@@ -36,13 +36,14 @@
         margin-bottom: 1em;
       }
     </style>
+    <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
     <!-- navbar -->
     <div class="container">
       <nav
-        class="navbar navbar-expand-lg navbar-light bg-light justify-content-center fixed-top mb-auto"
+        class="navbar navbar-custom navbar-expand-lg justify-content-center fixed-top mb-auto"
       >
         <div class="container">
           <a class="navbar-brand" href="./index.html">Logo Goes Here</a>
@@ -137,14 +138,15 @@
       </nav>
     </div>
 
+    <!-- page sections -->
     <main class="container">
       <section id="about">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-6">
-              <h1>Ron Smithey Financial Services</h1>
+              <h1 id="backgroundLight">Ron Smithey Financial Services</h1>
               <!-- about us summary -->
-              <p class="lead mb-4">
+              <p class="lead mb-4" id="backgroundLight">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                 fringilla gravida turpis at egestas. Sed et libero vel ipsum
                 maximus porta. Integer sodales accumsan eros a finibus.
@@ -152,10 +154,10 @@
                 rhoncus.
               </p>
               <div class="d-flex gap-3">
-                <a href="#contact" class="btn btn-primary btn-lg"
+                <a href="#contact" class="btn btn-lg" id="backgroundDark"
                   >Meet With Us</a
                 >
-                <a href="./about.html" class="btn btn-outline-dark btn-lg"
+                <a href="./about.html" class="btn btn-lg" id="backgroundDark"
                   >Our Team</a
                 >
               </div>
@@ -165,13 +167,89 @@
                 src="./Pictures/temp/person1.jpg"
                 alt="Profile Photo"
                 class="img-fluid rounded"
+                id="imgShape"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="blog" class="py-5 mt-5">
+      <section id="services" class="py-5 mt-5">
+        <div class="container" id="backgroundPrimary">
+          <h2 class="text-center section-title">What We Offer</h2>
+          <!-- lists three services -->
+          <div class="row g-4 mt-3">
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="./Pictures/temp/senior_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">Retirement Planning</h5>
+                  <p class="card-text">
+                    Nullam ultrices risus id accumsan cursus. Maecenas
+                    scelerisque mi lacus, nec pellentesque nibh rutrum sit amet.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="./Pictures/temp/student_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">College Plans</h5>
+                  <p class="card-text">
+                    Duis vitae quam vitae orci condimentum rhoncus. Sed at justo
+                    risus. Etiam porttitor orci sit amet metus tincidunt egestas
+                    et non velit.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="./Pictures/temp/couple_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">Insurance Reviews</h5>
+                  <p class="card-text">
+                    Aenean velit turpis, viverra et lacinia quis, cursus non
+                    leo. Donec pulvinar nisi vitae arcu viverra maximus.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="./Pictures/temp/family_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">Comprehensive Planning</h5>
+                  <p class="card-text">
+                    Vivamus et rhoncus massa, efficitur dapibus quam. Proin sed
+                    tellus dolor. Fusce dui lacus, vestibulum vitae condimentum
+                    tincidunt, tincidunt ut magna.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <a href="./services.html" class="btn btn-primary">More Services</a>
+          </div>
+        </div>
+      </section>
+      
+      <section id="blog" class="py-5">
         <div class="container">
           <h2 class="text-center section-title">Read Our Blog</h2>
           <!-- row holds 3 blog cards -->
@@ -268,7 +346,7 @@
       </section>
 
       <section id="resources" class="py-5">
-        <div class="container">
+        <div class="container" id="backgroundPrimary">
           <h2 class="text-center section-title">Financial Resources</h2>
           <div class="row g-4">
             <div class="col-lg-3">
@@ -351,85 +429,13 @@
         </div>
       </section>
 
-      <section id="services" class="py-5">
-        <div class="container">
-          <h2 class="text-center section-title">What We Offer</h2>
-          <!-- lists three services -->
-          <div class="row g-4 mt-3">
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/senior_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">Retirement Planning</h5>
-                  <p class="card-text">
-                    Nullam ultrices risus id accumsan cursus. Maecenas
-                    scelerisque mi lacus, nec pellentesque nibh rutrum sit amet.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/student_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">College Plans</h5>
-                  <p class="card-text">
-                    Duis vitae quam vitae orci condimentum rhoncus. Sed at justo
-                    risus. Etiam porttitor orci sit amet metus tincidunt egestas
-                    et non velit.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/couple_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">Insurance Reviews</h5>
-                  <p class="card-text">
-                    Aenean velit turpis, viverra et lacinia quis, cursus non
-                    leo. Donec pulvinar nisi vitae arcu viverra maximus.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/family_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">Comprehensive Planning</h5>
-                  <p class="card-text">
-                    Vivamus et rhoncus massa, efficitur dapibus quam. Proin sed
-                    tellus dolor. Fusce dui lacus, vestibulum vitae condimentum
-                    tincidunt, tincidunt ut magna.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-4">
-            <a href="./services.html" class="btn btn-primary">More Services</a>
-          </div>
-        </div>
-      </section>
+      
     </main>
 
+    <!-- footer -->
     <div class="container">
       <footer class="py-5">
-        <div class="row">
+        <div class="row" id="backgroundFooter">
           <div class="col-lg-3">
             <h5>Quick Links</h5>
             <ul class="nav flex-column">
