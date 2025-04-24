@@ -1,0 +1,29 @@
+body{
+    font-family: Garamond
+}
+#backgroundPrimary{
+    background-color: #606C38;
+    color: #FEFAE0;
+}
+#backgroundLight{
+    background-color: #DDA15E;
+    color: #283618;
+    border-radius: 200px;
+    padding: 30px;
+    text-align: center;
+}
+#backgroundDark{
+    background-color: #BC6C25;
+    color: #FEFAE0;
+    border-radius: 200px;
+    padding: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+#imgShape{
+    border-radius: 50%;
+}
+.div{
+    display: grid;
+}
