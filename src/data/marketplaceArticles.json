@@ -4,41 +4,241 @@
     "slug": "retirement-planning",
     "title": "How to Plan for Retirement",
     "description": "Learn the basics of building a strong retirement strategy with long-term security.",
-    "content": "Full article content for Retirement Planning goes here..."
+    "content": "Full article content for Retirement Planning goes here...",
+    "category": "Flipbooks"
   },
   {
     "id": 2,
     "slug": "investing-101",
     "title": "Investing 101: Beginner’s Guide",
     "description": "A simple breakdown of investment strategies for first-time investors.",
-    "content": "Full article content for Investing 101 goes here..."
+    "content": "Full article content for Investing 101 goes here...",
+    "category": "Flipbooks"
   },
   {
     "id": 3,
-    "slug": "tax-saving-tips",
-    "title": "Top 5 Tax Saving Tips",
-    "description": "Practical tax-saving tips for individuals and small businesses.",
-    "content": "Content on top 5 tax saving tips..."
+    "slug": "saving-habits",
+    "title": "Smart Saving Habits",
+    "description": "Master the art of saving with these essential money-saving habits.",
+    "content": "Content for saving habits...",
+    "category": "Flipbooks"
   },
   {
     "id": 4,
-    "slug": "real-estate-vs-stocks",
-    "title": "Real Estate vs. Stocks",
-    "description": "Explore the pros and cons of investing in real estate vs. the stock market.",
-    "content": "Content comparing real estate and stocks..."
+    "slug": "debt-management",
+    "title": "Managing Your Debt",
+    "description": "Effective strategies to reduce and eliminate debt faster.",
+    "content": "Debt management content...",
+    "category": "Flipbooks"
   },
   {
     "id": 5,
-    "slug": "emergency-fund-essentials",
-    "title": "Emergency Fund Essentials",
-    "description": "Why every financial plan should start with an emergency fund and how to build one.",
-    "content": "Emergency fund content goes here..."
+    "slug": "budgeting-basics",
+    "title": "Budgeting Basics",
+    "description": "A step-by-step guide to creating and maintaining a personal budget.",
+    "content": "Budgeting content...",
+    "category": "Flipbooks"
   },
   {
     "id": 6,
+    "slug": "student-loans-guide",
+    "title": "Student Loans Guide",
+    "description": "Navigate student loan options and repayment plans effectively.",
+    "content": "Student loan guide content...",
+    "category": "Flipbooks"
+  },
+  {
+    "id": 7,
+    "slug": "credit-score-tips",
+    "title": "Credit Score Improvement Tips",
+    "description": "Boost your credit score with actionable tips and long-term practices.",
+    "content": "Credit score tips content...",
+    "category": "Flipbooks"
+  },
+  {
+    "id": 8,
+    "slug": "money-mindset",
+    "title": "Developing a Positive Money Mindset",
+    "description": "Shift your financial mindset for long-term success and peace of mind.",
+    "content": "Money mindset content...",
+    "category": "Flipbooks"
+  },
+  {
+    "id": 9,
+    "slug": "side-hustles",
+    "title": "10 Profitable Side Hustles",
+    "description": "Explore side hustle ideas that can help grow your income.",
+    "content": "Side hustle content...",
+    "category": "Flipbooks"
+  },
+  {
+    "id": 10,
+    "slug": "financial-independence",
+    "title": "Steps to Financial Independence",
+    "description": "A roadmap to achieving financial independence early.",
+    "content": "Financial independence content...",
+    "category": "Flipbooks"
+  },
+
+  {
+    "id": 11,
+    "slug": "real-estate-vs-stocks",
+    "title": "Real Estate vs. Stocks",
+    "description": "Explore the pros and cons of investing in real estate vs. the stock market.",
+    "content": "Video comparing real estate and stocks...",
+    "category": "Videos"
+  },
+  {
+    "id": 12,
+    "slug": "crypto-basics",
+    "title": "Understanding Cryptocurrency",
+    "description": "Learn how cryptocurrency works and what to watch for as an investor.",
+    "content": "Crypto basics video content...",
+    "category": "Videos"
+  },
+  {
+    "id": 13,
+    "slug": "tax-season-prep",
+    "title": "Preparing for Tax Season",
+    "description": "Everything you need to get your taxes done right and on time.",
+    "content": "Tax season prep video...",
+    "category": "Videos"
+  },
+  {
+    "id": 14,
+    "slug": "finance-mistakes",
+    "title": "Top 5 Money Mistakes",
+    "description": "Common financial mistakes and how to avoid them.",
+    "content": "Money mistakes video content...",
+    "category": "Videos"
+  },
+  {
+    "id": 15,
+    "slug": "compound-interest",
+    "title": "How Compound Interest Works",
+    "description": "Learn how your savings can grow exponentially over time.",
+    "content": "Compound interest video...",
+    "category": "Videos"
+  },
+  {
+    "id": 16,
+    "slug": "early-investing",
+    "title": "Why You Should Start Investing Early",
+    "description": "The benefits of starting your investment journey young.",
+    "content": "Early investing video...",
+    "category": "Videos"
+  },
+  {
+    "id": 17,
+    "slug": "retirement-accounts",
+    "title": "Types of Retirement Accounts",
+    "description": "A breakdown of IRAs, 401(k)s, and other retirement options.",
+    "content": "Retirement account video...",
+    "category": "Videos"
+  },
+  {
+    "id": 18,
+    "slug": "insurance-basics",
+    "title": "Insurance Explained",
+    "description": "Why insurance matters and how to choose the right policy.",
+    "content": "Insurance video content...",
+    "category": "Videos"
+  },
+  {
+    "id": 19,
+    "slug": "home-buying-guide",
+    "title": "Home Buying Guide",
+    "description": "Steps and tips for buying your first home.",
+    "content": "Home buying video...",
+    "category": "Videos"
+  },
+  {
+    "id": 20,
+    "slug": "budget-apps",
+    "title": "Best Budgeting Apps",
+    "description": "Review of top apps for managing your budget.",
+    "content": "Budgeting apps video content...",
+    "category": "Videos"
+  },
+
+  {
+    "id": 21,
+    "slug": "emergency-fund-essentials",
+    "title": "Emergency Fund Essentials",
+    "description": "Why every financial plan should start with an emergency fund and how to build one.",
+    "content": "Emergency fund content goes here...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 22,
     "slug": "maximize-your-401k",
     "title": "Maximizing Your 401(k)",
     "description": "Smart ways to get the most from your employer-sponsored retirement account.",
-    "content": "401(k) maximization strategies..."
+    "content": "401(k) maximization strategies...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 23,
+    "slug": "monthly-finance-tips",
+    "title": "Monthly Finance Tips",
+    "description": "Quick tips for keeping your finances on track every month.",
+    "content": "Monthly tips newsletter content...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 24,
+    "slug": "newsletter-credit-trends",
+    "title": "Credit Trends & Insights",
+    "description": "Insights on credit trends and what they mean for your score.",
+    "content": "Credit trends newsletter...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 25,
+    "slug": "market-insights",
+    "title": "Weekly Market Insights",
+    "description": "Our analysis of recent market shifts and what to watch next.",
+    "content": "Market newsletter content...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 26,
+    "slug": "tax-alerts",
+    "title": "Tax Law Updates",
+    "description": "Be the first to know when tax regulations change.",
+    "content": "Tax updates newsletter...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 27,
+    "slug": "reader-q-and-a",
+    "title": "Reader Q&A Highlights",
+    "description": "Your most pressing money questions—answered.",
+    "content": "Q&A newsletter content...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 28,
+    "slug": "weekly-picks",
+    "title": "Weekly Picks",
+    "description": "Editor’s picks for top resources and reads this week.",
+    "content": "Weekly picks newsletter...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 29,
+    "slug": "finance-events",
+    "title": "Upcoming Finance Events",
+    "description": "Stay in the loop on upcoming webinars, workshops, and meetups.",
+    "content": "Finance event newsletter...",
+    "category": "Newsletter"
+  },
+  {
+    "id": 30,
+    "slug": "year-end-checklist",
+    "title": "Year-End Financial Checklist",
+    "description": "Make sure your finances are in shape before the year wraps up.",
+    "content": "Checklist content...",
+    "category": "Newsletter"
   }
 ]
