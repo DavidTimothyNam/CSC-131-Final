@@ -4,13 +4,13 @@ import "./ResourceCard.css";
 
 const ResourceCard = ({ image, title, description, link, buttonText }) => {
   return (
-    <Card className="h-100 border-0 shadow-sm text-center">
+    <Card className="h-100 border-0 shadow-sm text-center" id="backgroundLight">
       <Card.Body className="p-4">
         <img src={image} alt={title} className="card-svg mb-3" />
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
         <Link to={link}>
-          <Button variant="outline-primary">{buttonText}</Button>
+          <Button class="button1 btn">{buttonText}</Button>
         </Link>
       </Card.Body>
     </Card>

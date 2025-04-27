@@ -39,7 +39,7 @@ const ServiceSection = () => {
         </Row>
         <div className="text-center mt-4">
           <Link to="/services">
-            <Button variant="primary" size="md">
+            <Button className="btn button3 button1" size="md">
               More Services
             </Button>
           </Link>

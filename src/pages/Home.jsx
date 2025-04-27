@@ -18,7 +18,12 @@ class Home extends React.Component {
           <Container>
             <AboutHero />
           </Container>
-
+          {/* 💼 Services */}
+          <Container className="mt-4" id="backgroundPrimary">
+            <h2 className="text-center mb-4">What We Offer</h2>
+            <ServiceSection />
+          </Container>
+          
           {/* 📰 Blog Preview Section */}
           <Container className="mt-4">
             <h2 className="text-center section-title">Read Our Blog</h2>
@@ -38,7 +43,7 @@ class Home extends React.Component {
             </Row>
             <div className="text-center mt-4">
               <Link to="/blog">
-                <Button variant="primary" size="md">
+                <Button className="button1 btn" size="md">
                   View All Posts
                 </Button>
               </Link>
@@ -46,15 +51,9 @@ class Home extends React.Component {
           </Container>
 
           {/* 📚 Resources */}
-          <Container className="mt-4">
+          <Container className="mt-4" id="backgroundPrimary">
             <h2 className="text-center mb-4">Financial Resources</h2>
             <ResourceSection />
-          </Container>
-
-          {/* 💼 Services */}
-          <Container className="mt-4">
-            <h2 className="text-center mb-4">What We Offer</h2>
-            <ServiceSection />
           </Container>
         </Layout>
       </>
