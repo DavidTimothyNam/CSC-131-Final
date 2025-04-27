@@ -23,7 +23,12 @@ class Home extends React.Component {
             <h2 className="text-center mb-4">What We Offer</h2>
             <ServiceSection />
           </Container>
-          
+
+          <Container fluid className="mt-4" id="backgroundPrimary">
+            <h2 className="text-center mb-4">What We Offer</h2>
+            <ServiceSection />
+          </Container>
+
           {/* 📰 Blog Preview Section */}
           <Container className="mt-4">
             <h2 className="text-center section-title">Read Our Blog</h2>
