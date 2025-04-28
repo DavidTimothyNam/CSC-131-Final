@@ -2,10 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../../components/Layout.jsx";
 import articles from "../../../data/marketplaceArticles.json";
+import "./ArticlePages.css"
 
 const ArticlePage = () => {
-  const { slug } = useParams(); // <-- match param name
-  const article = articles.find((item) => item.slug === slug); // <-- lookup by slug
+  const { slug } = useParams();
+  const article = articles.find((item) => item.slug === slug);
 
   return (
     <Layout>
@@ -13,7 +14,7 @@ const ArticlePage = () => {
         {article ? (
           <>
             <h1>{article.title}</h1>
-            <p>{article.content}</p>
+            <div className="article-body" dangerouslySetInnerHTML={{ __html: article.content }} />
           </>
         ) : (
           <h2>Article not found.</h2>
