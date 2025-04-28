@@ -14,10 +14,10 @@ const AboutUs = () => {
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
             <div className="d-flex gap-4 justify-content-center mb-4">
-              <Button className="button1 btn" as={Link} to="/contact" size="lg">
+              <Button className="btn" as={Link} to="/contact" size="lg">
                 Meet With Us
               </Button>
-              <Button className="button1 btn" as={Link} to="/about" size="lg">
+              <Button className="btn" as={Link} to="/about" size="lg">
                 Our Team
               </Button>
             </div>

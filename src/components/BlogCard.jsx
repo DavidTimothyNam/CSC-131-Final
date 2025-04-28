@@ -30,7 +30,7 @@ const BlogCard = ({ image, badges, date, title, excerpt, link }) => {
         <Card.Text className="flex-grow-1">{excerpt}</Card.Text>
 
         <div className="mt-3">
-          <Link to={link} className="button1 btn w-100">
+          <Link to={link} className="btn w-100">
             Read More
           </Link>
         </div>

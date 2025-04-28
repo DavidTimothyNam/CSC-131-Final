@@ -25,7 +25,7 @@ const BlogSection = ({ posts = [], showAll, onToggle }) => {
       </Row>
 
       <div className="text-center mt-4">
-        <Button variant="primary" size="md" onClick={onToggle}>
+        <Button size="md" onClick={onToggle}>
           {showAll ? "Show Less" : "View All Posts"}
         </Button>
       </div>

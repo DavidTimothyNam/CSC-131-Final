@@ -44,7 +44,7 @@ class Home extends React.Component {
             </Row>
             <div className="text-center mt-4">
               <Link to="/blog">
-                <Button className="button1 btn" size="md">
+                <Button className="btn" size="md">
                   View All Posts
                 </Button>
               </Link>
