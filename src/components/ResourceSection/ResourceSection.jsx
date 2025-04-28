@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import ResourceCard from "./ResourceCard";
 
 const ResourceSection = () => {
@@ -14,7 +13,7 @@ const ResourceSection = () => {
               image="/images/svgs/akar-icons--book.svg"
               title="Flipbooks"
               description="Etiam faucibus, diam eget dictum facilisis, dolor ante posuere massa, a convallis justo tortor tincidunt nulla."
-              link="#"
+              link="/marketplace#flipbooks"
               buttonText="See Flipbooks"
             />
           </Col>
@@ -23,7 +22,7 @@ const ResourceSection = () => {
               image="/images/svgs/icon-park-outline--calculator-one.svg"
               title="Calculators"
               description="Mauris finibus purus sit amet velit euismod, ac eleifend tellus pretium."
-              link="#"
+              link="/calculators"
               buttonText="Use Calculators"
             />
           </Col>
@@ -31,8 +30,8 @@ const ResourceSection = () => {
             <ResourceCard
               image="/images/svgs/akar-icons--video.svg"
               title="Videos"
-              description="Proin dignissim at lorem in convallis. Sed vitae risus eget sapien finibus ultricies. "
-              link="#"
+              description="Proin dignissim at lorem in convallis. Sed vitae risus eget sapien finibus ultricies."
+              link="/marketplace#videos"
               buttonText="Watch Videos"
             />
           </Col>
@@ -41,7 +40,7 @@ const ResourceSection = () => {
               image="/images/svgs/iconoir--graph-up.svg"
               title="Newsletter"
               description="In leo quam, vestibulum a dignissim non, ullamcorper interdum tortor."
-              link="#"
+              link="/marketplace#newsletter"
               buttonText="Read Newsletter"
             />
           </Col>
