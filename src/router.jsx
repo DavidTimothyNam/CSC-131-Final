@@ -37,6 +37,7 @@ export const router = createBrowserRouter([
   { path: "/calculators", element: <Calculators /> },
   { path: "/blog", element: <Blog /> },
   { path: "/contact", element: <Contact /> },
+  { path: "/legal", element: <Legal /> },
 
   // Admin routes
   { path: "/admin", element: <AdminLogin /> },
@@ -45,6 +46,5 @@ export const router = createBrowserRouter([
   { path: "/admin/calendar", element: <AdminCalendar /> },
   { path: "/admin/inbox", element: <Inbox /> },
   { path: "/article/:slug", element: <ArticlePages /> },
-  { path: "/blog/:slug", element: <BlogPost /> }
-
+  { path: "/blog/:slug", element: <BlogPost /> },
 ]);
