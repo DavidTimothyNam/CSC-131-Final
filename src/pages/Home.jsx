@@ -27,7 +27,7 @@ class Home extends React.Component {
 
           {/* 📰 Blog Preview Section */}
           <Container className="mt-4">
-            <h2 className="text-center section-title">Read Our Blog</h2>
+            <h2 className="text-center section-title mb-4">Read Our Blog</h2>
             <Row className="g-4 align-items-stretch">
               {previewPosts.map((post) => (
                 <Col key={post.id} md={6} lg={4}>

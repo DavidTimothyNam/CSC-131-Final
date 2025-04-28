@@ -26,9 +26,9 @@ const AboutUs = () => {
           {/* Image Section */}
           <Col lg={6} className="rect-img-container">
             <img
-              src="/images/person1.jpg"
+              src="/images/10.jpg"
               alt="Profile Photo"
-              className="rect-img"
+              className="rect-img p-5"
               id="imgShape"
             />
           </Col>

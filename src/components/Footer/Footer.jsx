@@ -65,7 +65,7 @@ const Footer = () => {
                 placeholder="Email address"
                 className="navFooter"
               />
-              <Button className="button2 btn">
+              <Button className="buttonWhite btn">
                 Subscribe
               </Button>
             </Form>

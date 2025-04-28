@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 
 const BlogSection = ({ posts = [], showAll, onToggle }) => {
   return (
-    <Container className="mt-4">
+    <Container className="gy-4">
       <Row className="g-4 align-items-stretch">
         {posts.length > 0 ? (
           posts.map((blog) => (
