@@ -37,7 +37,8 @@ export const router = createBrowserRouter([
   { path: "/calculators", element: <Calculators /> },
   { path: "/blog", element: <Blog /> },
   { path: "/contact", element: <Contact /> },
-  { path: "/legal", element: <Legal /> },
+  // { path: "/legal", element: <Legal /> },
+  // make legal page later
 
   // Admin routes
   { path: "/admin", element: <AdminLogin /> },
