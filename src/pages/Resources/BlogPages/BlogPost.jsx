@@ -52,16 +52,6 @@ const BlogPost = () => {
               <p key={i}>{paragraph}</p>
             ))}
           </div>
-
-          {/* Tags */}
-          <div className="mt-4">
-            <strong>Tags:</strong>{" "}
-            {post.tags.map((tag, i) => (
-              <Badge key={i} bg="light" text="dark" className="me-2">
-                #{tag}
-              </Badge>
-            ))}
-          </div>
         </Col>
 
         {/* Sidebar */}
