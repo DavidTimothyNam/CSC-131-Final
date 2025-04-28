@@ -19,12 +19,8 @@ class Home extends React.Component {
             <AboutHero />
           </Container>
           {/* 💼 Services */}
-          <Container className="mt-4" id="backgroundPrimary">
-            <h2 className="text-center mb-4">What We Offer</h2>
-            <ServiceSection />
-          </Container>
 
-          <Container fluid className="mt-4" id="backgroundPrimary">
+          <Container fluid className="mt-4 py-4" id="backgroundPrimary">
             <h2 className="text-center mb-4">What We Offer</h2>
             <ServiceSection />
           </Container>
@@ -56,7 +52,7 @@ class Home extends React.Component {
           </Container>
 
           {/* 📚 Resources */}
-          <Container className="mt-4" id="backgroundPrimary">
+          <Container fluid className="mt-4 py-4" id="backgroundPrimary">
             <h2 className="text-center mb-4">Financial Resources</h2>
             <ResourceSection />
           </Container>

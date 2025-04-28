@@ -18,7 +18,7 @@ const BlogCard = ({ image, badges, date, title, excerpt, link }) => {
       <Card.Body className="d-flex flex-column">
         <div className="mb-1">
           {badges.map((badge, index) => (
-            <Badge key={index} bg="primary" className="me-2">
+            <Badge key={index} className="badge me-2">
               {badge}
             </Badge>
           ))}

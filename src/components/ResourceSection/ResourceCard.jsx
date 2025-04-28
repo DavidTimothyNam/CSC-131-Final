@@ -10,7 +10,7 @@ const ResourceCard = ({ image, title, description, link, buttonText }) => {
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
         <Link to={link}>
-          <Button class="button1 btn">{buttonText}</Button>
+          <Button class="button1 button3 btn">{buttonText}</Button>
         </Link>
       </Card.Body>
     </Card>

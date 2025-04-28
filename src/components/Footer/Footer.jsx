@@ -63,6 +63,7 @@ const Footer = () => {
                 id="newsletter1"
                 type="email"
                 placeholder="Email address"
+                className="navFooter"
               />
               <Button className="button2 btn">
                 Subscribe
