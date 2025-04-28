@@ -54,6 +54,8 @@ nav {
 
 /* custom navbar end*/
 
+/* ids for coloring major sections start */
+
 #backgroundPrimary {
     background-color: #606C38;
     color: #FEFAE0;
@@ -88,6 +90,10 @@ nav {
     color: #FEFAE0;
 }
 
+/* ids for coloring major sections end*/
+
+/* circular images start */
+
 .rect-img-container {
     position: relative;
 }
@@ -104,6 +110,10 @@ nav {
     height: 100%;
     object-fit: cover;
 }
+
+/* circular images end */
+
+/* button styling start */
 
 .btn{
     background-color: #BC6C25;
@@ -133,6 +143,37 @@ nav {
     color: #FEFAE0;
 }
 
+/*button styling end*/
+
+/* accordion styling (faq and services) start */
+
+.accordion-button{
+    background-color: #606C38;
+    color: #FEFAE0;
+    box-shadow:none;
+}
+.accordion-button:hover{
+    background-color: #283618;
+}
+
+.accordion-button:not(.collapsed){
+    background-color: #283618;
+    color: #FEFAE0;
+    box-shadow: none;
+}
+
+.accordion-body{
+    background-color: #FEFAE0;
+}
+
+.accordion-item{
+    border:none;
+}
+
+/* accordion styling (faq and services) end */
+
+/* miscellaneous start */
+
 .bold{
     font-weight: 600;
 }
@@ -144,3 +185,9 @@ nav {
     border-color: #606c38;
     box-shadow: 0 0 0 0.2rem rgba(96, 108, 56, 1);
 }
+
+.card{
+    border:none;
+}
+
+/* miscellaneous end */
