@@ -17,7 +17,7 @@ function BlogHeroCard({ image, title, excerpt, link }) {
       <Card.ImgOverlay className="d-flex flex-column justify-content-center text-center">
         <h1 className="fw-bold">{title}</h1>
         <p className="lead">{excerpt}</p>
-        <Button as={Link} to={link} variant="primary">
+        <Button as={Link} to={link} variant="primary" style={{width: '50%', marginLeft: 'auto', marginRight: 'auto'}}>
           Read More
         </Button>
       </Card.ImgOverlay>
