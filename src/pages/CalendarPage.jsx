@@ -4,7 +4,7 @@ import Calendar from "../components/Calendar";
 
 const CalendarPage = () => (
   <Layout>
-    <Calendar />
+    <Calendar/>
   </Layout>
 );
 

@@ -15,7 +15,7 @@ const CalculatorSelector = () => {
   ];
 
   return (
-    <div className="container">
+    <div className="container" style={{marginBottom: '50px'}}>
       <div className="row">
         <div className="calculator-selection col-3">
           <Accordion defaultActiveKey="0">

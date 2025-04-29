@@ -1,6 +1,8 @@
 
 .wrapper{
   min-width: 500px;
+  max-width: 850px;
+  margin-bottom: 100px;
   width: 60%;
   justify-self: center;
   background: #fff;
