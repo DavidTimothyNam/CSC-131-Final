@@ -68,7 +68,7 @@ const CalculatorField= ({data}) => {
   };
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '1rem', marginBottom: '1rem' }}>
+    <div style={{ border: '1px solid #ccc', padding: '1rem', marginBottom: '1rem', backgroundColor: '#606c38', color: "#FEFAE0"}}>
       <h2>{data.title}</h2>
       <p>{data.description}</p>
       <ul>
@@ -77,7 +77,7 @@ const CalculatorField= ({data}) => {
             {inputLabel}
             <input
               type="number"
-              className="form-control"
+              className="form-control mb-3"
               value={inputs[index] || ''}
               onChange={(e) => handleInputChange(e, index)}
             />

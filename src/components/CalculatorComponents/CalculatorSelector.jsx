@@ -30,7 +30,7 @@ const CalculatorSelector = () => {
                 <Accordion.Header>{calc.title}</Accordion.Header>
                 <Accordion.Body>
                 <div className="d-flex justify-content-center">
-                  <ButtonGroup vertical className="calcButton">
+                  <ButtonGroup vertical>
                     {calc.calcs.map((calc2, index) => (
                       <ToggleButton
                         key={calc.keys[index]}
@@ -40,7 +40,7 @@ const CalculatorSelector = () => {
                         value={calc2}
                         checked={selected === calc.keys[index]}
                         onChange={() => setSelected(calc.keys[index])}
-                        className="calcButton"
+                        className="btn btn-primary calcButton"
                       >
                         {calc2}
                       </ToggleButton>
