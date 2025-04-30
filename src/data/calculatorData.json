@@ -22,7 +22,7 @@
   {
     "id": 3,
     "title": "Mortage Refinancing",
-    "description": "Estimate the change in our loan if you refinanced.",
+    "description": "Estimate the change in your loan if you refinanced.",
     "inputTitles": [
       "Current Loan Balance",
       "New Interest Rate (%)",
@@ -61,7 +61,8 @@
     "description": "Estimate how much your monthly lease payment would be.",
     "inputTitles": [
       "Lease Amount ($)",
-      "Downpayment ($)",
+      "Down Payment ($)",
+      "Residual ($)",
       "Lease Period (Months)",
       "Interest Rate (%)"
     ],

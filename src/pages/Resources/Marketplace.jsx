@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import Layout from "../../components/Layout";
 import ArticleCard from "../../components/ArticleCard";
 import articles from "../../data/marketplaceArticles.json";
-import './Marketplace.css'
 
 const categories = ["Flipbooks", "Videos", "Newsletter"];
 
@@ -16,7 +15,8 @@ const Marketplace = () => {
       const section = document.getElementById(hash);
       if (section) {
         const yOffset = -100; // 👈 Adjust this offset if needed (e.g. height of navbar)
-        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const y =
+          section.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
         window.scrollTo({ top: y, behavior: "smooth" });
 
@@ -25,7 +25,6 @@ const Marketplace = () => {
       }
     }
   }, [location]);
-
 
   const groupedArticles = categories.map((category) => ({
     category,

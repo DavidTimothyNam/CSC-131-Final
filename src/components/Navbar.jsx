@@ -8,7 +8,6 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "/src/styles.css";
 
 function PageNavbar() {
   return (

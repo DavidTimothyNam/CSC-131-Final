@@ -10,7 +10,9 @@ import blogData from "../data/blogData.json";
 
 class Home extends React.Component {
   render() {
-    const previewPosts = blogData.slice(0, 3); // Only the first 3 posts
+    const previewPosts = [...blogData]
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3); // Show top 3 most recent
 
     return (
       <>
