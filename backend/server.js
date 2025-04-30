@@ -3,18 +3,40 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
+const multer = require("multer"); // ✅ New for image upload
 
 const app = express();
 const PORT = 9000;
 
-// ✅ Correct path to blogData.json
+// ✅ Path to blogData.json
 const blogDataPath = path.join(__dirname, "../src/data/blogData.json");
 console.log("Resolved blogDataPath:", blogDataPath);
+
+// ✅ Serve uploaded images from public/images
+app.use("/images", express.static(path.join(__dirname, "../public/images")));
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Contact form route
+// ✅ Image upload config
+const imageStorage = multer.diskStorage({
+  destination: path.join(__dirname, "../public/images"),
+  filename: (req, file, cb) => {
+    const uniqueName = `${Date.now()}-${file.originalname}`;
+    cb(null, uniqueName);
+  },
+});
+const upload = multer({ storage: imageStorage });
+
+// ✅ Upload image endpoint
+app.post("/api/upload-image", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
+  }
+  res.json({ path: `/images/${req.file.filename}` });
+});
+
+// ✅ Contact form route (unchanged)
 app.post("/contact", (req, res) => {
   const { name, email, topic, comment } = req.body;
 
@@ -27,7 +49,7 @@ app.post("/contact", (req, res) => {
   res.status(200).json({ success: true, message: "Message received!" });
 });
 
-// GET blog posts
+// ✅ GET all blog posts
 app.get("/api/posts", (req, res) => {
   try {
     const data = fs.readFileSync(blogDataPath, "utf-8");
@@ -40,7 +62,7 @@ app.get("/api/posts", (req, res) => {
   }
 });
 
-// PUT update blog post
+// ✅ PUT update blog post
 app.put("/api/posts/:id", (req, res) => {
   const postId = parseInt(req.params.id);
   const updatedPost = req.body;
@@ -64,7 +86,7 @@ app.put("/api/posts/:id", (req, res) => {
   }
 });
 
-// POST create new blog post
+// ✅ POST create new blog post
 app.post("/api/posts", (req, res) => {
   try {
     const data = fs.readFileSync(blogDataPath, "utf-8");
@@ -84,7 +106,7 @@ app.post("/api/posts", (req, res) => {
   }
 });
 
-// DELETE remove blog post
+// ✅ DELETE remove blog post
 app.delete("/api/posts/:id", (req, res) => {
   try {
     const data = fs.readFileSync(blogDataPath, "utf-8");
@@ -100,7 +122,7 @@ app.delete("/api/posts/:id", (req, res) => {
   }
 });
 
-
+// ✅ Start the server
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
