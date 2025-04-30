@@ -9,7 +9,9 @@ function Layout({ children }) {
       <PageNavbar />
 
       <main>
-        <Container className="my-5">{children}</Container>
+        <Container fluid className="mt-5 px-0">
+          {children}
+        </Container>
       </main>
 
       <Footer />

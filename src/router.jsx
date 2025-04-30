@@ -33,10 +33,11 @@ export const router = createBrowserRouter([
   { path: "/calculators", element: <Calculators /> },
   { path: "/blog", element: <Blog /> },
   { path: "/contact", element: <Contact /> },
+  // { path: "/legal", element: <Legal /> },
+  // make legal page later
 
   // Admin routes
   { path: "/admin", element: <Admin />},
   { path: "/article/:slug", element: <ArticlePages /> },
-  { path: "/blog/:slug", element: <BlogPost /> }
-
+  { path: "/blog/:slug", element: <BlogPost /> },
 ]);

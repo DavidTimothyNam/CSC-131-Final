@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="py-5 bg-light">
+    <footer className="py-5" id="backgroundFooter">
       <Container>
         <Row>
           <Col lg={3} className="mb-4">
-            <h5>Quick Links</h5>
+            <h5><b>Quick Links</b></h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
                 <Link to="/about" className="nav-link p-0 text-body-secondary">
@@ -45,7 +45,7 @@ const Footer = () => {
           </Col>
 
           <Col lg={3} className="mb-4">
-            <h5>Contact Us</h5>
+            <h5><b>Contact Us</b></h5>
             <p className="fw-bold">Ron Smithey Financial Services</p>
             <p className="small mb-0">
               5101 East La Palma Avenue, Suite #202-D, Anaheim Hills, CA 92807
@@ -53,7 +53,7 @@ const Footer = () => {
           </Col>
 
           <Col lg={6} className="mb-4">
-            <h5>Subscribe to our newsletter</h5>
+            <h5><b>Subscribe to our newsletter</b></h5>
             <p>Get notified when we post blogs and publish resources.</p>
             <Form className="d-flex flex-column flex-sm-row w-100 gap-2">
               <Form.Label htmlFor="newsletter1" visuallyHidden>
@@ -63,8 +63,9 @@ const Footer = () => {
                 id="newsletter1"
                 type="email"
                 placeholder="Email address"
+                className="navFooter"
               />
-              <Button variant="primary" type="button">
+              <Button className="buttonWhite btn">
                 Subscribe
               </Button>
             </Form>

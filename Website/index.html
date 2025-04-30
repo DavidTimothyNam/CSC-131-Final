@@ -36,13 +36,14 @@
         margin-bottom: 1em;
       }
     </style>
+    <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
     <!-- navbar -->
     <div class="container">
       <nav
-        class="navbar navbar-expand-lg navbar-light bg-light justify-content-center fixed-top mb-auto"
+        class="navbar navbar-custom navbar-expand-lg justify-content-center fixed-top mb-auto"
       >
         <div class="container">
           <a class="navbar-brand" href="./index.html">Logo Goes Here</a>
@@ -137,41 +138,118 @@
       </nav>
     </div>
 
+    <!-- page sections -->
     <main class="container">
       <section id="about">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-lg-6">
-              <h1>Ron Smithey Financial Services</h1>
+            <div class="col-lg-6 p-4">
+              <h1 id="backgroundLight" style="padding:10px"><b>Ron Smithey Financial Services</b></h1>
               <!-- about us summary -->
-              <p class="lead mb-4">
+              <p class="lead mt-4 mb-4" id="backgroundLight">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                 fringilla gravida turpis at egestas. Sed et libero vel ipsum
                 maximus porta. Integer sodales accumsan eros a finibus.
                 Phasellus volutpat sapien a quam tempor, at consequat enim
                 rhoncus.
               </p>
-              <div class="d-flex gap-3">
-                <a href="#contact" class="btn btn-primary btn-lg"
+              <div class="d-flex gap-4 justify-content-center mb-4">
+                <a href="#contact" class="btn btn-lg button1"
                   >Meet With Us</a
                 >
-                <a href="./about.html" class="btn btn-outline-dark btn-lg"
+                <a href="./about.html" class="btn btn-lg button1"
                   >Our Team</a
                 >
               </div>
             </div>
-            <div class="col-lg-6 text-center">
+            <div class="col-lg-6 rect-img-container">
               <img
-                src="./Pictures/temp/person1.jpg"
+                src="/public/images/person1.jpg"
                 alt="Profile Photo"
-                class="img-fluid rounded"
+                class="rect-img"
+                id="imgShape"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="blog" class="py-5 mt-5">
+      <section id="services" class="py-5 mt-5">
+        <div class="container" id="backgroundPrimary">
+          <h2 class="text-center section-title">What We Offer</h2>
+          <!-- lists three services -->
+          <div class="row g-4 mt-3">
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="/public/images/senior_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">Retirement Planning</h5>
+                  <p class="card-text">
+                    Nullam ultrices risus id accumsan cursus. Maecenas
+                    scelerisque mi lacus, nec pellentesque nibh rutrum sit amet.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="/public/images/student_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">College Plans</h5>
+                  <p class="card-text">
+                    Duis vitae quam vitae orci condimentum rhoncus. Sed at justo
+                    risus. Etiam porttitor orci sit amet metus tincidunt egestas
+                    et non velit.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="/public/images/couple_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">Insurance Reviews</h5>
+                  <p class="card-text">
+                    Aenean velit turpis, viverra et lacinia quis, cursus non
+                    leo. Donec pulvinar nisi vitae arcu viverra maximus.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="g-4 col-md-3">
+              <div class="card h-100 border-0 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src="/public/images/family_advisor.jpg"
+                />
+                <div class="card-body">
+                  <h5 class="text-center card-title">Comprehensive Planning</h5>
+                  <p class="card-text">
+                    Vivamus et rhoncus massa, efficitur dapibus quam. Proin sed
+                    tellus dolor. Fusce dui lacus, vestibulum vitae condimentum
+                    tincidunt, tincidunt ut magna.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <a href="./services.html" class="btn btn-primary">More Services</a>
+          </div>
+        </div>
+      </section>
+      
+      <section id="blog" class="py-5">
         <div class="container">
           <h2 class="text-center section-title">Read Our Blog</h2>
           <!-- row holds 3 blog cards -->
@@ -180,7 +258,7 @@
             <div class="col-md-4">
               <div class="card mb-4">
                 <img
-                  src="./Pictures/temp/01.jpg"
+                  src="/public/images/01.jpg"
                   class="card-img-top"
                   alt="Blog Image 1"
                 />
@@ -209,7 +287,7 @@
             <div class="col-md-4">
               <div class="card mb-4">
                 <img
-                  src="./Pictures/temp/02.jpg"
+                  src="/public/images/02.jpg"
                   class="card-img-top"
                   alt="Blog Image 2"
                 />
@@ -236,7 +314,7 @@
             <div class="col-md-4">
               <div class="card mb-4">
                 <img
-                  src="./Pictures/temp/03.jpg"
+                  src="/public/images/03.jpg"
                   class="card-img-top"
                   alt="Blog Image 3"
                 />
@@ -268,14 +346,14 @@
       </section>
 
       <section id="resources" class="py-5">
-        <div class="container">
+        <div class="container" id="backgroundPrimary">
           <h2 class="text-center section-title">Financial Resources</h2>
           <div class="row g-4">
             <div class="col-lg-3">
               <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center p-4">
                   <img
-                    src="./Pictures/svgs/akar-icons--book.svg"
+                    src="/public/images/svgs/akar-icons--book.svg"
                     class="card-svg"
                   />
                   <h5 class="card-title">Flipbooks</h5>
@@ -292,7 +370,7 @@
               <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center p-4">
                   <img
-                    src="./Pictures/svgs/icon-park-outline--calculator-one.svg"
+                    src="/public/images/svgs/icon-park-outline--calculator-one.svg"
                     class="card-svg"
                   />
                   <h5 class="card-title">Calculators</h5>
@@ -311,7 +389,7 @@
               <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center p-4">
                   <img
-                    src="./Pictures/svgs/akar-icons--video.svg"
+                    src="/public/images/svgs/akar-icons--video.svg"
                     class="card-svg"
                   />
                   <h5 class="card-title">Videos</h5>
@@ -328,7 +406,7 @@
               <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center p-4">
                   <img
-                    src="./Pictures/svgs/iconoir--graph-up.svg"
+                    src="/public/images/svgs/iconoir--graph-up.svg"
                     class="card-svg"
                   />
                   <h5 class="card-title">Newsletter</h5>
@@ -351,85 +429,13 @@
         </div>
       </section>
 
-      <section id="services" class="py-5">
-        <div class="container">
-          <h2 class="text-center section-title">What We Offer</h2>
-          <!-- lists three services -->
-          <div class="row g-4 mt-3">
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/senior_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">Retirement Planning</h5>
-                  <p class="card-text">
-                    Nullam ultrices risus id accumsan cursus. Maecenas
-                    scelerisque mi lacus, nec pellentesque nibh rutrum sit amet.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/student_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">College Plans</h5>
-                  <p class="card-text">
-                    Duis vitae quam vitae orci condimentum rhoncus. Sed at justo
-                    risus. Etiam porttitor orci sit amet metus tincidunt egestas
-                    et non velit.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/couple_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">Insurance Reviews</h5>
-                  <p class="card-text">
-                    Aenean velit turpis, viverra et lacinia quis, cursus non
-                    leo. Donec pulvinar nisi vitae arcu viverra maximus.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="g-4 col-md-3">
-              <div class="card h-100 border-0 shadow-sm">
-                <img
-                  class="card-img-top"
-                  src="./Pictures/temp/family_advisor.jpg"
-                />
-                <div class="card-body">
-                  <h5 class="text-center card-title">Comprehensive Planning</h5>
-                  <p class="card-text">
-                    Vivamus et rhoncus massa, efficitur dapibus quam. Proin sed
-                    tellus dolor. Fusce dui lacus, vestibulum vitae condimentum
-                    tincidunt, tincidunt ut magna.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-4">
-            <a href="./services.html" class="btn btn-primary">More Services</a>
-          </div>
-        </div>
-      </section>
+      
     </main>
 
+    <!-- footer -->
     <div class="container">
       <footer class="py-5">
-        <div class="row">
+        <div class="row" id="backgroundFooter">
           <div class="col-lg-3">
             <h5>Quick Links</h5>
             <ul class="nav flex-column">

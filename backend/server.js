@@ -113,7 +113,7 @@ app.delete("/api/posts/:id", (req, res) => {
     let posts = JSON.parse(data);
     const postId = parseInt(req.params.id);
 
-    posts = posts.filter(post => post.id !== postId);
+    posts = posts.filter((post) => post.id !== postId);
     fs.writeFileSync(blogDataPath, JSON.stringify(posts, null, 2));
     res.json({ success: true });
   } catch (error) {

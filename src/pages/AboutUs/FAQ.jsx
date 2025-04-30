@@ -7,7 +7,7 @@ const FAQ = () => {
   return (
     <Layout>
       <h1 className="mb-4">FAQ</h1>
-      <Accordion flush>
+      <Accordion flush style={{marginBottom: '100px'}}>
         <Accordion.Item eventKey="0">
           <Accordion.Header>What does a financial planner do?</Accordion.Header>
           <Accordion.Body>

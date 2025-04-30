@@ -77,7 +77,8 @@ const ContactForm = () => {
     setInputValidation(updatedValidation);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     checkBoxes();
     const isValid = Object.values(inputValidation).every(
       (status) => status === "is-valid"
@@ -85,15 +86,38 @@ const ContactForm = () => {
     if (!isValid) {
       alert("Please fill out all fields correctly.");
     } else {
-      alert("Form submitted successfully!");
+      // alert("Form submitted successfully!");
       // submit logic here
+      sendToBackend();
+    }
+  };
+
+  const sendToBackend = async () => {
+    const data = {
+      name: formData.name,
+      email: formData.email,
+      topic: formData.topic,
+      comment: formData.comment,
+    };
+
+    try {
+      const res = await fetch("http://localhost:9000/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      console.log(result.message);
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     <>
       <Layout>
-        <div className="container mt-5" style={{ width: "60%" }}>
+        <div className="container mt-5" style={{ width: "60%", marginBottom: '50px'}}>
           <h1>Contact Us</h1>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-floating mb-3">

@@ -12,13 +12,13 @@ const BlogCard = ({ image, badges, date, title, excerpt, link }) => {
   };
 
   return (
-    <Card className="mb-4 shadow-sm h-100">
+    <Card className="mb-4 shadow-sm h-100" style={{background: "#DDA15E", color: "#283618"}}>
       <Card.Img variant="top" src={image} alt={title} style={imgStyle} />
 
       <Card.Body className="d-flex flex-column">
         <div className="mb-1">
           {badges.map((badge, index) => (
-            <Badge key={index} bg="primary" className="me-2">
+            <Badge key={index} className="badge me-2">
               {badge}
             </Badge>
           ))}
@@ -30,7 +30,7 @@ const BlogCard = ({ image, badges, date, title, excerpt, link }) => {
         <Card.Text className="flex-grow-1">{excerpt}</Card.Text>
 
         <div className="mt-3">
-          <Link to={link} className="btn btn-primary w-100">
+          <Link to={link} className="btn w-100">
             Read More
           </Link>
         </div>

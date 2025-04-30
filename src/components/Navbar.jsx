@@ -8,13 +8,14 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "/src/styles.css";
 
 function PageNavbar() {
   return (
-    <Navbar bg="light" variant="light" expand="lg" fixed="top">
+    <Navbar className="navbar-custom" expand="lg" fixed="top">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          My Website
+          Ron Smithey Financial Services
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
