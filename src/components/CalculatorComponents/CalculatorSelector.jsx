@@ -16,8 +16,11 @@ const CalculatorSelector = () => {
 
   return (
     <div className="container">
-      <div className = "row text-center mb-4">
-        <h1 className="bold">Calculators</h1>
+      <div className = "row text-start mb-4">
+        <div className = "col-3">
+        <h1 className="bold text-center">Calculators</h1>
+        </div>
+        <div className="col-9"></div>
       </div>
       <div className="row">
         <div className="calculator-selection col-3 mb-5">
@@ -50,7 +53,7 @@ const CalculatorSelector = () => {
           </Accordion>
         </div>
         <div className="col-2"></div>
-        <div className="col-4"><CalculatorField data={calculatorData[selected-1]}/></div>
+        <div className="col-6"><CalculatorField data={calculatorData[selected-1]}/></div>
       </div>
     </div>
   );
