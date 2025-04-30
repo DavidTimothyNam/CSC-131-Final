@@ -35,7 +35,7 @@ const Marketplace = () => {
   return (
     <Layout>
       <div className="container card-grid-holder">
-        <h1 className="my-4">Marketplace</h1>
+        <h1 className="my-4 bold text-center">Marketplace</h1>
 
         {groupedArticles.map(({ category, items }) => (
           <section
@@ -43,7 +43,7 @@ const Marketplace = () => {
             id={category.toLowerCase()}
             className="mb-5"
           >
-            <h2 className="mb-3">{category}</h2>
+            <h2 className="mb-3 text-center">{category}</h2>
             <div className="row">
               {items.map((article) => (
                 <ArticleCard

@@ -12,7 +12,7 @@ const ArticlePage = () => {
       <div className="container">
         {article ? (
           <>
-            <h1>{article.title}</h1>
+            <h1 className="bold">{article.title}</h1>
             <p>{article.content}</p>
           </>
         ) : (

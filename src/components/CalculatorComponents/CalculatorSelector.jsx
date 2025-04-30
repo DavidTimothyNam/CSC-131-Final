@@ -16,25 +16,28 @@ const CalculatorSelector = () => {
 
   return (
     <div className="container">
+      <div className = "row text-center mb-4">
+        <h1 className="bold">Calculators</h1>
+      </div>
       <div className="row">
-        <div className="calculator-selection col-3">
+        <div className="calculator-selection col-3 mb-5">
           <Accordion defaultActiveKey="0">
             {calculators.map((calc, listNum) => (
               <Accordion.Item eventKey={listNum.toString()} key={calc.id}>
                 <Accordion.Header>{calc.title}</Accordion.Header>
                 <Accordion.Body>
                 <div className="d-flex justify-content-center">
-                  <ButtonGroup vertical>
+                  <ButtonGroup vertical className="calcButton">
                     {calc.calcs.map((calc2, index) => (
                       <ToggleButton
                         key={calc.keys[index]}
                         id={calc2}
                         type="radio"
-                        variant="outline-primary"
                         name="btnradio"
                         value={calc2}
                         checked={selected === calc.keys[index]}
                         onChange={() => setSelected(calc.keys[index])}
+                        className="calcButton"
                       >
                         {calc2}
                       </ToggleButton>

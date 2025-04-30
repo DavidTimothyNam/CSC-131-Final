@@ -172,6 +172,20 @@ nav {
 
 /* accordion styling (faq and services) end */
 
+/* calculator styling start */
+
+.calcButton:hover{
+    background-color: #DDA15E !important;
+    color: #283618 !important;
+    border-radius: 4px;
+}
+.calcButton:focus{
+    background-color: pink !important;
+    color: #FEFAE0 !important;
+}
+
+/* calculator styling end */
+
 /* miscellaneous start */
 
 .bold{

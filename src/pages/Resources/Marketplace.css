@@ -1,8 +1,36 @@
 .highlighted {
-  background-color: #fff3cd;
+  background-color: #606c60;
   padding: 1rem;
   margin-top: 1rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   transition: background-color 0.6s ease;
 }
+
+/* marketplace start */
+
+.marketplaceBody{
+  background-color: #606C38;
+  color: #FEFAE0;
+  margin: 5px;
+  height: 100px;
+}
+.card-title{
+  font-weight: 600;
+}
+.titleLink{
+  text-decoration: none;
+  color: #FEFAE0;
+}
+.titleLink:hover{
+  background-color: #BC6C25;
+  color: #FEFAE0;
+}
+.resource-card{
+  border-radius: 0px;
+  border-width: 5px;
+  margin: 0px;
+  background-color: #FEFAE0;
+  height: 100%
+}
+/* marketplace end */
