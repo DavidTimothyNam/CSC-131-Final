@@ -1,6 +1,5 @@
 import React from 'react';
-import Calendar from '../components/Calendar'; // ✅ Adjust path as needed
-import '../components/Calendar.css'; // ✅ Don't forget the CSS for styling
+import Calendar from '../components/AdminCalendar.jsx'; // ✅ Adjust path as needed
 
 const CalendarView = () => {
   return (
