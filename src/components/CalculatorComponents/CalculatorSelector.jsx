@@ -78,8 +78,8 @@ const CalculatorSelector = () => {
                           value={calc2}
                           checked={selected === calc.keys[index]}
                           onChange={() => setSelected(calc.keys[index])}
-                          className="btn btn-primary calcButton"
                           variant="none"
+                          className="calcButton"
                         >
                           {calc2}
                         </ToggleButton>

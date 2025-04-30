@@ -174,14 +174,19 @@ nav {
 
 /* calculator styling start */
 
+.btn-group-vertical{
+    background-color: #606C38;
+    color: #FEFAE0;
+    border-radius: 4px;
+}
+.calcButton{
+    background-color: #BC6C25;
+    color: #FEFAE0;
+}
 .calcButton:hover{
     background-color: #DDA15E !important;
     color: #283618 !important;
     border-radius: 4px;
-}
-
-.btn-primary{
-    background-color: red;
 }
 /* calculator styling end */
 
