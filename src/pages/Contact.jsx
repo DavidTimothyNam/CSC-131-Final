@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageNavbar from "../components/Navbar";
 import Layout from "../components/Layout";
-// import './contact.css'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -117,7 +116,10 @@ const ContactForm = () => {
   return (
     <>
       <Layout>
-        <div className="container mt-5" style={{ width: "60%", marginBottom: '50px'}}>
+        <div
+          className="container mt-5"
+          style={{ width: "60%", marginBottom: "50px" }}
+        >
           <h1>Contact Us</h1>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-floating mb-3">

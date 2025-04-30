@@ -1,6 +1,5 @@
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./ResourceCard.css";
 
 const ResourceCard = ({ image, title, description, link, buttonText }) => {
   return (

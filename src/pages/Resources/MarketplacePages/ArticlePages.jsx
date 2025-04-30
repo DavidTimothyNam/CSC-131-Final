@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../../components/Layout.jsx";
 import articles from "../../../data/marketplaceArticles.json";
-import "./ArticlePages.css"
 
 const ArticlePage = () => {
   const { slug } = useParams();
@@ -14,7 +13,10 @@ const ArticlePage = () => {
         {article ? (
           <>
             <h1>{article.title}</h1>
-            <div className="article-body" dangerouslySetInnerHTML={{ __html: article.content }} />
+            <div
+              className="article-body"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
           </>
         ) : (
           <h2>Article not found.</h2>

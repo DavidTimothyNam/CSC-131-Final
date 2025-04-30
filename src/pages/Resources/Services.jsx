@@ -1,13 +1,12 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "../../components/Layout";
 
 const Services = () => {
   return (
     <Layout>
       <h1 className="mb-4">Services</h1>
-      <Accordion flush style={{marginBottom: '100px'}}>
+      <Accordion flush style={{ marginBottom: "100px" }}>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Financial Planning & Advisory</Accordion.Header>
           <Accordion.Body>

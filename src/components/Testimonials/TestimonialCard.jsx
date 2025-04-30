@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Image } from "react-bootstrap";
-import "./TestimonialCard.css";
 
 function TestimonialCard({ image, testimony, name }) {
   return (
