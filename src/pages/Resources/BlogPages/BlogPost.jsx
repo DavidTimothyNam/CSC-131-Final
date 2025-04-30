@@ -24,6 +24,14 @@ const BlogPost = () => {
     marginBottom: "1.5rem",
   };
 
+  // Convert content to array if it's a string
+  const contentArray = Array.isArray(post.content)
+    ? post.content
+    : post.content
+      .split(/\r?\n/)
+      .map((p) => p.trim())
+      .filter((p) => p.length > 0);
+
   return (
     <Layout>
       <Row>
@@ -32,34 +40,26 @@ const BlogPost = () => {
           <h1 className="mb-3">{post.title}</h1>
 
           <p className="text-muted mb-3">
-            By {post.author} on {post.date}
+            By {post.author} on {formatReadableDate(post.date)}
           </p>
 
           <img src={post.image} alt={post.title} style={imageStyle} />
 
           {/* Badges */}
-          <div className="mb-4">
-            {post.badges.map((badge, i) => (
-              <Badge key={i} bg="secondary" className="me-2">
-                {badge}
-              </Badge>
-            ))}
-          </div>
+          {Array.isArray(post.badges) && (
+            <div className="mb-4">
+              {post.badges.map((badge, i) => (
+                <Badge key={i} bg="secondary" className="me-2">
+                  {badge}
+                </Badge>
+              ))}
+            </div>
+          )}
 
           {/* Blog Content */}
           <div className="lead">
-            {post.content.map((paragraph, i) => (
+            {contentArray.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
-            ))}
-          </div>
-
-          {/* Tags */}
-          <div className="mt-4">
-            <strong>Tags:</strong>{" "}
-            {post.tags.map((tag, i) => (
-              <Badge key={i} bg="light" text="dark" className="me-2">
-                #{tag}
-              </Badge>
             ))}
           </div>
         </Col>
@@ -83,15 +83,31 @@ const BlogPost = () => {
   );
 };
 
-// 🧠 Helper: Group recent posts by month and year
+// ✅ Format MM/DD/YYYY as Month Day, Year
+function formatReadableDate(mmddyyyy) {
+  if (!mmddyyyy) return "";
+  const [month, day, year] = mmddyyyy.split("/").map((v) => parseInt(v, 10));
+  const date = new Date(year, month - 1, day);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+// ✅ Group recent posts by Month + Year (based on MM/DD/YYYY)
 function groupRecentPosts(posts, currentSlug) {
   const grouped = {};
 
   posts.forEach((post) => {
     if (post.link === currentSlug) return; // Skip current post
 
-    const [month, day, year] = post.date.split(" ");
-    const key = `${month} ${year}`;
+    const [month, day, year] = post.date.split("/");
+    const key = new Date(year, parseInt(month) - 1).toLocaleDateString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+
     if (!grouped[key]) grouped[key] = [];
     grouped[key].push(post);
   });

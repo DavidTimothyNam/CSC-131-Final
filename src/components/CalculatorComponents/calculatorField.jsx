@@ -12,6 +12,12 @@ const CalculatorField= ({data}) => {
     }));
   };
 
+  const formatPrices = (n) =>
+    Number(n).toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
   useEffect(() => {
     resetStates();
   }, [data]);
@@ -23,41 +29,40 @@ const CalculatorField= ({data}) => {
 
   const calculationsById = {
     1: (inputs) => [
-      calcFunctions.MonthlyPaymentWithMonths(inputs[0], inputs[1], inputs[2]).toFixed(2),
-      calcFunctions.loanValueMonths(inputs[0], inputs[1], inputs[2]).toFixed(2)
+      formatPrices(calcFunctions.MonthlyPaymentWithMonths(inputs[0], inputs[1], inputs[2])),
+      formatPrices(calcFunctions.loanValueMonths(inputs[0], inputs[1], inputs[2]))
     ],
     2: (inputs) => [
-      calcFunctions.maxMortgageMonthly(inputs[0], inputs[1]).toFixed(2),
-      calcFunctions.maxLoanAmountMonths(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]).toFixed(2)
+      formatPrices(calcFunctions.maxMortgageMonthly(inputs[0], inputs[1])),
+      formatPrices(calcFunctions.maxLoanAmountMonths(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]))
     ],
     3: (inputs) => [
-      calcFunctions.MonthlyPaymentWithMonths(inputs[0], inputs[1], inputs[2]).toFixed(2),
-      calcFunctions.totalPaymentClosing(inputs[0], inputs[1], inputs[2], inputs[3]).toFixed(2)
+      formatPrices(calcFunctions.MonthlyPaymentWithMonths(inputs[0], inputs[1], inputs[2])),
+      formatPrices(calcFunctions.totalPaymentClosing(inputs[0], inputs[1], inputs[2], inputs[3]))
     ],
     4: (inputs) => [
-      calcFunctions.mortgageAcceleration(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], 1),
-      calcFunctions.mortgageAcceleration(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], 2)
+      formatPrices(calcFunctions.mortgageAcceleration(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], 1)),
+      formatPrices(calcFunctions.mortgageAcceleration(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], 2))
     ],
     5: (inputs) => [
-      calcFunctions.creditCardDebtTotalMonths(inputs[0], inputs[1], inputs[2]),
-      calcFunctions.creditCardDebtTotalInterest(inputs[0], inputs[1], inputs[2])
+      formatPrices(calcFunctions.creditCardDebtTotalMonths(inputs[0], inputs[1], inputs[2])),
+      formatPrices(calcFunctions.creditCardDebtTotalInterest(inputs[0], inputs[1], inputs[2]))
     ],
     6: (inputs) => [
-      calcFunctions.leaseMonthlyPayment(inputs[0], inputs[1], inputs[2], inputs[3]).toFixed(2),
-      calcFunctions.leaseTotalInterest(inputs[0], inputs[1], inputs[2], inputs[3])
+      formatPrices(calcFunctions.leaseMonthlyPaymentResidual(inputs[0], inputs[1], inputs[2], inputs[3], inputs [4])),
+      formatPrices(calcFunctions.leaseTotalInterestResidual(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]))
     ],
     7: (inputs) => [
-      calcFunctions.carAffordabilityTotal(inputs[0], inputs[1], inputs[2], inputs[3]),
-      calcFunctions.carAffordabilityInterest(inputs[0], inputs[3], 
-      calcFunctions.carAffordabilityTotal(inputs[0], inputs[1], inputs[2], inputs[3]) - inputs[1])
+      formatPrices(calcFunctions.carAffordabilityTotal(inputs[0], inputs[1], inputs[2], inputs[3])),
+      formatPrices(calcFunctions.carAffordabilityInterest(inputs[0], inputs[1], inputs[2], inputs[3]))
     ],
     8: (inputs) => [
-      calcFunctions.collegeTotalCost(inputs[0], inputs[1], inputs[2], inputs[3]),
-      calcFunctions.collegeAnnualSavings(inputs[0], 
-      calcFunctions.collegeTotalCost(inputs[0], inputs[1], inputs[2], inputs[3]))
+      formatPrices(calcFunctions.collegeTotalCost(inputs[0], inputs[1], inputs[2], inputs[3])),
+      formatPrices(calcFunctions.collegeAnnualSavings(inputs[0], 
+        calcFunctions.collegeTotalCost(inputs[0], inputs[1], inputs[2], inputs[3])))
     ],
     9: (inputs) => [
-      calcFunctions.annualSavingsNeeded(inputs[0], inputs[1], inputs[2])
+      formatPrices(calcFunctions.annualSavingsNeeded(inputs[0], inputs[1], inputs[2]))
     ]
   };
   

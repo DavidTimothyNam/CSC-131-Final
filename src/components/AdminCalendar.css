@@ -1,23 +1,27 @@
-
-.wrapper{
+.wrapper {
   min-width: 500px;
+  max-width: 850px;
+  margin-bottom: 100px;
   width: 60%;
-  justify-self: center;
+  margin: auto;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
   margin-bottom:40px;
 }
-.wrapper header{
+
+.wrapper header {
   display: flex;
   align-items: center;
-  padding: 25px 30px 10px;
   justify-content: space-between;
+  padding-bottom: 10px;
 }
-header .icons{
+
+header .icons {
   display: flex;
 }
-header .icons span{
+
+header .icons span {
   height: 38px;
   width: 38px;
   margin: 0 1px;
@@ -29,50 +33,59 @@ header .icons span{
   user-select: none;
   border-radius: 50%;
 }
-.icons span:last-child{
-  margin-right: -10px;
-}
-header .icons span:hover{
+
+header .icons span:hover {
   background: #f2f2f2;
 }
-header .current-date{
+
+header .current-date {
   font-size: 1.45rem;
   font-weight: 500;
 }
-.calendar{
-  padding: 20px;
+
+.calendar {
+  padding: 20px 0;
 }
-.calendar ul{
+
+.calendar ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   text-align: center;
+  padding-left: 0;
 }
-.calendar .days{
+
+.calendar .weeks li {
+  font-weight: 500;
+  cursor: default;
+}
+
+.calendar .days {
   margin-bottom: 20px;
 }
-.calendar li{
+
+.calendar li {
   color: #333;
   width: calc(100% / 7);
   font-size: 1.07rem;
 }
-.calendar .weeks li{
-  font-weight: 500;
-  cursor: default;
-}
-.calendar .days li{
+
+.calendar .days li {
   z-index: 1;
   cursor: pointer;
   position: relative;
   margin-top: 30px;
 }
-.days li.inactive{
+
+.days li.inactive {
   color: #aaa;
 }
-.days li.active{
+
+.days li.active {
   color: #fff;
 }
-.days li::before{
+
+.days li::before {
   position: absolute;
   content: "";
   left: 50%;
@@ -83,9 +96,23 @@ header .current-date{
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
-.days li.active::before{
-  background: #9B59B6;
+
+.days li.active::before {
+  background: #9b59b6;
 }
-.days li:not(.active):hover::before{
+
+.days li:not(.active):hover::before {
   background: #f2f2f2;
+}
+
+.event-panel {
+  margin-top: 20px;
+}
+
+.event-panel h4 {
+  margin-bottom: 10px;
+}
+
+.event-panel .form-control {
+  min-width: 120px;
 }

@@ -3,7 +3,6 @@ import PageNavbar from "../../components/Navbar";
 import AboutSidebar from "../../components/PageAboutUs/AboutSidebar";
 import { Col, Container, Row, Image } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
-import "./About.css";
 import Layout from "../../components/Layout";
 
 const About = () => {

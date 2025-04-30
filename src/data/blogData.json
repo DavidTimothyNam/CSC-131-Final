@@ -2,161 +2,173 @@
   {
     "id": 1,
     "image": "/images/01.jpg",
-    "badges": ["Finance"],
-    "date": "February 2, 2025",
+    "badges": [
+      "Finance"
+    ],
+    "date": "02/02/2025",
     "title": "Understanding Your Finances",
     "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "link": "understanding-your-finances",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Financial literacy is the foundation of managing money wisely.",
+      "Understanding your income, expenses, and financial goals can help you make informed decisions.",
+      "When you gain control of your finances, you build a pathway to a more secure and independent future."
     ]
   },
   {
     "id": 2,
     "image": "/images/02.jpg",
-    "badges": ["Investing"],
-    "date": "February 7, 2025",
+    "badges": [
+      "Investing"
+    ],
+    "date": "04/07/2025",
     "title": "How to Start Investing Wisely",
     "excerpt": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
     "link": "how-to-start-investing-wisely",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Investing doesn't have to be overwhelming if you start with the basics.",
+      "Focus on building a diversified portfolio using low-cost index funds.",
+      "Remember, consistent investing over time can yield powerful results through the magic of compounding."
     ]
   },
   {
     "id": 3,
     "image": "/images/03.jpg",
-    "badges": ["Savings"],
-    "date": "February 12, 2025",
+    "badges": [
+      "Savings"
+    ],
+    "date": "02/12/2025",
     "title": "The Importance of Saving Early",
     "excerpt": "Curabitur ullamcorper ultricies nisi. Nam eget dui.",
     "link": "the-importance-of-saving-early",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Saving early allows you to take advantage of compound interest, multiplying your money over time.",
+      "Even small contributions made consistently can grow into significant savings.",
+      "The earlier you start, the less you need to save each month to reach your goals."
     ]
   },
   {
     "id": 4,
     "image": "/images/04.jpg",
-    "badges": ["Budgeting"],
-    "date": "February 18, 2025",
+    "badges": [
+      "Budgeting"
+    ],
+    "date": "02/18/2025",
     "title": "Creating a Monthly Budget",
     "excerpt": "Praesent libero. Sed cursus ante dapibus diam.",
     "link": "creating-a-monthly-budget",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "A well-planned budget gives you control over your financial life.",
+      "List all your sources of income and categorize your expenses to see where your money is going.",
+      "Adjust your spending habits based on your priorities and goals to create a budget that works for you."
     ]
   },
   {
     "id": 5,
     "image": "/images/05.jpg",
-    "badges": ["Finance", "Budgeting"],
-    "date": "February 25, 2025",
+    "badges": [
+      "Finance",
+      "Budgeting"
+    ],
+    "date": "02/25/2025",
     "title": "How to Balance Spending & Saving",
     "excerpt": "Nulla quis sem at nibh elementum imperdiet.",
     "link": "how-to-balance-spending-and-saving",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Striking the right balance between spending and saving is key to a healthy financial life.",
+      "Allocate a portion of your income to savings first, then budget your remaining funds for expenses.",
+      "Smart financial planning allows you to enjoy life today while preparing for the future."
     ]
   },
   {
     "id": 6,
     "image": "/images/06.jpg",
-    "badges": ["Investing"],
-    "date": "March 3, 2025",
+    "badges": [
+      "Investing"
+    ],
+    "date": "03/03/2025",
     "title": "Investment Strategies for Beginners",
     "excerpt": "Duis sagittis ipsum. Praesent mauris.",
     "link": "investment-strategies-for-beginners",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "New investors should focus on understanding their risk tolerance before choosing investments.",
+      "A mix of stocks, bonds, and cash can provide a good balance for beginners.",
+      "Regularly reviewing and adjusting your investments helps you stay aligned with your goals."
     ]
   },
   {
     "id": 7,
     "image": "/images/07.jpg",
-    "badges": ["Savings"],
-    "date": "March 8, 2025",
+    "badges": [
+      "Savings"
+    ],
+    "date": "03/08/2025",
     "title": "Best High-Interest Savings Accounts",
     "excerpt": "Fusce nec tellus sed augue semper porta.",
     "link": "best-high-interest-savings-accounts",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Choosing a high-yield savings account can significantly boost your savings over time.",
+      "Look for accounts with no monthly fees and competitive interest rates.",
+      "Online banks often offer better rates than traditional brick-and-mortar institutions."
     ]
   },
   {
     "id": 8,
     "image": "/images/08.jpg",
-    "badges": ["Finance"],
-    "date": "March 14, 2025",
+    "badges": [
+      "Finance"
+    ],
+    "date": "03/14/2025",
     "title": "Managing Debt Responsibly",
     "excerpt": "Mauris massa. Vestibulum lacinia arcu eget nulla.",
     "link": "managing-debt-responsibly",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Managing debt starts with understanding the total amount you owe and the interest rates involved.",
+      "Prioritize paying off high-interest debts first to minimize your overall financial burden.",
+      "Avoid taking on new debt while you are in the process of repayment to stay on track."
     ]
   },
   {
     "id": 9,
     "image": "/images/09.jpg",
-    "badges": ["Budgeting"],
-    "date": "March 20, 2025",
+    "badges": [
+      "Budgeting"
+    ],
+    "date": "03/20/2025",
     "title": "Cutting Costs Without Sacrificing Lifestyle",
     "excerpt": "Class aptent taciti sociosqu ad litora torquent per conubia nostra.",
     "link": "cutting-costs-without-sacrificing-lifestyle",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Living well on less is possible with a few smart adjustments.",
+      "Consider renegotiating bills, finding affordable alternatives, and cutting out non-essential expenses.",
+      "Budgeting creatively allows you to maintain a fulfilling lifestyle without overspending."
     ]
   },
   {
     "id": 10,
     "image": "/images/10.jpg",
-    "badges": ["Investing", "Finance"],
-    "date": "March 25, 2025",
+    "badges": [
+      "Investing",
+      "Finance"
+    ],
+    "date": "03/25/2025",
     "title": "Long-Term Investment Plans",
     "excerpt": "Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.",
     "link": "long-term-investment-plans",
     "author": "Jane Doe",
-    "tags": ["budgeting", "finance", "tips"],
     "content": [
-      "Finances can be confusing, but understanding your personal budget is a major step toward financial independence.",
-      "Start by tracking all your expenses for one month, and review your habits at the end. Identify areas where you can cut back or save.",
-      "Building a solid emergency fund and avoiding high-interest debt will help you build a healthier financial future."
+      "Long-term investing focuses on building wealth steadily over years or decades.",
+      "Stay patient, avoid reacting emotionally to market fluctuations, and stick to your strategy.",
+      "Reinvest dividends and review your plan annually to stay on course toward your financial objectives."
     ]
   }
 ]
