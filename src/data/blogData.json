@@ -2,9 +2,7 @@
   {
     "id": 1,
     "image": "/images/01.jpg",
-    "badges": [
-      "Finance"
-    ],
+    "badges": ["Finance"],
     "date": "02/02/2025",
     "title": "Understanding Your Finances",
     "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -19,9 +17,7 @@
   {
     "id": 2,
     "image": "/images/02.jpg",
-    "badges": [
-      "Investing"
-    ],
+    "badges": ["Investing"],
     "date": "04/07/2025",
     "title": "How to Start Investing Wisely",
     "excerpt": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
@@ -36,9 +32,7 @@
   {
     "id": 3,
     "image": "/images/03.jpg",
-    "badges": [
-      "Savings"
-    ],
+    "badges": ["Savings"],
     "date": "02/12/2025",
     "title": "The Importance of Saving Early",
     "excerpt": "Curabitur ullamcorper ultricies nisi. Nam eget dui.",
@@ -53,9 +47,7 @@
   {
     "id": 4,
     "image": "/images/04.jpg",
-    "badges": [
-      "Budgeting"
-    ],
+    "badges": ["Budgeting"],
     "date": "02/18/2025",
     "title": "Creating a Monthly Budget",
     "excerpt": "Praesent libero. Sed cursus ante dapibus diam.",
@@ -70,10 +62,7 @@
   {
     "id": 5,
     "image": "/images/05.jpg",
-    "badges": [
-      "Finance",
-      "Budgeting"
-    ],
+    "badges": ["Finance", "Budgeting"],
     "date": "02/25/2025",
     "title": "How to Balance Spending & Saving",
     "excerpt": "Nulla quis sem at nibh elementum imperdiet.",
@@ -88,9 +77,7 @@
   {
     "id": 6,
     "image": "/images/06.jpg",
-    "badges": [
-      "Investing"
-    ],
+    "badges": ["Investing"],
     "date": "03/03/2025",
     "title": "Investment Strategies for Beginners",
     "excerpt": "Duis sagittis ipsum. Praesent mauris.",
@@ -105,9 +92,7 @@
   {
     "id": 7,
     "image": "/images/07.jpg",
-    "badges": [
-      "Savings"
-    ],
+    "badges": ["Savings"],
     "date": "03/08/2025",
     "title": "Best High-Interest Savings Accounts",
     "excerpt": "Fusce nec tellus sed augue semper porta.",
@@ -122,9 +107,7 @@
   {
     "id": 8,
     "image": "/images/08.jpg",
-    "badges": [
-      "Finance"
-    ],
+    "badges": ["Finance"],
     "date": "03/14/2025",
     "title": "Managing Debt Responsibly",
     "excerpt": "Mauris massa. Vestibulum lacinia arcu eget nulla.",
@@ -139,9 +122,7 @@
   {
     "id": 9,
     "image": "/images/09.jpg",
-    "badges": [
-      "Budgeting"
-    ],
+    "badges": ["Budgeting"],
     "date": "03/20/2025",
     "title": "Cutting Costs Without Sacrificing Lifestyle",
     "excerpt": "Class aptent taciti sociosqu ad litora torquent per conubia nostra.",
@@ -156,10 +137,7 @@
   {
     "id": 10,
     "image": "/images/10.jpg",
-    "badges": [
-      "Investing",
-      "Finance"
-    ],
+    "badges": ["Investing", "Finance"],
     "date": "03/25/2025",
     "title": "Long-Term Investment Plans",
     "excerpt": "Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.",
@@ -169,23 +147,6 @@
       "Long-term investing focuses on building wealth steadily over years or decades.",
       "Stay patient, avoid reacting emotionally to market fluctuations, and stick to your strategy.",
       "Reinvest dividends and review your plan annually to stay on course toward your financial objectives."
-    ]
-  },
-  {
-    "id": 1746070907824,
-    "title": "this is a post",
-    "excerpt": "this is some great content.",
-    "author": "Jane Doe",
-    "date": "4/30/2025",
-    "image": "/images/1746070930034-20250418_074107.jpg",
-    "link": "this-is-a-post",
-    "badges": [
-      "Investing",
-      "Savings"
-    ],
-    "content": [
-      "this is some great content.",
-      "bye."
     ]
   }
 ]
