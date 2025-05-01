@@ -209,3 +209,14 @@ nav {
 }
 
 /* miscellaneous end */
+
+/*form-control and form-select*/
+.form-control, .form-select{
+    background-color: white;
+    color: #283618;
+  }
+  
+  .form-control:hover, .form-control:focus{
+    background-color: white;
+    color: black;
+  }
