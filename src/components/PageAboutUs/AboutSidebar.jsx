@@ -35,7 +35,7 @@ function AboutSidebar() {
       >
         Our Location
       </Button>
-      <Button variant="secondary" style={{ width: "150px" }} href="/">
+      <Button variant="secondary" style={{ width: "150px" }} className="mb-5"href="/">
         Go back to Home
       </Button>
     </div>

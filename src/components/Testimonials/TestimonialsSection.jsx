@@ -26,7 +26,7 @@ function TestimonialsSection() {
 
   return (
     <Container className="my-5">
-      <Row className="g-4">
+      <Row className="g-4 align-items-center">
         {testimonials.map((t, index) => (
           <Col key={index} md={4}>
             <TestimonialCard

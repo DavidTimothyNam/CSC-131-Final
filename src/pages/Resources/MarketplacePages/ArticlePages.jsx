@@ -12,11 +12,8 @@ const ArticlePage = () => {
       <div className="container">
         {article ? (
           <>
-            <h1>{article.title}</h1>
-            <div
-              className="article-body"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+            <h1 className="bold">{article.title}</h1>
+            <p>{article.content}</p>
           </>
         ) : (
           <h2>Article not found.</h2>

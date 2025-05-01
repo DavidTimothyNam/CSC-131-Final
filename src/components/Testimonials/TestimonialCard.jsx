@@ -3,7 +3,7 @@ import { Card, Image } from "react-bootstrap";
 
 function TestimonialCard({ image, testimony, name }) {
   return (
-    <Card className="p-3 shadow d-flex flex-row align-items-center">
+    <Card className="shadow d-flex flex-row align-items-center" id="backgroundLight">
       <Image
         src={image}
         alt={name}

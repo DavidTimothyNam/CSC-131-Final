@@ -12,6 +12,7 @@ function BlogHeroCard({ image, title, excerpt, link }) {
           height: "650px",
           objectFit: "cover",
           filter: "brightness(0.6)", // darkens image for contrast
+          borderRadius:"0px"
         }}
       />
       <Card.ImgOverlay className="d-flex flex-column justify-content-center text-center">

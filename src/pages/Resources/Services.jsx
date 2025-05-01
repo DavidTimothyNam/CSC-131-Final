@@ -5,8 +5,8 @@ import Layout from "../../components/Layout";
 const Services = () => {
   return (
     <Layout>
-      <h1 className="mb-4">Services</h1>
-      <Accordion flush style={{ marginBottom: "100px" }}>
+      <h1 className="mb-4 bold text-center">Services</h1>
+      <Accordion flush className="m-5">
         <Accordion.Item eventKey="0">
           <Accordion.Header>Financial Planning & Advisory</Accordion.Header>
           <Accordion.Body>

@@ -195,7 +195,7 @@ const ContactForm = () => {
               <span id="maximum"> / 500</span>
             </div>
 
-            <div className="submitButton">
+            <div className="submitButton mb-5">
               <input
                 type="button"
                 value="Send Now"

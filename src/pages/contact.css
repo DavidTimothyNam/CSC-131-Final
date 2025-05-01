@@ -1,4 +1,4 @@
-.container .content {
+/*.container .content {
   margin: 35px 75px 55px;
 }
 
@@ -26,4 +26,14 @@
 }
 .submitButton input:hover{
   background-color: darkgray;
+}
+*/
+.form-control, .form-select{
+  background-color: white;
+  color: #283618;
+}
+
+.form-control:hover, .form-control:focus{
+  background-color: white;
+  color: black;
 }

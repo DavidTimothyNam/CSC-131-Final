@@ -6,9 +6,8 @@
   margin: auto;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-  padding: 20px 25px 30px; /* Top, sides, bottom padding */
-  box-sizing: border-box;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  margin-bottom:40px;
 }
 
 .wrapper header {
