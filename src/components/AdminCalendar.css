@@ -1,15 +1,16 @@
 .wrapper {
   min-width: 500px;
   max-width: 850px;
-  margin-bottom: 100px;
-  width: 60%;
-  margin: auto;
+  width: 90%;
+  margin: 40px auto;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-  margin-bottom:40px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  padding: 2rem; /* ✅ Adds internal padding */
+  box-sizing: border-box;
 }
 
+/* Header layout */
 .wrapper header {
   display: flex;
   align-items: center;
@@ -32,6 +33,7 @@ header .icons span {
   font-size: 1.9rem;
   user-select: none;
   border-radius: 50%;
+  transition: background 0.2s ease;
 }
 
 header .icons span:hover {
@@ -43,6 +45,7 @@ header .current-date {
   font-weight: 500;
 }
 
+/* Calendar layout */
 .calendar {
   padding: 20px 0;
 }
@@ -105,6 +108,7 @@ header .current-date {
   background: #f2f2f2;
 }
 
+/* Event panel spacing */
 .event-panel {
   margin-top: 20px;
 }

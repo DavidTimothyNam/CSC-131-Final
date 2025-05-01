@@ -47,7 +47,7 @@ const UserCalendar = () => {
   const weekDates = getWeekDates();
 
   return (
-    <div className="user-calendar container mt-4">
+    <div className="user-calendar container mt-4" style={{marginBottom: '50px'}}>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <button className="btn btn-outline-primary" onClick={() => handleWeekChange(-1)}>
           ‹ Prev

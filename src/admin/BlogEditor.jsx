@@ -144,7 +144,7 @@ const BlogEditor = () => {
   };
 
   return (
-    <div className="container py-4">
+    <div className="container py-4" >
       <h2 className="mb-4">Edit Blog Posts</h2>
 
       {!selectedPost && (

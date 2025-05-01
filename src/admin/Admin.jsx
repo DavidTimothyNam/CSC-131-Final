@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CalendarView from "./CalendarView";
-import BlogEditor from "./BlogEditor"; // Import the blog editor component
+import BlogEditor from "./BlogEditor";
+import "./Admin.css";
 
 const Admin = () => {
   const [loggedIn, setLoggedIn] = useState(() => {
@@ -8,7 +9,18 @@ const Admin = () => {
   });
 
   const [credentials, setCredentials] = useState({ username: "", password: "" });
-  const [selectedMenu, setSelectedMenu] = useState("edit-blog"); // Default to Edit Blog
+  const [selectedMenu, setSelectedMenu] = useState("edit-blog");
+
+  // ✅ Hard override global body padding (like from index.css)
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = "body { padding-top: 0 !important; margin: 0 !important; }";
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -40,19 +52,19 @@ const Admin = () => {
   };
 
   return (
-    <div className="d-flex vh-100">
+    <div className="admin-container">
       {loggedIn && (
-        <aside className="bg-dark text-white p-3 d-flex flex-column" style={{ width: 250 }}>
-          <h2 className="h4 mb-4">Admin Panel</h2>
+        <aside className="admin-sidebar">
+          <h2>Admin Panel</h2>
           <nav className="nav flex-column mb-auto">
             <button
-              className={`btn btn-dark text-start mb-2 ${selectedMenu === "edit-blog" ? "fw-bold text-warning" : ""}`}
+              className={selectedMenu === "edit-blog" ? "active" : ""}
               onClick={() => setSelectedMenu("edit-blog")}
             >
               Edit Blog
             </button>
             <button
-              className={`btn btn-dark text-start ${selectedMenu === "calendar" ? "fw-bold text-warning" : ""}`}
+              className={selectedMenu === "calendar" ? "active" : ""}
               onClick={() => setSelectedMenu("calendar")}
             >
               Calendar
@@ -64,39 +76,37 @@ const Admin = () => {
         </aside>
       )}
 
-      <main
-        className={`flex-grow-1 d-flex align-items-center justify-content-center ${
-          loggedIn ? "bg-light" : ""
-        }`}
-      >
+      <main className="admin-main">
         {!loggedIn ? (
-          <div className="card p-4" style={{ width: 350 }}>
-            <h2 className="card-title text-center">Login</h2>
-            <form onSubmit={handleLogin}>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  name="username"
-                  className="form-control"
-                  placeholder="Username"
-                  value={credentials.username}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  placeholder="Password"
-                  value={credentials.password}
-                  onChange={handleChange}
-                />
-              </div>
-              <button type="submit" className="btn btn-primary w-100">
-                Login
-              </button>
-            </form>
+          <div className="admin-login-wrapper">
+            <div className="admin-login">
+              <h2>Login</h2>
+              <form onSubmit={handleLogin}>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="username"
+                    className="form-control"
+                    placeholder="Username"
+                    value={credentials.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Password"
+                    value={credentials.password}
+                    onChange={handleChange}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">
+                  Login
+                </button>
+              </form>
+            </div>
           </div>
         ) : (
           renderContent()
