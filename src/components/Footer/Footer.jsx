@@ -22,7 +22,7 @@ const Footer = () => {
               </li>
               <li className="nav-item mb-2">
                 <Link
-                  to="/resources"
+                  to="/marketplace"
                   className="nav-link p-0 text-body-secondary"
                 >
                   Resources

@@ -4,8 +4,8 @@ import Layout from "../../../components/Layout.jsx";
 import articles from "../../../data/marketplaceArticles.json";
 
 const ArticlePage = () => {
-  const { slug } = useParams(); // <-- match param name
-  const article = articles.find((item) => item.slug === slug); // <-- lookup by slug
+  const { slug } = useParams();
+  const article = articles.find((item) => item.slug === slug);
 
   return (
     <Layout>
