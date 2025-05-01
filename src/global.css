@@ -4,6 +4,7 @@
 @import "styles.css";
 
 @import "components/AdminCalendar.css";
+@import "admin/Admin.css";
 @import "components/ResourceSection/ResourceCard.css";
 @import "components/ServicesSection/ServiceCard.css";
 @import "components/Testimonials/TestimonialCard.css";

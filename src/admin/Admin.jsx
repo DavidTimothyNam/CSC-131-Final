@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import CalendarView from "./CalendarView";
 import BlogEditor from "./BlogEditor";
-import "./Admin.css";
 
 const Admin = () => {
   const [loggedIn, setLoggedIn] = useState(() => {
     return localStorage.getItem("adminLoggedIn") === "true";
   });
 
-  const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
   const [selectedMenu, setSelectedMenu] = useState("edit-blog");
 
   // ✅ Hard override global body padding (like from index.css)
   useEffect(() => {
     const style = document.createElement("style");
-    style.innerHTML = "body { padding-top: 0 !important; margin: 0 !important; }";
+    style.innerHTML =
+      "body { padding-top: 0 !important; margin: 0 !important; }";
     document.head.appendChild(style);
 
     return () => {
