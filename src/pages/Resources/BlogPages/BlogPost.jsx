@@ -34,7 +34,7 @@ const BlogPost = () => {
 
   return (
     <Layout>
-      <Row>
+      <Row style={{margin:"100px", marginTop:"50px", marginBottom:"20px"}}>
         {/* Main Blog Content */}
         <Col lg={8}>
           <h1 className="mb-3">{post.title}</h1>
@@ -66,16 +66,18 @@ const BlogPost = () => {
 
         {/* Sidebar */}
         <Col lg={4}>
-          <div className="bg-light p-3 rounded mb-4">
-            <h5>About This Blog</h5>
+          <div className="p-3 mb-4" id="backgroundDark">
+            <h5 className="bold">About This Blog</h5>
             <p className="mb-0">
               This blog offers expert insights into the world of finance.
             </p>
           </div>
 
-          <div className="bg-light p-3 rounded">
-            <h5 className="mb-3">Recent Posts</h5>
+          <div className="p-3 rounded" id="backgroundPrimary">
+            <h5 className="mb-3 text-center">Recent Posts</h5>
+            <div className="">
             {groupRecentPosts(blogPosts, slug)}
+            </div>
           </div>
         </Col>
       </Row>
@@ -118,7 +120,7 @@ function groupRecentPosts(posts, currentSlug) {
       <ul className="ps-3 mb-0">
         {groupedPosts.map((post) => (
           <li key={post.id}>
-            <Link to={`/blog/${post.link}`}>{post.title}</Link>
+            <Link to={`/blog/${post.link}`} className="blogSidebar">{post.title}</Link>
           </li>
         ))}
       </ul>

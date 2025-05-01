@@ -220,3 +220,15 @@ nav {
     background-color: white;
     color: black;
   }
+
+  /*blog sidebar and footer links start */
+  .blogSidebar{
+    color: #FEFAE0;
+    text-decoration: none;
+  }
+  .footerLink{
+    color:#FEFAE0;
+  }
+  .blogSidebar:hover, .footerLink:hover{
+    color:#283618;
+  }

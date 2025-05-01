@@ -72,12 +72,20 @@ const Footer = () => {
           </Col>
         </Row>
 
-        <div className="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <div className="border-top pt-3 pb-0">
+          {/*
           <Link to="/legal" className="nav-link p-0">
             <p className="mb-0">
               © 2025 Ron Smithey Financial Services. All rights reserved.
             </p>
-          </Link>
+          </Link>*/}
+          <a target="_blank" href="https://www.lpl.com/content/dam/lpl-www/documents/disclosures/lpl-financial-relationship-summary.pdf" className="footerLink">
+            <p>
+              LPL Financial Form CRS
+            </p>
+          </a>
+          <p>Securities offered through LPL Financial, Member <a href="http://www.finra.org" target="_blank" aria-label="FINRA opens in a new window" className="footerLink">FINRA</a>/<a href="http://www.sipc.org" target="_blank" aria-label="SIPC opens in a new window" className="footerLink">SIPC</a></p>
+          <p>The LPL Financial Registered Representative associated with this site may only discuss and/or transact securities business with residents of the following states: AR, AZ, CA, FL, HI, ID, LA, NV, OH, RI.</p>
         </div>
       </Container>
     </footer>
