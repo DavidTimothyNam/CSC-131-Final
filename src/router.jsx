@@ -14,6 +14,7 @@ import Calculators from "./pages/Resources/Calculators.jsx";
 import Blog from "./pages/Resources/Blog.jsx";
 import BlogPost from "./pages/Resources/BlogPages/BlogPost.jsx";
 import ArticlePages from "./pages/Resources/MarketplacePages/ArticlePages.jsx";
+import Search from "./pages/SearchPage.jsx";
 
 import Contact from "./pages/Contact.jsx";
 
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
   { path: "/calculators", element: <Calculators /> },
   { path: "/blog", element: <Blog /> },
   { path: "/contact", element: <Contact /> },
+  { path: "/search", element: <Search /> },
   // { path: "/legal", element: <Legal /> },
   // make legal page later
 

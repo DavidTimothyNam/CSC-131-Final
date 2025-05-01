@@ -122,7 +122,29 @@ app.delete("/api/posts/:id", (req, res) => {
   }
 });
 
+// GET returns BLOGS for Search page
+app.get("/api/search", (req, res) => {
+  try {
+    const data = fs.readFileSync(blogDataPath, "utf-8");
+    const posts = JSON.parse(data);
+    const query = req.query.search?.toLowerCase();
+
+    const filtered = query
+      ? posts.filter(post =>
+          post.title.toLowerCase().includes(query) ||
+          post.badges.some(badge => badge.toLowerCase().includes(query))
+        )
+      : [];
+
+    res.json(filtered);
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({ error: "Search failed." });
+  }
+});
+
 // ✅ Start the server
+// NEEDS TO BE LAST TO WORK
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

@@ -8,6 +8,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import SearchBar from "./searchBar";
 
 function PageNavbar() {
   return (
@@ -54,14 +55,8 @@ function PageNavbar() {
               Contact Us
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
-            <FormControl
-              type="search"
-              placeholder="Search..."
-              className="me-2"
-              aria-label="Search"
-            />
-          </Form>
+          {/*Search Bar */}
+          <SearchBar/>
         </Navbar.Collapse>
       </Container>
     </Navbar>
