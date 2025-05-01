@@ -169,7 +169,6 @@ const ContactForm = () => {
                 <option value="Long Term Care">Long Term Care</option>
                 <option value="Retirement Planning">Retirement Planning</option>
                 <option value="Roth IRA">Roth IRA</option>
-                <option value="Traditional Website">Traditional Website</option>
                 <option value="Other">Other</option>
               </select>
               <label htmlFor="floatingSelectTopic">Topic</label>
