@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "slug": "retirement-planning",
+    "title": "How to Plan for Retirement",
+    "description": "Learn the basics of building a strong retirement strategy with long-term security.",
+    "content": "Full article content for Retirement Planning goes here..."
+  },
+  {
+    "id": 2,
+    "slug": "investing-101",
+    "title": "Investing 101: Beginner’s Guide",
+    "description": "A simple breakdown of investment strategies for first-time investors.",
+    "content": "Full article content for Investing 101 goes here..."
+  },
+  {
+    "id": 3,
+    "slug": "tax-saving-tips",
+    "title": "Top 5 Tax Saving Tips",
+    "description": "Practical tax-saving tips for individuals and small businesses.",
+    "content": "Content on top 5 tax saving tips..."
+  },
+  {
+    "id": 4,
+    "slug": "real-estate-vs-stocks",
+    "title": "Real Estate vs. Stocks",
+    "description": "Explore the pros and cons of investing in real estate vs. the stock market.",
+    "content": "Content comparing real estate and stocks..."
+  },
+  {
+    "id": 5,
+    "slug": "emergency-fund-essentials",
+    "title": "Emergency Fund Essentials",
+    "description": "Why every financial plan should start with an emergency fund and how to build one.",
+    "content": "Emergency fund content goes here..."
+  },
+  {
+    "id": 6,
+    "slug": "maximize-your-401k",
+    "title": "Maximizing Your 401(k)",
+    "description": "Smart ways to get the most from your employer-sponsored retirement account.",
+    "content": "401(k) maximization strategies..."
+  }
+]
