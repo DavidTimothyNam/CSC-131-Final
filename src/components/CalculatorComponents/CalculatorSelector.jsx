@@ -56,7 +56,7 @@ const CalculatorSelector = () => {
     <div className="container">
       <div className="row text-start mb-4">
         <div className="col-3">
-          <h1 className="bold text-center">Calculators</h1>
+          <h1 className="bold text-center" style={{marginTop: '35px'}}>Calculators</h1>
         </div>
         <div className="col-9"></div>
       </div>

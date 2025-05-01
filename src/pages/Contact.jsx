@@ -120,7 +120,7 @@ const ContactForm = () => {
           className="container mt-5"
           style={{ width: "60%", marginBottom: "50px" }}
         >
-          <h1>Contact Us</h1>
+          <h1 style={{marginTop: '75px'}}>Contact Us</h1>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-floating mb-3">
               <input

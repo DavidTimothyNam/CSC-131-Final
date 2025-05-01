@@ -14,7 +14,7 @@ const About = () => {
             <AboutSidebar />
           </Col>
           <Col md={9}>
-            <section id="our-mission-statement" className="mb-5 scroll-offset">
+            <section id="our-mission-statement" className="mb-5 scroll-offset" style={{marginTop: '32px'}}>
               <Row className="align-items-center">
                 <Col md={4} className="text-center mb-3 mb-md-0">
                   <Image

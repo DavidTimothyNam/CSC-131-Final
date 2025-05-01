@@ -33,7 +33,7 @@ const Marketplace = () => {
 
   return (
     <Layout>
-      <div className="container card-grid-holder">
+      <div className="container card-grid-holder" style={{marginTop: '75px'}}>
         <h1 className="my-4 bold text-center">Marketplace</h1>
 
         {groupedArticles.map(({ category, items }) => (

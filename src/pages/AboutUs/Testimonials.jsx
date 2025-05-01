@@ -10,7 +10,7 @@ const Testimonials = () => {
   return (
     <>
       <Layout>
-        <h1 className="text-center mb-4 bold">Testimonials</h1>
+        <h1 className="text-center mb-4 bold" style={{marginTop: '75px'}}>Testimonials</h1>
         <TestimonialsSection />
       </Layout>
     </>

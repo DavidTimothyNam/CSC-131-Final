@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 const FAQ = () => {
   return (
     <Layout>
-      <h1 className="mb-4 bold text-center">Frequently Asked Questions</h1>
+      <h1 className="mb-4 bold text-center" style={{marginTop: '75px'}}>Frequently Asked Questions</h1>
       <Accordion flush className="m-5">
         <Accordion.Item eventKey="0">
           <Accordion.Header>What does a financial planner do?</Accordion.Header>
