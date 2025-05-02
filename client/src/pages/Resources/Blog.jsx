@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import BlogHeroCard from "../../components/PageBlog/BlogHeroCard";
 import BlogSection from "../../components/BlogSection";
-import blogData from "../../data/blogData.json";
+import useBlogPosts from "../../hooks/useBlogPosts";
 
 const Blog = () => {
   const [showAll, setShowAll] = useState(false);
 
+  const { posts, loading } = useBlogPosts();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   // Sort by date (most recent first)
-  const sortedPosts = [...blogData].sort(
+  const sortedPosts = [...posts].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 
@@ -27,7 +33,6 @@ const Blog = () => {
         excerpt={heroPost.excerpt}
         link={`/blog/${heroPost.link}`}
       />
-
       <BlogSection
         posts={visiblePosts}
         showAll={showAll}

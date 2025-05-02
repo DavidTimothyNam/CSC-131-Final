@@ -1,12 +1,22 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import blogPosts from "../../../data/blogData.json";
+import useBlogPosts from "../../../hooks/useBlogPosts.js";
 import Layout from "../../../components/Layout";
 import { Row, Col, Badge } from "react-bootstrap";
 
 const BlogPost = () => {
-  const { slug } = useParams();
-  const post = blogPosts.find((p) => p.link === slug);
+  const { slug } = useParams(); // gets the slug from the URL
+  const { posts, loading } = useBlogPosts();
+
+  if (loading) {
+    return (
+      <Layout>
+        <p className="text-center mt-5">Loading...</p>
+      </Layout>
+    );
+  }
+
+  const post = posts.find((p) => p.link === slug);
 
   if (!post) {
     return (
@@ -28,13 +38,13 @@ const BlogPost = () => {
   const contentArray = Array.isArray(post.content)
     ? post.content
     : post.content
-      .split(/\r?\n/)
-      .map((p) => p.trim())
-      .filter((p) => p.length > 0);
+        .split(/\r?\n/)
+        .map((p) => p.trim())
+        .filter((p) => p.length > 0);
 
   return (
     <Layout>
-      <Row style={{margin:"100px", marginTop:"50px", marginBottom:"20px"}}>
+      <Row style={{ margin: "100px", marginTop: "50px", marginBottom: "20px" }}>
         {/* Main Blog Content */}
         <Col lg={8}>
           <h1 className="mb-3">{post.title}</h1>
@@ -75,9 +85,7 @@ const BlogPost = () => {
 
           <div className="p-3 rounded" id="backgroundPrimary">
             <h5 className="mb-3 text-center">Recent Posts</h5>
-            <div className="">
-            {groupRecentPosts(blogPosts, slug)}
-            </div>
+            <div className="">{groupRecentPosts(posts, slug)}</div>
           </div>
         </Col>
       </Row>
@@ -105,10 +113,13 @@ function groupRecentPosts(posts, currentSlug) {
     if (post.link === currentSlug) return; // Skip current post
 
     const [month, day, year] = post.date.split("/");
-    const key = new Date(year, parseInt(month) - 1).toLocaleDateString("en-US", {
-      month: "long",
-      year: "numeric",
-    });
+    const key = new Date(year, parseInt(month) - 1).toLocaleDateString(
+      "en-US",
+      {
+        month: "long",
+        year: "numeric",
+      }
+    );
 
     if (!grouped[key]) grouped[key] = [];
     grouped[key].push(post);
@@ -120,7 +131,9 @@ function groupRecentPosts(posts, currentSlug) {
       <ul className="ps-3 mb-0">
         {groupedPosts.map((post) => (
           <li key={post.id}>
-            <Link to={`/blog/${post.link}`} className="blogSidebar">{post.title}</Link>
+            <Link to={`/blog/${post.link}`} className="blogSidebar">
+              {post.title}
+            </Link>
           </li>
         ))}
       </ul>

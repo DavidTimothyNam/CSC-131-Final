@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import blogPosts from "./data/blogData.json";
 
 // Static pages
 import Home from "./pages/Home.jsx";
@@ -39,7 +38,7 @@ export const router = createBrowserRouter([
   // make legal page later
 
   // Admin routes
-  { path: "/admin", element: <Admin />},
+  { path: "/admin", element: <Admin /> },
   { path: "/article/:slug", element: <ArticlePages /> },
   { path: "/blog/:slug", element: <BlogPost /> },
 ]);

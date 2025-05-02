@@ -5,31 +5,35 @@ import AboutHero from "../components/AboutHero";
 import ResourceSection from "../components/ResourceSection/ResourceSection";
 import ServiceSection from "../components/ServicesSection/ServicesSection";
 import Layout from "../components/Layout";
-import BlogCard from "../components/BlogCard"; // ⬅️ Make sure the path is correct
-import blogData from "../data/blogData.json";
+import BlogCard from "../components/BlogCard";
+import useBlogPosts from "../hooks/useBlogPosts";
 
-class Home extends React.Component {
-  render() {
-    const previewPosts = [...blogData]
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 3); // Show top 3 most recent
+function Home() {
+  const { posts, loading } = useBlogPosts();
 
-    return (
-      <>
-        <Layout>
-          <Container>
-            <AboutHero />
-          </Container>
-          {/* 💼 Services */}
+  const previewPosts = [...posts]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
 
-          <Container fluid className="mt-4 py-4" id="backgroundPrimary">
-            <h2 className="text-center mb-4">What We Offer</h2>
-            <ServiceSection />
-          </Container>
+  return (
+    <Layout>
+      <Container>
+        <AboutHero />
+      </Container>
 
-          {/* 📰 Blog Preview Section */}
-          <Container className="mt-4">
-            <h2 className="text-center section-title mb-4">Read Our Blog</h2>
+      {/* 💼 Services */}
+      <Container fluid className="mt-4 py-4" id="backgroundPrimary">
+        <h2 className="text-center mb-4">What We Offer</h2>
+        <ServiceSection />
+      </Container>
+
+      {/* 📰 Blog Preview Section */}
+      <Container className="mt-4">
+        <h2 className="text-center section-title mb-4">Read Our Blog</h2>
+        {loading ? (
+          <p className="text-center">Loading blog posts...</p>
+        ) : (
+          <>
             <Row className="g-4 align-items-stretch">
               {previewPosts.map((post) => (
                 <Col key={post.id} md={6} lg={4}>
@@ -51,17 +55,17 @@ class Home extends React.Component {
                 </Button>
               </Link>
             </div>
-          </Container>
+          </>
+        )}
+      </Container>
 
-          {/* 📚 Resources */}
-          <Container fluid className="mt-4 py-4" id="backgroundPrimary">
-            <h2 className="text-center mb-4">Financial Resources</h2>
-            <ResourceSection />
-          </Container>
-        </Layout>
-      </>
-    );
-  }
+      {/* 📚 Resources */}
+      <Container fluid className="mt-4 py-4" id="backgroundPrimary">
+        <h2 className="text-center mb-4">Financial Resources</h2>
+        <ResourceSection />
+      </Container>
+    </Layout>
+  );
 }
 
 export default Home;

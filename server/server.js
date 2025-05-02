@@ -3,24 +3,27 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
-const multer = require("multer"); // ✅ New for image upload
+const multer = require("multer");
 
 const app = express();
 const PORT = 9000;
 
-// ✅ Path to blogData.json
-const blogDataPath = path.join(__dirname, "../src/data/blogData.json");
+// ✅ Correct path to blogData.json
+const blogDataPath = path.join(__dirname, "server-data/blogData.json");
 console.log("Resolved blogDataPath:", blogDataPath);
 
-// ✅ Serve uploaded images from public/images
-app.use("/images", express.static(path.join(__dirname, "../public/images")));
+// ✅ Serve uploaded images from server-data/blog-images
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "server-data/blog-images"))
+);
 
 app.use(cors());
 app.use(bodyParser.json());
 
 // ✅ Image upload config
 const imageStorage = multer.diskStorage({
-  destination: path.join(__dirname, "../public/images"),
+  destination: path.join(__dirname, "server-data/blog-images"),
   filename: (req, file, cb) => {
     const uniqueName = `${Date.now()}-${file.originalname}`;
     cb(null, uniqueName);
@@ -36,16 +39,12 @@ app.post("/api/upload-image", upload.single("image"), (req, res) => {
   res.json({ path: `/images/${req.file.filename}` });
 });
 
-// ✅ Contact form route (unchanged)
+// ✅ Contact form route
 app.post("/contact", (req, res) => {
   const { name, email, topic, comment } = req.body;
-
-  console.log(`Contact Form Submission:
-    Name: ${name}
-    Email: ${email}
-    Topic: ${topic}
-    Comment: ${comment}`);
-
+  console.log(
+    `Contact Form Submission:\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\nComment: ${comment}`
+  );
   res.status(200).json({ success: true, message: "Message received!" });
 });
 
@@ -54,7 +53,6 @@ app.get("/api/posts", (req, res) => {
   try {
     const data = fs.readFileSync(blogDataPath, "utf-8");
     const posts = JSON.parse(data);
-    console.log("Loaded blog posts:", posts.length);
     res.json(posts);
   } catch (error) {
     console.error("Error reading blog data:", error);
@@ -70,14 +68,10 @@ app.put("/api/posts/:id", (req, res) => {
   try {
     const data = fs.readFileSync(blogDataPath, "utf-8");
     let posts = JSON.parse(data);
-
     const index = posts.findIndex((post) => post.id === postId);
-    if (index === -1) {
-      return res.status(404).json({ error: "Post not found" });
-    }
+    if (index === -1) return res.status(404).json({ error: "Post not found" });
 
     posts[index] = { ...posts[index], ...updatedPost };
-
     fs.writeFileSync(blogDataPath, JSON.stringify(posts, null, 2));
     res.json({ success: true, post: posts[index] });
   } catch (error) {
@@ -93,7 +87,7 @@ app.post("/api/posts", (req, res) => {
     const posts = JSON.parse(data);
 
     const newPost = {
-      id: Date.now(), // Unique ID based on timestamp
+      id: Date.now(),
       ...req.body,
     };
 
@@ -112,7 +106,6 @@ app.delete("/api/posts/:id", (req, res) => {
     const data = fs.readFileSync(blogDataPath, "utf-8");
     let posts = JSON.parse(data);
     const postId = parseInt(req.params.id);
-
     posts = posts.filter((post) => post.id !== postId);
     fs.writeFileSync(blogDataPath, JSON.stringify(posts, null, 2));
     res.json({ success: true });
@@ -122,7 +115,7 @@ app.delete("/api/posts/:id", (req, res) => {
   }
 });
 
-// GET returns BLOGS for Search page
+// ✅ GET for search
 app.get("/api/search", (req, res) => {
   try {
     const data = fs.readFileSync(blogDataPath, "utf-8");
@@ -130,9 +123,10 @@ app.get("/api/search", (req, res) => {
     const query = req.query.search?.toLowerCase();
 
     const filtered = query
-      ? posts.filter(post =>
-          post.title.toLowerCase().includes(query) ||
-          post.badges.some(badge => badge.toLowerCase().includes(query))
+      ? posts.filter(
+          (post) =>
+            post.title.toLowerCase().includes(query) ||
+            post.badges.some((badge) => badge.toLowerCase().includes(query))
         )
       : [];
 
@@ -143,8 +137,6 @@ app.get("/api/search", (req, res) => {
   }
 });
 
-// ✅ Start the server
-// NEEDS TO BE LAST TO WORK
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
