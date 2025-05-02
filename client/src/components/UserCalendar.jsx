@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./UserCalendar.css"; // 👈 new, separate stylesheet
+import "./UserCalendar.css";
 
-// Utility: Get start of current week (Sunday)
 const getStartOfWeek = (date) => {
   const day = date.getDay();
   const diff = date.getDate() - day;
@@ -11,10 +10,13 @@ const getStartOfWeek = (date) => {
 const UserCalendar = () => {
   const [events, setEvents] = useState({});
   const [weekStart, setWeekStart] = useState(getStartOfWeek(new Date()));
+  const [activeEvent, setActiveEvent] = useState(null); // { time, title, description }
 
   useEffect(() => {
-    const stored = localStorage.getItem("calendarEvents");
-    setEvents(stored ? JSON.parse(stored) : {});
+    fetch("http://localhost:9000/api/events")
+      .then((res) => res.json())
+      .then(setEvents)
+      .catch((err) => console.error("Failed to load events:", err));
   }, []);
 
   const formatDateKey = (date) => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -39,15 +41,26 @@ const UserCalendar = () => {
     });
 
   const handleWeekChange = (direction) => {
+    setActiveEvent(null);
     const newStart = new Date(weekStart);
     newStart.setDate(weekStart.getDate() + direction * 7);
     setWeekStart(newStart);
   };
 
+  const handleEventClick = (event) => {
+    setActiveEvent(event);
+  };
+
+  const handleBackdropClick = (e) => {
+    if (e.target.classList.contains("event-backdrop")) {
+      setActiveEvent(null);
+    }
+  };
+
   const weekDates = getWeekDates();
 
   return (
-    <div className="user-calendar container mt-4" style={{marginBottom: '50px'}}>
+    <div className="user-calendar container mt-4" style={{ marginBottom: "50px" }}>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <button className="btn btn-outline-primary" onClick={() => handleWeekChange(-1)}>
           ‹ Prev
@@ -75,8 +88,12 @@ const UserCalendar = () => {
                 ) : (
                   <ul className="list-unstyled mb-0">
                     {sortedEvents.map((event, idx) => (
-                      <li key={idx} className="event">
-                        <strong>{formatTimeToAMPM(event.time)}</strong> — {event.description}
+                      <li
+                        key={idx}
+                        className="event hoverable"
+                        onClick={() => handleEventClick(event)}
+                      >
+                        <strong>{formatTimeToAMPM(event.time)}</strong> — <b>{event.title}</b>
                       </li>
                     ))}
                   </ul>
@@ -86,6 +103,18 @@ const UserCalendar = () => {
           );
         })}
       </div>
+
+      {/* Modal for event description */}
+      {activeEvent && (
+        <div className="event-backdrop" onClick={handleBackdropClick}>
+          <div className="event-modal">
+            <h5 className="mb-2">{activeEvent.title}</h5>
+            <p className="mb-1"><strong>{formatTimeToAMPM(activeEvent.time)}</strong></p>
+            <p>{activeEvent.description || <em>No description provided</em>}</p>
+            <button className="btn btn-secondary mt-3" onClick={() => setActiveEvent(null)}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

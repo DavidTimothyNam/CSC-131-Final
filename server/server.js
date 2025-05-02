@@ -154,6 +154,33 @@ app.get("/api/marketplace-articles", (req, res) => {
   }
 });
 
+// 📅 Calendar Events: Paths
+const calendarDataPath = path.join(__dirname, "server-data/calendarEvents.json");
+
+// 📅 GET all events
+app.get("/api/events", (req, res) => {
+  fs.readFile(calendarDataPath, "utf-8", (err, data) => {
+    if (err) {
+      console.error("Error reading calendar events:", err);
+      return res.status(500).json({ error: "Failed to read events" });
+    }
+    res.json(JSON.parse(data || "{}"));
+  });
+});
+
+// 📅 POST to save (overwrite) all events
+app.post("/api/events", (req, res) => {
+  const events = req.body;
+  fs.writeFile(calendarDataPath, JSON.stringify(events, null, 2), (err) => {
+    if (err) {
+      console.error("Error writing calendar events:", err);
+      return res.status(500).json({ error: "Failed to save events" });
+    }
+    res.json({ success: true });
+  });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
