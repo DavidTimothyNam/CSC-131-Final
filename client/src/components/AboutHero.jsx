@@ -1,15 +1,18 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import profileImg from "../../../server/server-data/blog-images/10.jpg";
 
-const AboutUs = () => {
+const AboutHero = () => {
   return (
     <section id="about">
       <Container>
         <Row className="align-items-center">
           {/* Text Section */}
           <Col lg={6}>
-            <h1 id="backgroundLight" className="shadow" style={{ padding: "10px" }}><b>Ron Smithey Financial Services</b></h1>
+            <h1 id="backgroundLight" className="shadow" style={{ padding: "10px" }}>
+              <b>Ron Smithey Financial Services</b>
+            </h1>
             <p className="lead mt-4 mb-4 shadow" id="backgroundLight">
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
@@ -26,7 +29,7 @@ const AboutUs = () => {
           {/* Image Section */}
           <Col lg={6} className="rect-img-container">
             <img
-              src="/images/10.jpg"
+              src={profileImg}
               alt="Profile Photo"
               className="rect-img p-5"
               id="imgShape"
@@ -38,4 +41,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutHero;
