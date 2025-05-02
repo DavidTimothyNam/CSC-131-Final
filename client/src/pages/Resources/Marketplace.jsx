@@ -2,19 +2,20 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "../../components/Layout";
 import ArticleCard from "../../components/ArticleCard";
-import articles from "../../data/marketplaceArticles.json";
+import useMarketplaceArticles from "../../hooks/useMarketplaceArticles";
 
 const categories = ["Flipbooks", "Videos", "Newsletter"];
 
 const Marketplace = () => {
   const location = useLocation();
+  const { articles, loading } = useMarketplaceArticles();
 
   useEffect(() => {
     const hash = window.location.hash?.substring(1);
     if (hash) {
       const section = document.getElementById(hash);
       if (section) {
-        const yOffset = -100; // 👈 Adjust this offset if needed (e.g. height of navbar)
+        const yOffset = -100;
         const y =
           section.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
@@ -26,6 +27,14 @@ const Marketplace = () => {
     }
   }, [location]);
 
+  if (loading) {
+    return (
+      <Layout>
+        <p className="text-center mt-5">Loading marketplace content...</p>
+      </Layout>
+    );
+  }
+
   const groupedArticles = categories.map((category) => ({
     category,
     items: articles.filter((article) => article.category === category),
@@ -33,15 +42,11 @@ const Marketplace = () => {
 
   return (
     <Layout>
-      <div className="container card-grid-holder" style={{marginTop: '75px'}}>
+      <div className="container card-grid-holder" style={{ marginTop: "75px" }}>
         <h1 className="my-4 bold text-center">Marketplace</h1>
 
         {groupedArticles.map(({ category, items }) => (
-          <section
-            key={category}
-            id={category.toLowerCase()}
-            className="mb-5"
-          >
+          <section key={category} id={category.toLowerCase()} className="mb-5">
             <h2 className="mb-3 text-center">{category}</h2>
             <div className="row">
               {items.map((article) => (

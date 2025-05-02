@@ -137,6 +137,23 @@ app.get("/api/search", (req, res) => {
   }
 });
 
+app.get("/api/marketplace-articles", (req, res) => {
+  try {
+    const filePath = path.join(
+      __dirname,
+      "server-data/marketplaceArticles.json"
+    );
+    console.log("Resolved marketplaceArticles path:", filePath);
+
+    const data = fs.readFileSync(filePath, "utf-8");
+    const articles = JSON.parse(data);
+    res.json(articles);
+  } catch (err) {
+    console.error("Error reading marketplace articles:", err);
+    res.status(500).json({ error: "Could not load marketplace content" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

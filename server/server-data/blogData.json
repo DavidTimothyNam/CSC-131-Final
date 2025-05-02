@@ -170,5 +170,20 @@
       "Stay patient, avoid reacting emotionally to market fluctuations, and stick to your strategy.",
       "Reinvest dividends and review your plan annually to stay on course toward your financial objectives."
     ]
+  },
+  {
+    "id": 1746159860793,
+    "title": "something cool",
+    "excerpt": "hello this is something cool.",
+    "author": "Jane Doe",
+    "date": "5/1/2025",
+    "image": "",
+    "link": "something-cool",
+    "badges": [
+      "Investing"
+    ],
+    "content": [
+      "hello this is something cool."
+    ]
   }
 ]
