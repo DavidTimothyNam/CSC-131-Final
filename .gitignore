@@ -1,3 +1,6 @@
+# Authentication
+server/.env
+
 # Logs
 logs
 *.log
