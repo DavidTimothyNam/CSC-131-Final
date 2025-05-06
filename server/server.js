@@ -5,8 +5,21 @@ const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 
+const { Pool } = require("pg");
+require("dotenv").config();
+
 const app = express();
 const PORT = 9000;
+
+// set up database
+const pool = new Pool();
+pool.query("SELECT NOW()", (err, res) => {
+  if (err) {
+    console.error("Database connection failed:", err);
+  } else {
+    console.log("Connected to PostgreSQL at:", res.rows[0].now);
+  }
+});
 
 // ✅ Correct path to blogData.json
 const blogDataPath = path.join(__dirname, "server-data/blogData.json");
@@ -155,7 +168,10 @@ app.get("/api/marketplace-articles", (req, res) => {
 });
 
 // 📅 Calendar Events: Paths
-const calendarDataPath = path.join(__dirname, "server-data/calendarEvents.json");
+const calendarDataPath = path.join(
+  __dirname,
+  "server-data/calendarEvents.json"
+);
 
 // 📅 GET all events
 app.get("/api/events", (req, res) => {
@@ -179,7 +195,6 @@ app.post("/api/events", (req, res) => {
     res.json({ success: true });
   });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
