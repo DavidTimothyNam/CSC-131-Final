@@ -1,40 +1,32 @@
+// Existing imports (keep as-is)
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
-
 const { Pool } = require("pg");
 require("dotenv").config();
 
 const app = express();
 const PORT = 9000;
-
-// set up database
 const pool = new Pool();
+
+// Test DB connection
 pool.query("SELECT NOW()", (err, res) => {
-  if (err) {
-    console.error("Database connection failed:", err);
-  } else {
-    console.log("Connected to PostgreSQL at:", res.rows[0].now);
-  }
+  if (err) console.error("DB connection failed:", err);
+  else console.log("Connected to PostgreSQL at:", res.rows[0].now);
 });
 
-// ✅ Correct path to blogData.json
-const blogDataPath = path.join(__dirname, "server-data/blogData.json");
-console.log("Resolved blogDataPath:", blogDataPath);
-
-// ✅ Serve uploaded images from server-data/blog-images
+// Middleware
 app.use(
   "/images",
   express.static(path.join(__dirname, "server-data/blog-images"))
 );
-
 app.use(cors());
 app.use(bodyParser.json());
 
-// ✅ Image upload config
+// Image upload config
 const imageStorage = multer.diskStorage({
   destination: path.join(__dirname, "server-data/blog-images"),
   filename: (req, file, cb) => {
@@ -44,156 +36,134 @@ const imageStorage = multer.diskStorage({
 });
 const upload = multer({ storage: imageStorage });
 
-// ✅ Upload image endpoint
 app.post("/api/upload-image", upload.single("image"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ error: "No file uploaded" });
-  }
+  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
   res.json({ path: `/images/${req.file.filename}` });
 });
 
-// ✅ Contact form route
+// Contact form
 app.post("/contact", (req, res) => {
   const { name, email, topic, comment } = req.body;
   console.log(
-    `Contact Form Submission:\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\nComment: ${comment}`
+    `Contact Form:\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\nComment: ${comment}`
   );
   res.status(200).json({ success: true, message: "Message received!" });
 });
 
-// ✅ GET all blog posts
-app.get("/api/posts", (req, res) => {
+// BLOG POSTS
+app.get("/api/posts", async (req, res) => {
   try {
-    const data = fs.readFileSync(blogDataPath, "utf-8");
-    const posts = JSON.parse(data);
-    res.json(posts);
-  } catch (error) {
-    console.error("Error reading blog data:", error);
-    res.status(500).json({ error: "Could not load blog posts" });
+    const result = await pool.query(
+      "SELECT * FROM blog_posts ORDER BY date DESC"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching blog posts:", err);
+    res.status(500).json({ error: "Failed to fetch blog posts" });
   }
 });
 
-// ✅ PUT update blog post
-app.put("/api/posts/:id", (req, res) => {
-  const postId = parseInt(req.params.id);
-  const updatedPost = req.body;
-
+app.post("/api/posts", async (req, res) => {
+  const { image, date, title, excerpt, link, author } = req.body;
   try {
-    const data = fs.readFileSync(blogDataPath, "utf-8");
-    let posts = JSON.parse(data);
-    const index = posts.findIndex((post) => post.id === postId);
-    if (index === -1) return res.status(404).json({ error: "Post not found" });
-
-    posts[index] = { ...posts[index], ...updatedPost };
-    fs.writeFileSync(blogDataPath, JSON.stringify(posts, null, 2));
-    res.json({ success: true, post: posts[index] });
-  } catch (error) {
-    console.error("Error updating blog post:", error);
-    res.status(500).json({ error: "Could not update blog post" });
-  }
-});
-
-// ✅ POST create new blog post
-app.post("/api/posts", (req, res) => {
-  try {
-    const data = fs.readFileSync(blogDataPath, "utf-8");
-    const posts = JSON.parse(data);
-
-    const newPost = {
-      id: Date.now(),
-      ...req.body,
-    };
-
-    posts.push(newPost);
-    fs.writeFileSync(blogDataPath, JSON.stringify(posts, null, 2));
-    res.status(201).json({ success: true, post: newPost });
-  } catch (error) {
-    console.error("Error creating post:", error);
+    const result = await pool.query(
+      `INSERT INTO blog_posts (image, date, title, excerpt, link, author)
+       VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+      [image, date, title, excerpt, link, author]
+    );
+    res.status(201).json({ success: true, post: result.rows[0] });
+  } catch (err) {
+    console.error("Error creating blog post:", err);
     res.status(500).json({ error: "Could not create blog post" });
   }
 });
 
-// ✅ DELETE remove blog post
-app.delete("/api/posts/:id", (req, res) => {
+app.put("/api/posts/:id", async (req, res) => {
+  const { id } = req.params;
+  const { image, date, title, excerpt, link, author } = req.body;
   try {
-    const data = fs.readFileSync(blogDataPath, "utf-8");
-    let posts = JSON.parse(data);
-    const postId = parseInt(req.params.id);
-    posts = posts.filter((post) => post.id !== postId);
-    fs.writeFileSync(blogDataPath, JSON.stringify(posts, null, 2));
-    res.json({ success: true });
-  } catch (error) {
-    console.error("Error deleting post:", error);
-    res.status(500).json({ error: "Could not delete blog post" });
-  }
-});
-
-// ✅ GET for search
-app.get("/api/search", (req, res) => {
-  try {
-    const data = fs.readFileSync(blogDataPath, "utf-8");
-    const posts = JSON.parse(data);
-    const query = req.query.search?.toLowerCase();
-
-    const filtered = query
-      ? posts.filter(
-          (post) =>
-            post.title.toLowerCase().includes(query) ||
-            post.badges.some((badge) => badge.toLowerCase().includes(query))
-        )
-      : [];
-
-    res.json(filtered);
-  } catch (error) {
-    console.error("Search error:", error);
-    res.status(500).json({ error: "Search failed." });
-  }
-});
-
-app.get("/api/marketplace-articles", (req, res) => {
-  try {
-    const filePath = path.join(
-      __dirname,
-      "server-data/marketplaceArticles.json"
+    const result = await pool.query(
+      `UPDATE blog_posts SET image=$1, date=$2, title=$3, excerpt=$4, link=$5, author=$6 WHERE id=$7 RETURNING *`,
+      [image, date, title, excerpt, link, author, id]
     );
-    console.log("Resolved marketplaceArticles path:", filePath);
-
-    const data = fs.readFileSync(filePath, "utf-8");
-    const articles = JSON.parse(data);
-    res.json(articles);
+    if (result.rows.length === 0)
+      return res.status(404).json({ error: "Post not found" });
+    res.json({ success: true, post: result.rows[0] });
   } catch (err) {
-    console.error("Error reading marketplace articles:", err);
-    res.status(500).json({ error: "Could not load marketplace content" });
+    console.error("Error updating post:", err);
+    res.status(500).json({ error: "Could not update post" });
   }
 });
 
-// 📅 Calendar Events: Paths
-const calendarDataPath = path.join(
-  __dirname,
-  "server-data/calendarEvents.json"
-);
-
-// 📅 GET all events
-app.get("/api/events", (req, res) => {
-  fs.readFile(calendarDataPath, "utf-8", (err, data) => {
-    if (err) {
-      console.error("Error reading calendar events:", err);
-      return res.status(500).json({ error: "Failed to read events" });
-    }
-    res.json(JSON.parse(data || "{}"));
-  });
+app.delete("/api/posts/:id", async (req, res) => {
+  try {
+    await pool.query("DELETE FROM blog_posts WHERE id = $1", [req.params.id]);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Error deleting post:", err);
+    res.status(500).json({ error: "Could not delete post" });
+  }
 });
 
-// 📅 POST to save (overwrite) all events
-app.post("/api/events", (req, res) => {
+app.get("/api/search", async (req, res) => {
+  const query = req.query.search?.toLowerCase();
+  try {
+    const result = await pool.query(
+      `SELECT * FROM blog_posts WHERE LOWER(title) LIKE $1`,
+      [`%${query}%`]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Search error:", err);
+    res.status(500).json({ error: "Search failed" });
+  }
+});
+
+// MARKETPLACE ARTICLES
+app.get("/api/marketplace-articles", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM marketplace_articles ORDER BY id ASC"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error loading marketplace articles:", err);
+    res.status(500).json({ error: "Could not load articles" });
+  }
+});
+
+// CALENDAR EVENTS
+app.get("/api/events", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM calendar_events ORDER BY start ASC"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching events:", err);
+    res.status(500).json({ error: "Failed to fetch events" });
+  }
+});
+
+app.post("/api/events", async (req, res) => {
   const events = req.body;
-  fs.writeFile(calendarDataPath, JSON.stringify(events, null, 2), (err) => {
-    if (err) {
-      console.error("Error writing calendar events:", err);
-      return res.status(500).json({ error: "Failed to save events" });
+  try {
+    await pool.query("BEGIN");
+    await pool.query("DELETE FROM calendar_events");
+    for (const event of events) {
+      await pool.query(
+        `INSERT INTO calendar_events (title, start, "end", location, description)
+         VALUES ($1, $2, $3, $4, $5)`,
+        [event.title, event.start, event.end, event.location, event.description]
+      );
     }
+    await pool.query("COMMIT");
     res.json({ success: true });
-  });
+  } catch (err) {
+    await pool.query("ROLLBACK");
+    console.error("Error saving events:", err);
+    res.status(500).json({ error: "Failed to save events" });
+  }
 });
 
 app.listen(PORT, () => {
