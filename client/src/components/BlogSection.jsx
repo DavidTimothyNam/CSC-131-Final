@@ -6,12 +6,12 @@ const BlogSection = ({ posts = [], showAll, onToggle }) => {
   return (
     <Container className="gy-4">
       <Row className="g-4 align-items-stretch">
-        {posts.length > 0 ? (
+        {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((blog) => (
             <Col key={blog.id} md={6} lg={4}>
               <BlogCard
                 image={blog.image}
-                badges={blog.badges}
+                badges={blog.badges || []}
                 date={blog.date}
                 title={blog.title}
                 excerpt={blog.excerpt}
