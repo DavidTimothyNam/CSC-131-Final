@@ -1,4 +1,4 @@
-// BlogEditor.jsx — supports dynamic author + badge options from backend
+// BlogEditor.jsx — prevents duplicate slugs on new posts
 import React, { useState, useEffect } from "react";
 import CreatableSelect from "react-select/creatable";
 
@@ -72,15 +72,23 @@ const BlogEditor = () => {
   };
 
   const handleSave = () => {
-    const postToSave = {
-      ...selectedPost,
-      content: selectedPost.content
-        .split(/\r?\n/)
-        .map((p) => p.trim())
-        .filter((p) => p.length > 0),
-    };
+    if (!selectedPost) return;
 
     const isNew = !selectedPost.id;
+    const generatedContent = selectedPost.content
+      .split(/\r?\n/)
+      .map((p) => p.trim())
+      .filter((p) => p.length > 0);
+
+    const baseSlug = generateSlug(selectedPost.title);
+    const uniqueSlug = isSlugManuallyEdited ? selectedPost.link : generateUniqueSlug(baseSlug);
+
+    const postToSave = {
+      ...selectedPost,
+      link: uniqueSlug,
+      content: generatedContent,
+    };
+
     const method = isNew ? "POST" : "PUT";
     const url = isNew
       ? "http://localhost:9000/api/posts"
@@ -101,8 +109,22 @@ const BlogEditor = () => {
       .catch((err) => console.error("Save failed:", err));
   };
 
+  const generateUniqueSlug = (baseSlug) => {
+    let slug = baseSlug;
+    let count = 1;
+    while (posts.some((p) => p.link === slug)) {
+      slug = `${baseSlug}-${count++}`;
+    }
+    return slug;
+  };
+
   const handleDelete = () => {
+    if (!selectedPost?.id) {
+      console.error("❌ Cannot delete: post ID is undefined.");
+      return;
+    }
     if (!window.confirm("Are you sure you want to delete this post?")) return;
+
     fetch(`http://localhost:9000/api/posts/${selectedPost.id}`, {
       method: "DELETE",
     })
