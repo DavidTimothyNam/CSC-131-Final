@@ -58,34 +58,32 @@ app.get("/api/posts", async (req, res) => {
 // ✅ Get a full blog post by slug (with content + badges)
 app.get("/api/posts/:slug", async (req, res) => {
   const { slug } = req.params;
-  console.log("🪵 Slug received:", slug);
 
   try {
     const postResult = await pool.query("SELECT * FROM blog_posts WHERE link = $1", [slug]);
-    if (postResult.rows.length === 0) {
-      return res.status(404).json({ error: "Post not found" });
-    }
+    if (postResult.rows.length === 0) return res.status(404).json({ error: "Post not found" });
 
     const post = postResult.rows[0];
 
     const badgeResult = await pool.query(
-      "SELECT badge FROM blog_post_badges WHERE post_id = $1 ORDER BY id ASC",
+      "SELECT badge FROM blog_post_badges WHERE post_id = $1",
       [post.id]
     );
-    const badges = badgeResult.rows.map((b) => b.badge);
-
     const contentResult = await pool.query(
-      "SELECT paragraph FROM blog_post_content WHERE post_id = $1 ORDER BY paragraph_index ASC",
+      "SELECT paragraph FROM blog_post_content WHERE post_id = $1 ORDER BY paragraph_index",
       [post.id]
     );
+
+    const badges = badgeResult.rows.map((b) => b.badge);
     const content = contentResult.rows.map((p) => p.paragraph);
 
     res.json({ ...post, badges, content });
   } catch (err) {
-    console.error("Error fetching blog post:", err);
-    res.status(500).json({ error: "Could not fetch post" });
+    console.error("Error fetching full blog post:", err);
+    res.status(500).json({ error: "Failed to load post" });
   }
 });
+
 
 // Create a new blog post (basic - doesn't handle badges/content yet)
 app.post("/api/posts", async (req, res) => {

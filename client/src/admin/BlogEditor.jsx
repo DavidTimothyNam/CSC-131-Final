@@ -1,3 +1,4 @@
+// BlogEditor.jsx — FULLY UPDATED with safeguards for undefined badges/content + working image preview
 import React, { useState, useEffect } from "react";
 import CreatableSelect from "react-select/creatable";
 
@@ -8,7 +9,6 @@ const BlogEditor = () => {
   const [isSlugManuallyEdited, setIsSlugManuallyEdited] = useState(false);
   const [isExcerptManuallyEdited, setIsExcerptManuallyEdited] = useState(false);
 
-  // Collect unique authors and badges from all posts
   const allAuthors = Array.from(new Set(posts.map((p) => p.author).filter(Boolean)));
   const allBadges = Array.from(new Set(posts.flatMap((p) => p.badges || [])));
 
@@ -22,10 +22,18 @@ const BlogEditor = () => {
   const handleEditClick = (post) => {
     setIsSlugManuallyEdited(false);
     setIsExcerptManuallyEdited(false);
-    setSelectedPost({
-      ...post,
-      content: Array.isArray(post.content) ? post.content.join("\n\n") : post.content,
-    });
+    fetch(`http://localhost:9000/api/posts/${post.link}`)
+      .then((res) => res.json())
+      .then((fullPost) => {
+        setIsSlugManuallyEdited(false);
+        setIsExcerptManuallyEdited(false);
+        setSelectedPost({
+          ...fullPost,
+          content: Array.isArray(fullPost.content) ? fullPost.content.join("\n\n") : "",
+          badges: Array.isArray(fullPost.badges) ? fullPost.badges : [],
+        });
+      })
+      .catch((err) => console.error("Failed to load full post:", err));
   };
 
   const handleChange = (e) => {
@@ -111,7 +119,7 @@ const BlogEditor = () => {
       title: "Untitled Post",
       excerpt: "",
       author: "",
-      date: new Date().toLocaleDateString("en-US"), // MM/DD/YYYY
+      date: new Date().toLocaleDateString("en-US"),
       image: "",
       link: "",
       badges: [],
@@ -122,11 +130,7 @@ const BlogEditor = () => {
   };
 
   const generateSlug = (text) => {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-");
+    return text.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
   };
 
   const generateExcerpt = (text) => {
@@ -134,7 +138,9 @@ const BlogEditor = () => {
   };
 
   const formatDateForInput = (mmddyyyy) => {
+    if (!mmddyyyy || !mmddyyyy.includes("/")) return "";
     const [mm, dd, yyyy] = mmddyyyy.split("/");
+    if (!mm || !dd || !yyyy) return "";
     return `${yyyy}-${mm.padStart(2, "0")}-${dd.padStart(2, "0")}`;
   };
 
@@ -143,14 +149,20 @@ const BlogEditor = () => {
     return `${mm}/${dd}/${yyyy}`;
   };
 
+  const formatReadableDate = (dateStr) => {
+    return new Date(dateStr).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
   return (
-    <div className="container py-4" >
+    <div className="container py-4">
       <h2 className="mb-4">Edit Blog Posts</h2>
 
       {!selectedPost && (
-        <button className="btn btn-success mb-3" onClick={handleCreate}>
-          + New Post
-        </button>
+        <button className="btn btn-success mb-3" onClick={handleCreate}>+ New Post</button>
       )}
 
       {selectedPost ? (
@@ -172,11 +184,7 @@ const BlogEditor = () => {
             <CreatableSelect
               isClearable
               name="author"
-              value={
-                selectedPost.author
-                  ? { value: selectedPost.author, label: selectedPost.author }
-                  : null
-              }
+              value={selectedPost.author ? { value: selectedPost.author, label: selectedPost.author } : null}
               options={allAuthors.map((a) => ({ value: a, label: a }))}
               onChange={(newValue) =>
                 setSelectedPost({
@@ -233,7 +241,11 @@ const BlogEditor = () => {
             {selectedPost.image && (
               <div className="mt-2">
                 <small>Current Image:</small>
-                <img src={selectedPost.image} alt="preview" style={{ maxHeight: "150px", display: "block" }} />
+                <img
+                  src={`http://localhost:9000${selectedPost.image}`}
+                  alt="preview"
+                  style={{ maxHeight: "150px", display: "block" }}
+                />
               </div>
             )}
           </div>
@@ -248,7 +260,7 @@ const BlogEditor = () => {
             <CreatableSelect
               isMulti
               name="badges"
-              value={selectedPost.badges.map((b) => ({ value: b, label: b }))}
+              value={(selectedPost.badges || []).map((b) => ({ value: b, label: b }))}
               options={allBadges.map((b) => ({ value: b, label: b }))}
               onChange={(newValue) =>
                 setSelectedPost({
@@ -271,15 +283,9 @@ const BlogEditor = () => {
           </div>
 
           <div className="d-flex gap-2">
-            <button className="btn btn-success" onClick={handleSave}>
-              Save
-            </button>
-            <button className="btn btn-secondary" onClick={() => setSelectedPost(null)}>
-              Cancel
-            </button>
-            <button className="btn btn-danger ms-auto" onClick={handleDelete}>
-              Delete
-            </button>
+            <button className="btn btn-success" onClick={handleSave}>Save</button>
+            <button className="btn btn-secondary" onClick={() => setSelectedPost(null)}>Cancel</button>
+            <button className="btn btn-danger ms-auto" onClick={handleDelete}>Delete</button>
           </div>
         </div>
       ) : (
@@ -291,11 +297,9 @@ const BlogEditor = () => {
                 <span>
                   <strong>{post.title}</strong>
                   <br />
-                  <small className="text-muted">{post.date}</small>
+                  <small className="text-muted">{formatReadableDate(post.date)}</small>
                 </span>
-                <button className="btn btn-sm btn-primary" onClick={() => handleEditClick(post)}>
-                  Edit
-                </button>
+                <button className="btn btn-sm btn-primary" onClick={() => handleEditClick(post)}>Edit</button>
               </li>
             ))}
         </ul>
