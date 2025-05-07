@@ -1,5 +1,6 @@
 # Authentication
 server/.env
+server/schema.sql
 
 # Logs
 logs
