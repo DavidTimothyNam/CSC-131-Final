@@ -1,91 +1,64 @@
-import React from "react";
+// === BlogPost.jsx ===
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import useBlogPosts from "../../../hooks/useBlogPosts.js";
 import Layout from "../../../components/Layout";
 import { Row, Col, Badge } from "react-bootstrap";
+import useBlogPosts from "../../../hooks/useBlogPosts";
 
 const BlogPost = () => {
-  const { slug } = useParams(); // gets the slug from the URL
-  const { posts, loading } = useBlogPosts();
+  const { slug } = useParams();
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { posts } = useBlogPosts();
 
-  if (loading) {
-    return (
-      <Layout>
-        <p className="text-center mt-5">Loading...</p>
-      </Layout>
-    );
-  }
+  useEffect(() => {
+    fetch(`http://localhost:9000/api/posts/${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPost(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load post:", err);
+        setLoading(false);
+      });
+  }, [slug]);
 
-  const post = posts.find((p) => p.link === slug);
+  if (loading) return <Layout><p className="text-center mt-5">Loading...</p></Layout>;
+  if (!post) return <Layout><h2 className="text-center mt-5">Post not found</h2></Layout>;
 
-  if (!post) {
-    return (
-      <Layout>
-        <h2 className="text-center text-xl mt-5">Post not found</h2>
-      </Layout>
-    );
-  }
-
-  const imageStyle = {
-    width: "100%",
-    height: "300px",
-    objectFit: "cover",
-    borderRadius: "0.5rem",
-    marginBottom: "1.5rem",
-  };
-
-  // Convert content to array if it's a string
-  const contentArray = Array.isArray(post.content)
-    ? post.content
-    : post.content
-        .split(/\r?\n/)
-        .map((p) => p.trim())
-        .filter((p) => p.length > 0);
+  const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
     <Layout>
       <Row style={{ margin: "100px", marginTop: "50px", marginBottom: "20px" }}>
-        {/* Main Blog Content */}
         <Col lg={8}>
           <h1 className="mb-3">{post.title}</h1>
-
-          <p className="text-muted mb-3">
-            By {post.author} on {formatReadableDate(post.date)}
-          </p>
-
-          <img src={post.image} alt={post.title} style={imageStyle} />
-
-          {/* Badges */}
-          {Array.isArray(post.badges) && (
+          <p className="text-muted mb-3">By {post.author} on {formattedDate}</p>
+          <img src={`http://localhost:9000${post.image}`} alt={post.title} style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "0.5rem", marginBottom: "1.5rem" }} />
+          {Array.isArray(post.badges) && post.badges.length > 0 && (
             <div className="mb-4">
               {post.badges.map((badge, i) => (
-                <Badge key={i} bg="secondary" className="me-2">
-                  {badge}
-                </Badge>
+                <Badge key={i} bg="secondary" className="me-2">{badge}</Badge>
               ))}
             </div>
           )}
-
-          {/* Blog Content */}
           <div className="lead">
-            {contentArray.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
+            {post.content?.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
           </div>
         </Col>
-
-        {/* Sidebar */}
         <Col lg={4}>
           <div className="p-3 mb-4" id="backgroundDark">
-            <h5 className="bold">About This Blog</h5>
-            <p className="mb-0">
-              This blog offers expert insights into the world of finance.
-            </p>
+            <h5>About This Blog</h5>
+            <p>This blog offers expert insights into the world of finance.</p>
           </div>
-
           <div className="p-3 rounded" id="backgroundPrimary">
             <h5 className="mb-3 text-center">Recent Posts</h5>
-            <div className="">{groupRecentPosts(posts, slug)}</div>
+            <div>{groupRecentPosts(posts, slug)}</div>
           </div>
         </Col>
       </Row>
@@ -93,34 +66,14 @@ const BlogPost = () => {
   );
 };
 
-// ✅ Format MM/DD/YYYY as Month Day, Year
-function formatReadableDate(mmddyyyy) {
-  if (!mmddyyyy) return "";
-  const [month, day, year] = mmddyyyy.split("/").map((v) => parseInt(v, 10));
-  const date = new Date(year, month - 1, day);
-  return date.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-// ✅ Group recent posts by Month + Year (based on MM/DD/YYYY)
 function groupRecentPosts(posts, currentSlug) {
   const grouped = {};
 
   posts.forEach((post) => {
-    if (post.link === currentSlug) return; // Skip current post
-
-    const [month, day, year] = post.date.split("/");
-    const key = new Date(year, parseInt(month) - 1).toLocaleDateString(
-      "en-US",
-      {
-        month: "long",
-        year: "numeric",
-      }
-    );
-
+    if (post.link === currentSlug) return;
+    const date = new Date(post.date);
+    if (isNaN(date.getTime())) return;
+    const key = date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
     if (!grouped[key]) grouped[key] = [];
     grouped[key].push(post);
   });
@@ -131,9 +84,7 @@ function groupRecentPosts(posts, currentSlug) {
       <ul className="ps-3 mb-0">
         {groupedPosts.map((post) => (
           <li key={post.id}>
-            <Link to={`/blog/${post.link}`} className="blogSidebar">
-              {post.title}
-            </Link>
+            <Link to={`/blog/${post.link}`} className="blogSidebar">{post.title}</Link>
           </li>
         ))}
       </ul>

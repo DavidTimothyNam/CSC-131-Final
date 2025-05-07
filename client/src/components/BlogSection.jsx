@@ -1,3 +1,4 @@
+// === BlogSection.jsx ===
 import React from "react";
 import BlogCard from "./BlogCard";
 import { Container, Row, Col, Button } from "react-bootstrap";
@@ -23,9 +24,8 @@ const BlogSection = ({ posts = [], showAll, onToggle }) => {
           <p className="text-center">No blog posts to show.</p>
         )}
       </Row>
-
       <div className="text-center mt-4">
-        <Button size="md" onClick={onToggle} style={{ marginBottom: "50px" }}>
+        <Button onClick={onToggle} style={{ marginBottom: "50px" }}>
           {showAll ? "Show Less" : "View All Posts"}
         </Button>
       </div>

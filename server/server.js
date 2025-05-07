@@ -1,8 +1,6 @@
-// Existing imports (keep as-is)
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 const { Pool } = require("pg");
@@ -19,19 +17,15 @@ pool.query("SELECT NOW()", (err, res) => {
 });
 
 // Middleware
-app.use(
-  "/images",
-  express.static(path.join(__dirname, "server-data/blog-images"))
-);
+app.use("/images", express.static(path.join(__dirname, "server-data/blog-images")));
 app.use(cors());
 app.use(bodyParser.json());
 
-// Image upload config
+// Image upload
 const imageStorage = multer.diskStorage({
   destination: path.join(__dirname, "server-data/blog-images"),
   filename: (req, file, cb) => {
-    const uniqueName = `${Date.now()}-${file.originalname}`;
-    cb(null, uniqueName);
+    cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 const upload = multer({ storage: imageStorage });
@@ -44,18 +38,16 @@ app.post("/api/upload-image", upload.single("image"), (req, res) => {
 // Contact form
 app.post("/contact", (req, res) => {
   const { name, email, topic, comment } = req.body;
-  console.log(
-    `Contact Form:\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\nComment: ${comment}`
-  );
+  console.log(`Contact Form:\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\nComment: ${comment}`);
   res.status(200).json({ success: true, message: "Message received!" });
 });
 
-// BLOG POSTS
+// === BLOG POSTS ===
+
+// Get all blog posts
 app.get("/api/posts", async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT * FROM blog_posts ORDER BY date DESC"
-    );
+    const result = await pool.query("SELECT * FROM blog_posts ORDER BY date DESC");
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching blog posts:", err);
@@ -63,6 +55,39 @@ app.get("/api/posts", async (req, res) => {
   }
 });
 
+// ✅ Get a full blog post by slug (with content + badges)
+app.get("/api/posts/:slug", async (req, res) => {
+  const { slug } = req.params;
+  console.log("🪵 Slug received:", slug);
+
+  try {
+    const postResult = await pool.query("SELECT * FROM blog_posts WHERE link = $1", [slug]);
+    if (postResult.rows.length === 0) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    const post = postResult.rows[0];
+
+    const badgeResult = await pool.query(
+      "SELECT badge FROM blog_post_badges WHERE post_id = $1 ORDER BY id ASC",
+      [post.id]
+    );
+    const badges = badgeResult.rows.map((b) => b.badge);
+
+    const contentResult = await pool.query(
+      "SELECT paragraph FROM blog_post_content WHERE post_id = $1 ORDER BY paragraph_index ASC",
+      [post.id]
+    );
+    const content = contentResult.rows.map((p) => p.paragraph);
+
+    res.json({ ...post, badges, content });
+  } catch (err) {
+    console.error("Error fetching blog post:", err);
+    res.status(500).json({ error: "Could not fetch post" });
+  }
+});
+
+// Create a new blog post (basic - doesn't handle badges/content yet)
 app.post("/api/posts", async (req, res) => {
   const { image, date, title, excerpt, link, author } = req.body;
   try {
@@ -78,16 +103,18 @@ app.post("/api/posts", async (req, res) => {
   }
 });
 
+// Update a blog post
 app.put("/api/posts/:id", async (req, res) => {
   const { id } = req.params;
   const { image, date, title, excerpt, link, author } = req.body;
   try {
     const result = await pool.query(
-      `UPDATE blog_posts SET image=$1, date=$2, title=$3, excerpt=$4, link=$5, author=$6 WHERE id=$7 RETURNING *`,
+      `UPDATE blog_posts
+       SET image=$1, date=$2, title=$3, excerpt=$4, link=$5, author=$6
+       WHERE id=$7 RETURNING *`,
       [image, date, title, excerpt, link, author, id]
     );
-    if (result.rows.length === 0)
-      return res.status(404).json({ error: "Post not found" });
+    if (result.rows.length === 0) return res.status(404).json({ error: "Post not found" });
     res.json({ success: true, post: result.rows[0] });
   } catch (err) {
     console.error("Error updating post:", err);
@@ -95,6 +122,7 @@ app.put("/api/posts/:id", async (req, res) => {
   }
 });
 
+// Delete a blog post
 app.delete("/api/posts/:id", async (req, res) => {
   try {
     await pool.query("DELETE FROM blog_posts WHERE id = $1", [req.params.id]);
@@ -105,6 +133,7 @@ app.delete("/api/posts/:id", async (req, res) => {
   }
 });
 
+// Search posts
 app.get("/api/search", async (req, res) => {
   const query = req.query.search?.toLowerCase();
   try {
@@ -119,12 +148,10 @@ app.get("/api/search", async (req, res) => {
   }
 });
 
-// MARKETPLACE ARTICLES
+// === MARKETPLACE ARTICLES ===
 app.get("/api/marketplace-articles", async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT * FROM marketplace_articles ORDER BY id ASC"
-    );
+    const result = await pool.query("SELECT * FROM marketplace_articles ORDER BY id ASC");
     res.json(result.rows);
   } catch (err) {
     console.error("Error loading marketplace articles:", err);
@@ -132,12 +159,10 @@ app.get("/api/marketplace-articles", async (req, res) => {
   }
 });
 
-// CALENDAR EVENTS
+// === CALENDAR EVENTS ===
 app.get("/api/events", async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT * FROM calendar_events ORDER BY start ASC"
-    );
+    const result = await pool.query("SELECT * FROM calendar_events ORDER BY start ASC");
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching events:", err);
@@ -166,6 +191,7 @@ app.post("/api/events", async (req, res) => {
   }
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
