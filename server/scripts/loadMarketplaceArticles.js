@@ -6,43 +6,32 @@ require("dotenv").config();
 const pool = new Pool();
 
 async function loadMarketplaceArticles() {
-  const filePath = path.join(
-    __dirname,
-    "../server-data/marketplaceArticles.json"
-  );
-  const rawData = fs.readFileSync(filePath, "utf-8");
-  const articles = JSON.parse(rawData);
+  const filePath = path.join(__dirname, "../server-data/marketplaceArticles.json");
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const articles = JSON.parse(raw);
 
-  for (const article of articles) {
-    const client = await pool.connect();
-    try {
-      await client.query("BEGIN");
+  const client = await pool.connect();
 
+  try {
+    await client.query("BEGIN");
+    await client.query("DELETE FROM marketplace_articles");
+
+    for (const article of articles) {
       await client.query(
         `INSERT INTO marketplace_articles (slug, title, description, content, category)
          VALUES ($1, $2, $3, $4, $5)`,
-        [
-          article.slug,
-          article.title,
-          article.description,
-          article.content,
-          article.category,
-        ]
+        [article.slug, article.title, article.description, article.content, article.category]
       );
-
-      await client.query("COMMIT");
-      console.log(`Inserted article: ${article.title}`);
-    } catch (err) {
-      await client.query("ROLLBACK");
-      console.error(`Error inserting article "${article.title}":`, err.message);
-    } finally {
-      client.release();
     }
-  }
 
-  console.log("✅ Marketplace articles loaded.");
+    await client.query("COMMIT");
+    console.log(`✅ Loaded ${articles.length} marketplace articles`);
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error("❌ Failed to load articles:", err.message);
+  } finally {
+    client.release();
+  }
 }
 
-loadMarketplaceArticles().catch((err) => {
-  console.error("Fatal error loading marketplace articles:", err);
-});
+loadMarketplaceArticles().catch(console.error);
