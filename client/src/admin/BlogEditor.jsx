@@ -38,7 +38,9 @@ const BlogEditor = () => {
       .then((fullPost) => {
         setSelectedPost({
           ...fullPost,
-          content: Array.isArray(fullPost.content) ? fullPost.content.join("\n\n") : "",
+          content: Array.isArray(fullPost.content)
+            ? fullPost.content.join("\n\n")
+            : "",
           badges: Array.isArray(fullPost.badges) ? fullPost.badges : [],
         });
       })
@@ -81,7 +83,9 @@ const BlogEditor = () => {
       .filter((p) => p.length > 0);
 
     const baseSlug = generateSlug(selectedPost.title);
-    const uniqueSlug = isSlugManuallyEdited ? selectedPost.link : generateUniqueSlug(baseSlug);
+    const uniqueSlug = isSlugManuallyEdited
+      ? selectedPost.link
+      : generateUniqueSlug(baseSlug);
 
     const postToSave = {
       ...selectedPost,
@@ -96,7 +100,10 @@ const BlogEditor = () => {
 
     fetch(url, {
       method,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+      },
       body: JSON.stringify(postToSave),
     })
       .then((res) => res.json())
@@ -127,6 +134,9 @@ const BlogEditor = () => {
 
     fetch(`http://localhost:9000/api/posts/${selectedPost.id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+      },
     })
       .then((res) => res.json())
       .then(() => {
@@ -151,8 +161,18 @@ const BlogEditor = () => {
     });
   };
 
-  const generateSlug = (text) => text.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
-  const generateExcerpt = (text) => text.split(/\r?\n/).find((p) => p.trim())?.trim().slice(0, 160) || "";
+  const generateSlug = (text) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+  const generateExcerpt = (text) =>
+    text
+      .split(/\r?\n/)
+      .find((p) => p.trim())
+      ?.trim()
+      .slice(0, 160) || "";
   const formatDateForInput = (mmddyyyy) => {
     if (!mmddyyyy || !mmddyyyy.includes("/")) return "";
     const [mm, dd, yyyy] = mmddyyyy.split("/");
@@ -163,31 +183,52 @@ const BlogEditor = () => {
     const [yyyy, mm, dd] = yyyymmdd.split("-");
     return `${mm}/${dd}/${yyyy}`;
   };
-  const formatReadableDate = (dateStr) => new Date(dateStr).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  const formatReadableDate = (dateStr) =>
+    new Date(dateStr).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
   return (
     <div className="container py-4">
       <h2 className="mb-4">Edit Blog Posts</h2>
       {!selectedPost && (
-        <button className="btn btn-success mb-3" onClick={handleCreate}>+ New Post</button>
+        <button className="btn btn-success mb-3" onClick={handleCreate}>
+          + New Post
+        </button>
       )}
       {selectedPost ? (
         <div>
           {saveSuccess && <p className="text-success">✅ Changes saved!</p>}
           <div className="mb-3">
             <label>Title</label>
-            <input name="title" className="form-control" value={selectedPost.title} onChange={handleChange} />
+            <input
+              name="title"
+              className="form-control"
+              value={selectedPost.title}
+              onChange={handleChange}
+            />
           </div>
           <div className="mb-3">
             <label>Excerpt</label>
-            <input name="excerpt" className="form-control" value={selectedPost.excerpt} onChange={handleChange} />
+            <input
+              name="excerpt"
+              className="form-control"
+              value={selectedPost.excerpt}
+              onChange={handleChange}
+            />
           </div>
           <div className="mb-3">
             <label>Author</label>
             <CreatableSelect
               isClearable
               name="author"
-              value={selectedPost.author ? { value: selectedPost.author, label: selectedPost.author } : null}
+              value={
+                selectedPost.author
+                  ? { value: selectedPost.author, label: selectedPost.author }
+                  : null
+              }
               options={allAuthors.map((a) => ({ value: a, label: a }))}
               onChange={(newValue) =>
                 setSelectedPost({
@@ -204,7 +245,12 @@ const BlogEditor = () => {
               name="date"
               className="form-control"
               value={formatDateForInput(selectedPost.date)}
-              onChange={(e) => setSelectedPost({ ...selectedPost, date: formatDateForDisplay(e.target.value) })}
+              onChange={(e) =>
+                setSelectedPost({
+                  ...selectedPost,
+                  date: formatDateForDisplay(e.target.value),
+                })
+              }
             />
           </div>
           <div className="mb-3">
@@ -219,9 +265,22 @@ const BlogEditor = () => {
                 const formData = new FormData();
                 formData.append("image", file);
                 try {
-                  const res = await fetch("http://localhost:9000/api/upload-image", { method: "POST", body: formData });
+                  const res = await fetch(
+                    "http://localhost:9000/api/upload-image",
+                    {
+                      method: "POST",
+                      headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                          "authToken"
+                        )}`,
+                      },
+                      body: formData,
+                    }
+                  );
+
                   const data = await res.json();
-                  if (data.path) setSelectedPost({ ...selectedPost, image: data.path });
+                  if (data.path)
+                    setSelectedPost({ ...selectedPost, image: data.path });
                   else alert("Upload failed.");
                 } catch (err) {
                   console.error("Upload error:", err);
@@ -232,20 +291,32 @@ const BlogEditor = () => {
             {selectedPost.image && (
               <div className="mt-2">
                 <small>Current Image:</small>
-                <img src={`http://localhost:9000${selectedPost.image}`} alt="preview" style={{ maxHeight: "150px", display: "block" }} />
+                <img
+                  src={`http://localhost:9000${selectedPost.image}`}
+                  alt="preview"
+                  style={{ maxHeight: "150px", display: "block" }}
+                />
               </div>
             )}
           </div>
           <div className="mb-3">
             <label>Link Slug</label>
-            <input name="link" className="form-control" value={selectedPost.link} onChange={handleChange} />
+            <input
+              name="link"
+              className="form-control"
+              value={selectedPost.link}
+              onChange={handleChange}
+            />
           </div>
           <div className="mb-3">
             <label>Badges</label>
             <CreatableSelect
               isMulti
               name="badges"
-              value={(selectedPost.badges || []).map((b) => ({ value: b, label: b }))}
+              value={(selectedPost.badges || []).map((b) => ({
+                value: b,
+                label: b,
+              }))}
               options={allBadges.map((b) => ({ value: b, label: b }))}
               onChange={(newValue) =>
                 setSelectedPost({
@@ -266,9 +337,18 @@ const BlogEditor = () => {
             />
           </div>
           <div className="d-flex gap-2">
-            <button className="btn btn-success" onClick={handleSave}>Save</button>
-            <button className="btn btn-secondary" onClick={() => setSelectedPost(null)}>Cancel</button>
-            <button className="btn btn-danger ms-auto" onClick={handleDelete}>Delete</button>
+            <button className="btn btn-success" onClick={handleSave}>
+              Save
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => setSelectedPost(null)}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-danger ms-auto" onClick={handleDelete}>
+              Delete
+            </button>
           </div>
         </div>
       ) : (
@@ -276,13 +356,23 @@ const BlogEditor = () => {
           {[...posts]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((post) => (
-              <li key={post.id} className="list-group-item d-flex justify-content-between align-items-center">
+              <li
+                key={post.id}
+                className="list-group-item d-flex justify-content-between align-items-center"
+              >
                 <span>
                   <strong>{post.title}</strong>
                   <br />
-                  <small className="text-muted">{formatReadableDate(post.date)}</small>
+                  <small className="text-muted">
+                    {formatReadableDate(post.date)}
+                  </small>
                 </span>
-                <button className="btn btn-sm btn-primary" onClick={() => handleEditClick(post)}>Edit</button>
+                <button
+                  className="btn btn-sm btn-primary"
+                  onClick={() => handleEditClick(post)}
+                >
+                  Edit
+                </button>
               </li>
             ))}
         </ul>

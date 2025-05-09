@@ -75,9 +75,17 @@ router.get("/success", (req, res) => {
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  if (!token) return res.sendStatus(401);
+
+  if (!token) {
+    console.warn("No token provided");
+    return res.sendStatus(401);
+  }
+
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
+    if (err) {
+      console.warn("Token verification failed:", err.message);
+      return res.sendStatus(403);
+    }
     req.user = user;
     next();
   });
