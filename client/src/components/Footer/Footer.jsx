@@ -43,6 +43,11 @@ const Footer = () => {
                   Blog
                 </Link>
               </li>
+              <li className="nav-item mb-2">
+                <Link to="/login" className="nav-link p-0 text-body-secondary">
+                  Admin Login
+                </Link>
+              </li>
             </ul>
           </Col>
 

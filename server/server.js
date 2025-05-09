@@ -5,13 +5,24 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const multer = require("multer");
 const { Pool } = require("pg");
+const {
+  router: authRouter,
+  setupAuthMiddleware,
+  authenticateToken,
+} = require("./auth");
 require("dotenv").config();
 
 const app = express();
 const PORT = 9000;
 const pool = new Pool();
 
-app.use("/images", express.static(path.join(__dirname, "server-data/blog-images")));
+setupAuthMiddleware(app);
+app.use("/auth", authRouter);
+
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "server-data/blog-images"))
+);
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -23,20 +34,29 @@ const imageStorage = multer.diskStorage({
 });
 const upload = multer({ storage: imageStorage });
 
-app.post("/api/upload-image", upload.single("image"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-  res.json({ path: `/images/${req.file.filename}` });
-});
+app.post(
+  "/api/upload-image",
+  authenticateToken,
+  upload.single("image"),
+  (req, res) => {
+    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+    res.json({ path: `/images/${req.file.filename}` });
+  }
+);
 
 app.post("/contact", (req, res) => {
   const { name, email, topic, comment } = req.body;
-  console.log(`Contact Form:\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\nComment: ${comment}`);
+  console.log(
+    `Contact Form:\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\nComment: ${comment}`
+  );
   res.status(200).json({ success: true, message: "Message received!" });
 });
 
 app.get("/api/posts", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM blog_posts ORDER BY date DESC");
+    const result = await pool.query(
+      "SELECT * FROM blog_posts ORDER BY date DESC"
+    );
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching blog posts:", err);
@@ -47,11 +67,21 @@ app.get("/api/posts", async (req, res) => {
 app.get("/api/posts/:slug", async (req, res) => {
   const { slug } = req.params;
   try {
-    const postResult = await pool.query("SELECT * FROM blog_posts WHERE link = $1", [slug]);
-    if (postResult.rows.length === 0) return res.status(404).json({ error: "Post not found" });
+    const postResult = await pool.query(
+      "SELECT * FROM blog_posts WHERE link = $1",
+      [slug]
+    );
+    if (postResult.rows.length === 0)
+      return res.status(404).json({ error: "Post not found" });
     const post = postResult.rows[0];
-    const badgeResult = await pool.query("SELECT badge FROM blog_post_badges WHERE post_id = $1", [post.id]);
-    const contentResult = await pool.query("SELECT paragraph FROM blog_post_content WHERE post_id = $1 ORDER BY paragraph_index", [post.id]);
+    const badgeResult = await pool.query(
+      "SELECT badge FROM blog_post_badges WHERE post_id = $1",
+      [post.id]
+    );
+    const contentResult = await pool.query(
+      "SELECT paragraph FROM blog_post_content WHERE post_id = $1 ORDER BY paragraph_index",
+      [post.id]
+    );
     const badges = badgeResult.rows.map((b) => b.badge);
     const content = contentResult.rows.map((p) => p.paragraph);
     res.json({ ...post, badges, content });
@@ -63,10 +93,14 @@ app.get("/api/posts/:slug", async (req, res) => {
 
 app.get("/api/post-metadata", async (req, res) => {
   try {
-    const authorsResult = await pool.query("SELECT DISTINCT author FROM blog_posts WHERE author IS NOT NULL ORDER BY author");
-    const badgesResult = await pool.query("SELECT DISTINCT badge FROM blog_post_badges ORDER BY badge");
-    const authors = authorsResult.rows.map(r => r.author);
-    const badges = badgesResult.rows.map(r => r.badge);
+    const authorsResult = await pool.query(
+      "SELECT DISTINCT author FROM blog_posts WHERE author IS NOT NULL ORDER BY author"
+    );
+    const badgesResult = await pool.query(
+      "SELECT DISTINCT badge FROM blog_post_badges ORDER BY badge"
+    );
+    const authors = authorsResult.rows.map((r) => r.author);
+    const badges = badgesResult.rows.map((r) => r.badge);
     res.json({ authors, badges });
   } catch (err) {
     console.error("Error fetching post metadata:", err);
@@ -76,7 +110,9 @@ app.get("/api/post-metadata", async (req, res) => {
 
 app.get("/api/marketplace-articles", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM marketplace_articles ORDER BY id ASC");
+    const result = await pool.query(
+      "SELECT * FROM marketplace_articles ORDER BY id ASC"
+    );
     res.json(result.rows);
   } catch (err) {
     console.error("Error loading marketplace articles:", err);
@@ -84,8 +120,17 @@ app.get("/api/marketplace-articles", async (req, res) => {
   }
 });
 
-app.post("/api/posts", async (req, res) => {
-  const { image, date, title, excerpt, link, author, badges = [], content = [] } = req.body;
+app.post("/api/posts", authenticateToken, async (req, res) => {
+  const {
+    image,
+    date,
+    title,
+    excerpt,
+    link,
+    author,
+    badges = [],
+    content = [],
+  } = req.body;
   try {
     await pool.query("BEGIN");
     const result = await pool.query(
@@ -95,10 +140,16 @@ app.post("/api/posts", async (req, res) => {
     );
     const postId = result.rows[0].id;
     for (const badge of badges) {
-      await pool.query("INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)", [postId, badge]);
+      await pool.query(
+        "INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)",
+        [postId, badge]
+      );
     }
     for (let i = 0; i < content.length; i++) {
-      await pool.query("INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)", [postId, i, content[i]]);
+      await pool.query(
+        "INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)",
+        [postId, i, content[i]]
+      );
     }
     await pool.query("COMMIT");
     res.status(201).json({ success: true, post: result.rows[0] });
@@ -109,9 +160,18 @@ app.post("/api/posts", async (req, res) => {
   }
 });
 
-app.put("/api/posts/:id", async (req, res) => {
+app.put("/api/posts/:id", authenticateToken, async (req, res) => {
   const { id } = req.params;
-  const { image, date, title, excerpt, link, author, badges = [], content = [] } = req.body;
+  const {
+    image,
+    date,
+    title,
+    excerpt,
+    link,
+    author,
+    badges = [],
+    content = [],
+  } = req.body;
   try {
     await pool.query("BEGIN");
     const result = await pool.query(
@@ -123,10 +183,16 @@ app.put("/api/posts/:id", async (req, res) => {
     await pool.query("DELETE FROM blog_post_badges WHERE post_id = $1", [id]);
     await pool.query("DELETE FROM blog_post_content WHERE post_id = $1", [id]);
     for (const badge of badges) {
-      await pool.query("INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)", [id, badge]);
+      await pool.query(
+        "INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)",
+        [id, badge]
+      );
     }
     for (let i = 0; i < content.length; i++) {
-      await pool.query("INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)", [id, i, content[i]]);
+      await pool.query(
+        "INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)",
+        [id, i, content[i]]
+      );
     }
     await pool.query("COMMIT");
     res.json({ success: true, post: result.rows[0] });
@@ -137,7 +203,7 @@ app.put("/api/posts/:id", async (req, res) => {
   }
 });
 
-app.delete("/api/posts/:id", async (req, res) => {
+app.delete("/api/posts/:id", authenticateToken, async (req, res) => {
   try {
     await pool.query("DELETE FROM blog_posts WHERE id = $1", [req.params.id]);
     res.json({ success: true });

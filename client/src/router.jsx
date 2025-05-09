@@ -17,8 +17,10 @@ import Search from "./pages/SearchPage.jsx";
 
 import Contact from "./pages/Contact.jsx";
 
-// Admin pages
+// Admin-related pages
+import PrivateRoute from "./admin/PrivateRoute.jsx";
 import Admin from "./admin/Admin";
+import Login from "./admin/Login";
 
 // Create the router with static and dynamic routes
 export const router = createBrowserRouter([
@@ -38,8 +40,16 @@ export const router = createBrowserRouter([
   // make legal page later
 
   // Admin routes
-  { path: "/admin", element: <Admin /> },
+  {
+    path: "/admin",
+    element: (
+      <PrivateRoute>
+        <Admin />
+      </PrivateRoute>
+    ),
+  },
   { path: "/article/:slug", element: <ArticlePages /> },
   { path: "/marketplace/:slug", element: <ArticlePages /> },
   { path: "/blog/:slug", element: <BlogPost /> },
+  { path: "/login", element: <Login /> },
 ]);
