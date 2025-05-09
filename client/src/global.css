@@ -4,6 +4,7 @@
 @import "styles.css";
 
 @import "components/AdminCalendar.css";
+@import "react-datepicker/dist/react-datepicker.css";
 @import "admin/Admin.css";
 @import "components/ResourceSection/ResourceCard.css";
 @import "components/ServicesSection/ServiceCard.css";

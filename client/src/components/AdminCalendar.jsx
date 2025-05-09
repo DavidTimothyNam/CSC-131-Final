@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
 
 const AdminCalendar = () => {
   const [currDate, setCurrDate] = useState(new Date());
   const [events, setEvents] = useState({});
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [newEvent, setNewEvent] = useState({ time: "", title: "", description: "" });
-
-  const currYear = currDate.getFullYear();
-  const currMonth = currDate.getMonth();
-  const getDateKey = (day) => `${currYear}-${currMonth + 1}-${day}`;
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [newEvent, setNewEvent] = useState({
+    time: new Date(),
+    endTime: new Date(new Date().getTime() + 60 * 60 * 1000),
+    title: "",
+    description: "",
+    location: "",
+  });
+  const [timeError, setTimeError] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:9000/api/events")
@@ -17,148 +21,211 @@ const AdminCalendar = () => {
       .catch((err) => console.error("Failed to load events:", err));
   }, []);
 
-  const saveEvents = (updatedEvents) => {
-    setEvents(updatedEvents);
+  function formatDateKey(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  const saveEvents = (dateKey, eventsForDate) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      alert("You must be logged in to save events.");
+      return;
+    }
+
+    setEvents((prev) => ({ ...prev, [dateKey]: eventsForDate }));
+
     fetch("http://localhost:9000/api/events", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedEvents),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ [dateKey]: eventsForDate }),
     }).catch((err) => console.error("Failed to save events:", err));
   };
 
-  const parseTimeToDate = (timeStr) => {
-    const [hours, minutes] = timeStr.split(":").map(Number);
-    return new Date(0, 0, 0, hours, minutes);
+  const formatTime = (date) => {
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
   };
 
-  const formatTimeToAMPM = (timeStr) => {
-    if (!timeStr) return "";
-    const [hourStr, minute] = timeStr.split(":");
-    let hour = parseInt(hourStr, 10);
-    const ampm = hour >= 12 ? "PM" : "AM";
-    hour = hour % 12 || 12;
-    return `${hour}:${minute} ${ampm}`;
+  const formatTimeToAMPM = (dateOrStr) => {
+    const date =
+      typeof dateOrStr === "string"
+        ? new Date(`1970-01-01T${dateOrStr}`)
+        : dateOrStr;
+    let hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes} ${ampm}`;
   };
 
   const handleAddEvent = () => {
-    if (!selectedDay || !newEvent.time.trim() || !newEvent.title.trim()) return;
+    if (!selectedDate || !newEvent.title.trim()) return;
 
-    const key = getDateKey(selectedDay);
-    const updated = { ...events };
-    if (!updated[key]) updated[key] = [];
+    if (newEvent.endTime && newEvent.time >= newEvent.endTime) {
+      setTimeError("Start time must be before end time");
+      return;
+    }
+    setTimeError("");
 
-    updated[key].push({ ...newEvent });
-    updated[key].sort((a, b) => parseTimeToDate(a.time) - parseTimeToDate(b.time));
-    saveEvents(updated);
-    setNewEvent({ time: "", title: "", description: "" });
+    const key = formatDateKey(selectedDate);
+    const updatedEventsForDate = events[key] ? [...events[key]] : [];
+
+    updatedEventsForDate.push({
+      ...newEvent,
+      time: formatTime(newEvent.time),
+      endTime: formatTime(newEvent.endTime),
+    });
+
+    updatedEventsForDate.sort(
+      (a, b) =>
+        new Date(`1970-01-01T${a.time}`) - new Date(`1970-01-01T${b.time}`)
+    );
+
+    saveEvents(key, updatedEventsForDate);
+
+    setNewEvent({
+      time: new Date(),
+      endTime: new Date(new Date().getTime() + 60 * 60 * 1000),
+      title: "",
+      description: "",
+      location: "",
+    });
   };
 
   const handleDeleteEvent = (index) => {
-    const key = getDateKey(selectedDay);
+    const key = formatDateKey(selectedDate);
     const updated = { ...events };
     updated[key].splice(index, 1);
     if (updated[key].length === 0) delete updated[key];
     saveEvents(updated);
   };
 
-  const selectedKey = selectedDay ? getDateKey(selectedDay) : null;
+  const selectedKey = selectedDate ? formatDateKey(selectedDate) : null;
   const selectedEvents = selectedKey ? events[selectedKey] || [] : [];
-
-  const renderCalendar = () => {
-    const firstDay = new Date(currYear, currMonth, 1).getDay();
-    const lastDate = new Date(currYear, currMonth + 1, 0).getDate();
-    const today = new Date();
-    const days = [];
-
-    for (let i = firstDay; i > 0; i--) {
-      days.push(<li key={`prev-${i}`} className="inactive">{new Date(currYear, currMonth, -i + 1).getDate()}</li>);
-    }
-
-    for (let i = 1; i <= lastDate; i++) {
-      const isToday =
-        i === today.getDate() &&
-        currMonth === today.getMonth() &&
-        currYear === today.getFullYear();
-      const key = getDateKey(i);
-      const hasEvents = events[key]?.length > 0;
-
-      days.push(
-        <li
-          key={`curr-${i}`}
-          className={`${isToday ? "active" : ""} ${hasEvents ? "has-events" : ""}`}
-          onClick={() => setSelectedDay(i)}
-        >
-          {i}
-        </li>
-      );
-    }
-
-    return days;
-  };
 
   return (
     <div className="wrapper">
-      <header>
-        <p className="current-date">{`${new Date(currYear, currMonth).toLocaleString("default", {
-          month: "long",
-        })} ${currYear}`}</p>
-        <div className="icons">
-          <span onClick={() => setCurrDate(new Date(currYear, currMonth - 1, 1))}>‹</span>
-          <span onClick={() => setCurrDate(new Date(currYear, currMonth + 1, 1))}>›</span>
-        </div>
+      <header className="mb-3">
+        <h4>Select a Date</h4>
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          dateFormat="MMMM d, yyyy"
+          className="form-control"
+          placeholderText="Click to select a date"
+        />
       </header>
 
-      <div className="calendar">
-        <ul className="weeks">
-          <li>Sun</li><li>Mon</li><li>Tue</li><li>Wed</li>
-          <li>Thu</li><li>Fri</li><li>Sat</li>
-        </ul>
-        <ul className="days">{renderCalendar()}</ul>
-      </div>
-
-      {selectedDay && (
+      {selectedDate && (
         <div className="event-panel mt-4">
-          <h4>Events for {currMonth + 1}/{selectedDay}/{currYear}</h4>
+          <h4>Events for {selectedDate.toLocaleDateString()}</h4>
           <ul className="list-group mb-3">
             {selectedEvents.length === 0 ? (
-              <li className="list-group-item">No events scheduled.</li>
+              <li
+                className="list-group-item text-muted"
+                style={{ cursor: "default", backgroundColor: "#f9f9f9" }}
+              >
+                No events scheduled.
+              </li>
             ) : (
               selectedEvents.map((event, idx) => (
-                <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+                <li
+                  key={idx}
+                  className="list-group-item d-flex justify-content-between align-items-center"
+                >
                   <div>
-                    <strong>{formatTimeToAMPM(event.time)}</strong> — <b>{event.title}</b><br />
+                    <strong>{formatTimeToAMPM(event.time)}</strong>
+                    {event.endTime
+                      ? ` – ${formatTimeToAMPM(event.endTime)}`
+                      : ""}{" "}
+                    — <b>{event.title}</b>
+                    <br />
                     <small>{event.description}</small>
+                    <br />
+                    <small>
+                      <i>{event.location}</i>
+                    </small>
                   </div>
-                  <button className="btn btn-sm btn-danger" onClick={() => handleDeleteEvent(idx)}>Delete</button>
+                  <button
+                    className="btn btn-sm btn-danger"
+                    onClick={() => handleDeleteEvent(idx)}
+                  >
+                    Delete
+                  </button>
                 </li>
               ))
             )}
           </ul>
 
           <div className="d-flex gap-2 flex-wrap">
-            <input
-              type="time"
+            <DatePicker
+              selected={newEvent.time}
+              onChange={(date) =>
+                setNewEvent({
+                  ...newEvent,
+                  time: date,
+                  endTime: new Date(date.getTime() + 60 * 60 * 1000),
+                })
+              }
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              timeCaption="Start Time"
+              dateFormat="h:mm aa"
               className="form-control"
-              value={newEvent.time}
-              onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
-              placeholder="Time"
+              placeholderText="Start Time"
+            />
+            <DatePicker
+              selected={newEvent.endTime}
+              onChange={(date) => setNewEvent({ ...newEvent, endTime: date })}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              timeCaption="End Time"
+              dateFormat="h:mm aa"
+              className="form-control"
+              placeholderText="End Time"
             />
             <input
               type="text"
               className="form-control"
               placeholder="Event Title"
               value={newEvent.title}
-              onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, title: e.target.value })
+              }
             />
             <input
               type="text"
               className="form-control"
               placeholder="Description"
               value={newEvent.description}
-              onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, description: e.target.value })
+              }
             />
-            <button className="btn btn-primary" onClick={handleAddEvent}>Add Event</button>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Location"
+              value={newEvent.location}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, location: e.target.value })
+              }
+            />
+            <button className="btn btn-primary" onClick={handleAddEvent}>
+              Add Event
+            </button>
           </div>
+          {timeError && <p className="text-danger mt-2">{timeError}</p>}
         </div>
       )}
     </div>

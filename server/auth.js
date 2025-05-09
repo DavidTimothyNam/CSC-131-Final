@@ -81,12 +81,14 @@ function authenticateToken(req, res, next) {
     return res.sendStatus(401);
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      console.warn("Token verification failed:", err.message);
-      return res.sendStatus(403);
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).json({ message: "jwt expired" });
+      }
+      return res.status(401).json({ message: "invalid token" });
     }
-    req.user = user;
+    req.user = decoded;
     next();
   });
 }
