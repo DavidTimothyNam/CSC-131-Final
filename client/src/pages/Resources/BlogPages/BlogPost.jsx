@@ -12,7 +12,7 @@ const BlogPost = () => {
   const { posts } = useBlogPosts();
 
   useEffect(() => {
-    fetch(`http://localhost:9000/api/posts/${slug}`)
+    fetch(`${process.env.VITE_API_BASE}/api/posts/${slug}`)
       .then((res) => res.json())
       .then((data) => {
         setPost(data);
@@ -24,8 +24,18 @@ const BlogPost = () => {
       });
   }, [slug]);
 
-  if (loading) return <Layout><p className="text-center mt-5">Loading...</p></Layout>;
-  if (!post) return <Layout><h2 className="text-center mt-5">Post not found</h2></Layout>;
+  if (loading)
+    return (
+      <Layout>
+        <p className="text-center mt-5">Loading...</p>
+      </Layout>
+    );
+  if (!post)
+    return (
+      <Layout>
+        <h2 className="text-center mt-5">Post not found</h2>
+      </Layout>
+    );
 
   const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
     month: "long",
@@ -38,17 +48,33 @@ const BlogPost = () => {
       <Row style={{ margin: "100px", marginTop: "50px", marginBottom: "20px" }}>
         <Col lg={8}>
           <h1 className="mb-3">{post.title}</h1>
-          <p className="text-muted mb-3">By {post.author} on {formattedDate}</p>
-          <img src={`http://localhost:9000${post.image}`} alt={post.title} style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "0.5rem", marginBottom: "1.5rem" }} />
+          <p className="text-muted mb-3">
+            By {post.author} on {formattedDate}
+          </p>
+          <img
+            src={`${process.env.VITE_API_BASE}${post.image}`}
+            alt={post.title}
+            style={{
+              width: "100%",
+              height: "300px",
+              objectFit: "cover",
+              borderRadius: "0.5rem",
+              marginBottom: "1.5rem",
+            }}
+          />
           {Array.isArray(post.badges) && post.badges.length > 0 && (
             <div className="mb-4">
               {post.badges.map((badge, i) => (
-                <Badge key={i} bg="secondary" className="me-2">{badge}</Badge>
+                <Badge key={i} bg="secondary" className="me-2">
+                  {badge}
+                </Badge>
               ))}
             </div>
           )}
           <div className="lead">
-            {post.content?.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
+            {post.content?.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
           </div>
         </Col>
         <Col lg={4}>
@@ -73,7 +99,10 @@ function groupRecentPosts(posts, currentSlug) {
     if (post.link === currentSlug) return;
     const date = new Date(post.date);
     if (isNaN(date.getTime())) return;
-    const key = date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    const key = date.toLocaleDateString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
     if (!grouped[key]) grouped[key] = [];
     grouped[key].push(post);
   });
@@ -84,7 +113,9 @@ function groupRecentPosts(posts, currentSlug) {
       <ul className="ps-3 mb-0">
         {groupedPosts.map((post) => (
           <li key={post.id}>
-            <Link to={`/blog/${post.link}`} className="blogSidebar">{post.title}</Link>
+            <Link to={`/blog/${post.link}`} className="blogSidebar">
+              {post.title}
+            </Link>
           </li>
         ))}
       </ul>

@@ -13,8 +13,11 @@ const {
 require("dotenv").config();
 
 const app = express();
-const PORT = 9000;
-const pool = new Pool();
+const PORT = process.env.PORT || 9000;
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+});
 
 setupAuthMiddleware(app);
 app.use("/auth", authRouter);
@@ -285,6 +288,16 @@ app.post("/api/events", authenticateToken, async (req, res) => {
     await pool.query("ROLLBACK");
     console.error("Error saving calendar events:", err);
     res.status(500).json({ error: "Could not save events" });
+  }
+});
+
+app.get("/test-db", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({ connected: true, time: result.rows[0].now });
+  } catch (err) {
+    console.error("DB test error:", err.message);
+    res.status(500).json({ connected: false, error: err.message });
   }
 });
 

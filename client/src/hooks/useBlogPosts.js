@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:9000";
+const API_BASE =
+  import.meta.env.VITE_API_BASE || "${process.env.VITE_API_BASE}";
 
 export default function useBlogPosts() {
   const [posts, setPosts] = useState([]);
@@ -18,7 +19,7 @@ export default function useBlogPosts() {
         // Add full image URL to each post
         const updatedData = data.map((post) => ({
           ...post,
-          image: `${API_BASE}${post.image}`, // e.g., http://localhost:9000/images/01.jpg
+          image: `${API_BASE}${post.image}`, // e.g., ${process.env.VITE_API_BASE}/images/01.jpg
         }));
         setPosts(updatedData);
         setLoading(false);

@@ -12,7 +12,7 @@ const BlogEditor = () => {
   const [allBadges, setAllBadges] = useState([]);
 
   const fetchPosts = () => {
-    fetch("http://localhost:9000/api/posts")
+    fetch("${process.env.VITE_API_BASE}/api/posts")
       .then((res) => res.json())
       .then(setPosts)
       .catch((err) => console.error("Error loading posts:", err));
@@ -21,7 +21,7 @@ const BlogEditor = () => {
   useEffect(fetchPosts, []);
 
   useEffect(() => {
-    fetch("http://localhost:9000/api/post-metadata")
+    fetch("${process.env.VITE_API_BASE}/api/post-metadata")
       .then((res) => res.json())
       .then((data) => {
         setAllAuthors(data.authors || []);
@@ -33,7 +33,7 @@ const BlogEditor = () => {
   const handleEditClick = (post) => {
     setIsSlugManuallyEdited(false);
     setIsExcerptManuallyEdited(false);
-    fetch(`http://localhost:9000/api/posts/${post.link}`)
+    fetch(`${process.env.VITE_API_BASE}/api/posts/${post.link}`)
       .then((res) => res.json())
       .then((fullPost) => {
         setSelectedPost({
@@ -95,8 +95,8 @@ const BlogEditor = () => {
 
     const method = isNew ? "POST" : "PUT";
     const url = isNew
-      ? "http://localhost:9000/api/posts"
-      : `http://localhost:9000/api/posts/${selectedPost.id}`;
+      ? "${process.env.VITE_API_BASE}/api/posts"
+      : `${process.env.VITE_API_BASE}/api/posts/${selectedPost.id}`;
 
     fetch(url, {
       method,
@@ -132,7 +132,7 @@ const BlogEditor = () => {
     }
     if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-    fetch(`http://localhost:9000/api/posts/${selectedPost.id}`, {
+    fetch(`${process.env.VITE_API_BASE}/api/posts/${selectedPost.id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -266,7 +266,7 @@ const BlogEditor = () => {
                 formData.append("image", file);
                 try {
                   const res = await fetch(
-                    "http://localhost:9000/api/upload-image",
+                    "${process.env.VITE_API_BASE}/api/upload-image",
                     {
                       method: "POST",
                       headers: {
@@ -292,7 +292,7 @@ const BlogEditor = () => {
               <div className="mt-2">
                 <small>Current Image:</small>
                 <img
-                  src={`http://localhost:9000${selectedPost.image}`}
+                  src={`${process.env.VITE_API_BASE}${selectedPost.image}`}
                   alt="preview"
                   style={{ maxHeight: "150px", display: "block" }}
                 />

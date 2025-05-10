@@ -15,7 +15,7 @@ const AdminCalendar = () => {
   const [timeError, setTimeError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:9000/api/events")
+    fetch("${process.env.VITE_API_BASE}/api/events")
       .then((res) => res.json())
       .then(setEvents)
       .catch((err) => console.error("Failed to load events:", err));
@@ -37,7 +37,7 @@ const AdminCalendar = () => {
 
     setEvents((prev) => ({ ...prev, [dateKey]: eventsForDate }));
 
-    fetch("http://localhost:9000/api/events", {
+    fetch("${process.env.VITE_API_BASE}/api/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

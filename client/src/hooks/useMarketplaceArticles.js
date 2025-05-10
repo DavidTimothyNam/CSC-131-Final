@@ -5,7 +5,7 @@ const useMarketplaceArticles = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:9000/api/marketplace-articles")
+    fetch("${process.env.VITE_API_BASE}/api/marketplace-articles")
       .then((res) => res.json())
       .then((data) => {
         setArticles(data);
