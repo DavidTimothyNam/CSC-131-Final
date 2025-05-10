@@ -14,7 +14,11 @@ const BlogEditor = () => {
   const fetchPosts = () => {
     fetch(`${import.meta.env.VITE_API_BASE}/api/posts`)
       .then((res) => res.json())
-      .then(setPosts)
+      .then((data) => {
+        console.log("Fetched post data:", data);
+        setPosts(data.posts || []);
+      })
+
       .catch((err) => console.error("Error loading posts:", err));
   };
 
