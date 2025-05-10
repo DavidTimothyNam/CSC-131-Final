@@ -16,7 +16,7 @@ const BlogEditor = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched post data:", data);
-        setPosts(data.posts || []);
+        setPosts(data);
       })
 
       .catch((err) => console.error("Error loading posts:", err));
