@@ -18,7 +18,7 @@ const Login = () => {
   }, [location, navigate]);
 
   const handleLogin = () => {
-    window.location.href = `${process.env.VITE_API_BASE}/auth/google`;
+    window.location.href = `${import.meta.env.VITE_API_BASE}/auth/google`;
   };
 
   return (
