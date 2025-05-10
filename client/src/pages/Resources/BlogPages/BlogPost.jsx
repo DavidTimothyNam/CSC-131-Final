@@ -12,7 +12,7 @@ const BlogPost = () => {
   const { posts } = useBlogPosts();
 
   useEffect(() => {
-    fetch(`${process.env.VITE_API_BASE}/api/posts/${slug}`)
+    fetch(`${import.meta.env.VITE_API_BASE}/api/posts/${slug}`)
       .then((res) => res.json())
       .then((data) => {
         setPost(data);
@@ -52,7 +52,7 @@ const BlogPost = () => {
             By {post.author} on {formattedDate}
           </p>
           <img
-            src={`${process.env.VITE_API_BASE}${post.image}`}
+            src={`${import.meta.env.VITE_API_BASE}${post.image}`}
             alt={post.title}
             style={{
               width: "100%",
