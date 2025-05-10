@@ -43,7 +43,7 @@ const UserCalendar = () => {
   const [activeEvent, setActiveEvent] = useState(null);
 
   useEffect(() => {
-    fetch("${process.env.VITE_API_BASE}/api/events")
+    fetch(`${import.meta.env.VITE_API_BASE}/api/events`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched events:", data);
