@@ -59,8 +59,8 @@ const diskStorage = multer.diskStorage({
 const memoryStorage = multer.memoryStorage();
 
 const upload = useS3
-  ? multer({ storage: diskStorage })
-  : multer({ storage: memoryStorage });
+  ? multer({ storage: memoryStorage })
+  : multer({ storage: diskStorage });
 
 app.post(
   "/api/upload-image",
@@ -78,14 +78,18 @@ app.post(
         Key: Date.now() + "-" + req.file.originalname,
         Body: req.file.buffer,
         ContentType: req.file.mimetype,
-        ACL: "public-read",
+        // ACL: "public-read",
       };
 
       try {
+        console.log("req.file.buffer exists:", !!req.file?.buffer);
+        console.log("filename:", req.file.originalname);
+
         const result = await s3.upload(params).promise();
         return res.json({ url: result.Location }); // full public URL
       } catch (err) {
         console.error("Upload to S3 failed:", err);
+        console.error("Request file object:", req.file);
         return res.status(500).json({ error: "Upload failed" });
       }
     } else {

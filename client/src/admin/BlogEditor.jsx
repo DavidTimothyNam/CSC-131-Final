@@ -283,6 +283,7 @@ const BlogEditor = () => {
                   );
 
                   const data = await res.json();
+                  console.log("Upload response:", data);
                   if (data.url)
                     setSelectedPost({ ...selectedPost, image: data.url });
                   else alert("Upload failed.");
@@ -296,7 +297,8 @@ const BlogEditor = () => {
               <div className="mt-2">
                 <small>Current Image:</small>
                 <img
-                  src={`${import.meta.env.VITE_API_BASE}${selectedPost.image}`}
+                  // src={`${import.meta.env.VITE_API_BASE}${selectedPost.image}`}
+                  src={selectedPost.image}
                   alt="preview"
                   style={{ maxHeight: "150px", display: "block" }}
                 />
