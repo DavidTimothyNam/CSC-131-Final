@@ -63,6 +63,44 @@ const CalculatorField= ({data}) => {
     ],
     9: (inputs) => [
       formatPrices(calcFunctions.annualSavingsNeeded(inputs[0], inputs[1], inputs[2]))
+    ],
+    10: (inputs) => [
+      formatPrices(calcFunctions.savingsAccumulated(inputs[0], inputs[1], inputs[2]))
+    ],
+    11: (inputs) => [
+      formatPrices(calcFunctions.equivalentYield(inputs[0], inputs[1], inputs[2]))
+    ],
+    12: (inputs) => [
+      formatPrices(calcFunctions.totalSavings(inputs[0], inputs[1], inputs[2], inputs[3])),
+      formatPrices(calcFunctions.yearlySpending(inputs[0], inputs[1], inputs[2], inputs[3]))
+    ],
+    13: (inputs) => [
+      formatPrices(calcFunctions.calculateRMD(inputs[0], inputs[1]))
+    ],
+    14: (inputs) => [
+      formatPrices(calcFunctions.futureCost(inputs[0], inputs[1], inputs[2]))
+    ],
+    15: (inputs) => [
+      formatPrices(calcFunctions.taxesPenalties(inputs[0], inputs[1])),
+      formatPrices(calcFunctions.remainingWithdrawl(inputs[0], inputs[1]))
+    ],
+    16: (inputs) => [
+      formatPrices(calcFunctions.portfolioLifespan(inputs[0], inputs[1], inputs[2], inputs[3]))
+    ],
+    17: (inputs) => [
+      formatPrices(calcFunctions.federalTax(inputs[0], inputs[1], inputs[2], inputs[3]))
+    ],
+    18: (inputs) => [
+      formatPrices(calcFunctions.taxableGrowth(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4])),
+      formatPrices(calcFunctions.deferredGrowth(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]))
+    ],
+    19: (inputs) => [
+      formatPrices(calcFunctions.projectedIRABalance(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5])),
+      formatPrices(calcFunctions.iraAfterTaxValue(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5])),
+      formatPrices(calcFunctions.rothAfterTax(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5]))
+    ],
+    20: (inputs) => [
+      formatPrices(calcFunctions.estateTax(inputs[0], inputs[1]))
     ]
   };
   
@@ -83,7 +121,7 @@ const CalculatorField= ({data}) => {
             <input
               type="number"
               className="form-control mb-3"
-              value={inputs[index] || ''}
+              value={inputs[index] ?? ''}
               onChange={(e) => handleInputChange(e, index)}
             />
           </>

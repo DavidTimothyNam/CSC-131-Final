@@ -33,22 +33,27 @@ const CalculatorSelector = () => {
       keys: [8, 9, 10, 11],
     },
     {
-      id: "cashManage",
-      title: "Cash Management",
-      calcs: ["Cash Flow Management", "Net Worth", "Lifetime Earnings"],
-      keys: [12, 13, 14],
+      id: "retireInflation",
+      title: "Retirement & Inflation",
+      calcs: [
+        "Cost of Retirement",
+        "Required Minimum Distributions",
+        "Impact of Inflation",
+        "Retirement Plan Early Distribution",
+        "Retirement Portfolio Lifespan"
+      ],
+      keys: [12, 13, 14, 15, 16],
     },
     {
       id: "taxesIRA",
       title: "Taxes & IRAS",
       calcs: [
-        "Federal Incom Tax",
-        " Tax-Deferred Savings",
-        "IRA Eligibility",
+        "Federal Income Tax",
+        "Tax-Deferred Savings",
         "Roth IRA Conversion",
         "Estate Taxes",
       ],
-      keys: [15, 16, 17, 18, 19],
+      keys: [17, 18, 19, 20],
     },
   ];
 

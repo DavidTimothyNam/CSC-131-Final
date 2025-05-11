@@ -108,5 +108,130 @@
       "Number of Years You Have to Save Up"
     ],
     "outputTitles": ["Total Amount Needed to Save Each Year ($)"]
+   },
+  {
+    "id": 10,
+    "title": "Savings Accumulation",
+    "description": "Estimate how much money you are on track to save.",
+    "inputTitles": [
+      "Current Savings",
+      "Anticipated Upcoming Yearly Savings",
+      "Number of Years You Have to Save Up"
+    ],
+    "outputTitles": ["Total Savings Accumulated"]
+     },
+  {
+    "id": 11,
+    "title": "Taxable Equivalent Yield",
+    "description": "Calculate the rate of return you would have to receive from a taxable investment to realize an equivalent tax-exempt yield.",
+    "inputTitles": [
+      "Tax Bracket (%)",
+      "Municipal Bond Yield (%)"
+    ],
+    "outputTitles": ["Equivalent Risk"]
+     },
+  {
+    "id": 12,
+    "title": "Cost of Retirement",
+    "description": "How much you will be able to spend in your retirement.",
+    "inputTitles": [
+      "Current Age",
+      "Retirement Age",
+      "Current Retirement Savings",
+      "Current Annual Contribution"
+    ],
+    "outputTitles": ["Total Savings at Retirement", "Yearly Spending during Retirement"]
+     },
+  {
+    "id": 13,
+    "title": "Required Minimum Distributions",
+    "description": "How much money are you required withdraw over the age of 73",
+    "inputTitles": [
+      "Current Age",
+      "Retirement Account Balance"
+    ],
+    "outputTitles": ["Minimum Distribution"]
+  },
+  {
+    "id": 14,
+    "title": "Impact of Inflaction",
+    "description": "Estimate the future cost of an item based on todays prices and the expected rate of inflation.",
+    "inputTitles": [
+      "Item Cost",
+      "Time Passed in Years",
+      "Inflation (%)"
+    ],
+    "outputTitles": ["Future Cost"]
+  },
+    {
+    "id": 15,
+    "title": "Retirement Plan Early Distribution",
+    "description": "Estimate how much would remain after paying income taxes and penalties if you took an early distribution from a retirement plan.",
+    "inputTitles": [
+      "Expected Federal Income Tax",
+      "Withdraw Amount"
+    ],
+    "outputTitles": ["Taxes and Penalties", "Remaining Withdrawal"]
+  },
+    {
+    "id": 16,
+    "title": "Retirement Portfolio Lifespan",
+    "description": "Estimate how long your funds will last.",
+    "inputTitles": [
+      "Expected Retirement Porfolio Balance",
+      "Expected Annual Rate of Return (%)",
+      "Expected Rate of Inflation (%)",
+      "Monthly Costs"
+    ],
+    "outputTitles": ["Porfolio Lifespan in Years"]
+  },
+    {
+    "id": 17,
+    "title": "Federal Income Tax",
+    "description": "Deduction Amounts: Single 15,000; Head of Household 22,500; Married Filing Seperately 15,000; Married Filing Jointly 30,000",
+    "inputTitles": [
+      "Deduction Amount",
+      "Pre-tax Income",
+      "Pre-tax Contributions to Employee Plans",
+      "Deductions"
+    ],
+    "outputTitles": ["Income Tax"]
+  },
+    {
+    "id": 18,
+    "title": "Tax-Deferred Savings",
+    "description": "Compare tax-deferedd investments to taxable investments.",
+    "inputTitles": [
+      "Saved Amount",
+      "Future Annual Savings",
+      "Expected Amount of Years",
+      "Expected Pre-tax Annual Rate of Return (%)",
+      "Tax Bracket"
+    ],
+    "outputTitles": ["Taxable Account Growth", "Tax-deffered Acount Growth"]
+  },
+    {
+    "id": 19,
+    "title": "Roth IRA Conversion",
+    "description": "Estimate values after converting to Roth IRA",
+    "inputTitles": [
+      "Current Age",
+      "Current IRA Balance",
+      "Pre-tax Rate of Return on IRA",
+      "Working Tax Bracket",
+      "Expected Age of First Withdrawal",
+      "Expected Pre-Tax Rate of Return on Withdrawals"
+    ],
+    "outputTitles": ["Projected IRA Balance", "IRA After-tax Value", "Roth IRA After-tax Value"]
+  },
+    {
+    "id": 20,
+    "title": "Estate Taxes",
+    "description": "Estimate federal estate taxes that could be due on your estate after you die.",
+    "inputTitles": [
+      "Gross Value of Estate",
+      "Allowable Debts, Expenses, and Deductions"
+    ],
+    "outputTitles": ["Future Cost"]
   }
 ]
