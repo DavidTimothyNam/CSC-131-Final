@@ -10,6 +10,8 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const multer = require("multer");
 
+const AWS = require("aws-sdk");
+
 const {
   router: authRouter,
   setupAuthMiddleware,
@@ -23,6 +25,18 @@ const pool = new Pool({
     process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : false,
 });
 
+const useS3 = process.env.USE_S3 === "true";
+
+let s3 = null;
+if (process.env.USE_S3 === "true") {
+  s3 = new AWS.S3({
+    region: process.env.AWS_REGION,
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
+  });
+}
 const app = express();
 const PORT = process.env.PORT || 9000;
 
@@ -36,21 +50,50 @@ app.use(
 app.use(cors());
 app.use(bodyParser.json());
 
-const imageStorage = multer.diskStorage({
+const diskStorage = multer.diskStorage({
   destination: path.join(__dirname, "server-data/blog-images"),
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
-const upload = multer({ storage: imageStorage });
+const memoryStorage = multer.memoryStorage();
+
+const upload = useS3
+  ? multer({ storage: diskStorage })
+  : multer({ storage: memoryStorage });
 
 app.post(
   "/api/upload-image",
   authenticateToken,
   upload.single("image"),
-  (req, res) => {
-    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-    res.json({ path: `/images/${req.file.filename}` });
+  async (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    if (useS3 && s3) {
+      // Upload to S3
+      const params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: Date.now() + "-" + req.file.originalname,
+        Body: req.file.buffer,
+        ContentType: req.file.mimetype,
+        ACL: "public-read",
+      };
+
+      try {
+        const result = await s3.upload(params).promise();
+        return res.json({ url: result.Location }); // full public URL
+      } catch (err) {
+        console.error("Upload to S3 failed:", err);
+        return res.status(500).json({ error: "Upload failed" });
+      }
+    } else {
+      // Local upload — return relative path
+      return res.json({
+        url: `/images/${req.file.filename}`,
+      });
+    }
   }
 );
 

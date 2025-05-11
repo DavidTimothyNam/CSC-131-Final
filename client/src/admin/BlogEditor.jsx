@@ -283,7 +283,7 @@ const BlogEditor = () => {
                   );
 
                   const data = await res.json();
-                  if (data.path)
+                  if (data.url)
                     setSelectedPost({ ...selectedPost, image: data.path });
                   else alert("Upload failed.");
                 } catch (err) {
