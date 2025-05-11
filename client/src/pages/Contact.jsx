@@ -100,7 +100,7 @@ const ContactForm = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:9000/contact", {
+      const res = await fetch("${process.env.VITE_API_BASE}/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -120,7 +120,7 @@ const ContactForm = () => {
           className="container mt-5"
           style={{ width: "60%", marginBottom: "50px" }}
         >
-          <h1 style={{marginTop: '75px'}}>Contact Us</h1>
+          <h1 style={{ marginTop: "75px" }}>Contact Us</h1>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-floating mb-3">
               <input

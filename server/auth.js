@@ -58,7 +58,7 @@ router.get(
     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-    const frontend = process.env.FRONTEND_URL || "http://localhost:5173";
+    const frontend = process.env.FRONTEND_URL || `${process.env.FRONTEND_URL}`;
     res.redirect(`${frontend}/login?token=${token}`);
   }
 );
