@@ -31,7 +31,7 @@ const Admin = () => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     setIsAuthed(false);
-    navigate("/login");
+    navigate("/");
   };
 
   const renderContent = () => {
