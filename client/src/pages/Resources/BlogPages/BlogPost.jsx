@@ -52,7 +52,7 @@ const BlogPost = () => {
             By {post.author} on {formattedDate}
           </p>
           <img
-            src={`${import.meta.env.VITE_API_BASE}${post.image}`}
+            src={post.image}
             alt={post.title}
             style={{
               width: "100%",
@@ -62,6 +62,7 @@ const BlogPost = () => {
               marginBottom: "1.5rem",
             }}
           />
+
           {Array.isArray(post.badges) && post.badges.length > 0 && (
             <div className="mb-4">
               {post.badges.map((badge, i) => (
