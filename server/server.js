@@ -1,23 +1,30 @@
 // server.js — now includes /api/marketplace-articles route
+
+const dotenv = require("dotenv");
+const env = process.env.NODE_ENV || "development";
+dotenv.config({ path: `.env.${env}` });
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const multer = require("multer");
-const { Pool } = require("pg");
+
 const {
   router: authRouter,
   setupAuthMiddleware,
   authenticateToken,
 } = require("./auth");
-require("dotenv").config();
+
+const { Pool } = require("pg");
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl:
+    process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : false,
+});
 
 const app = express();
 const PORT = process.env.PORT || 9000;
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
-});
 
 setupAuthMiddleware(app);
 app.use("/auth", authRouter);
