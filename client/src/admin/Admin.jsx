@@ -64,6 +64,7 @@ const Admin = () => {
           >
             Calendar
           </button>
+          <button onClick={() => window.open("/", "_blank")}>View Site</button>
         </nav>
         <button className="btn btn-outline-light mt-3" onClick={handleLogout}>
           Logout
