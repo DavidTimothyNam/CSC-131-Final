@@ -77,29 +77,47 @@ const About = () => {
                 <Col md={8}>
                   <h2>Ron Smithey's Biography</h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Fusce lorem nibh, sagittis eu leo et, gravida rhoncus quam.
-                    Mauris imperdiet odio pharetra, mollis enim at, imperdiet
-                    erat. Duis tristique luctus pretium. Phasellus justo justo,
-                    suscipit id quam vel, placerat pretium mauris. Duis in
-                    posuere eros. Vivamus a tellus tempus, hendrerit est
-                    consequat, sodales ligula. Nulla euismod libero turpis, eu
-                    mattis ex ornare sed
+                    Ronnie’s journey as a Financial Advisor began over 23 years
+                    ago. He entered the financial field because he wanted to
+                    help individuals and business owners build, protect, and
+                    distribute their financial wealth. After all these years in
+                    the industry he continues to be passionate about helping his
+                    clients navigate their financial journeys from college
+                    saving plans, long term care and retirement.
                   </p>
                   <p>
-                    Etiam in tellus fermentum, euismod diam sit amet, hendrerit
-                    justo. Ut id hendrerit odio, nec hendrerit purus. Donec odio
-                    risus, facilisis vitae fermentum ut, condimentum eget justo.
-                    Nulla porta hendrerit est a sodales. Nam consectetur, sapien
-                    ac tristique finibus, turpis nunc lacinia lacus, eget
-                    vehicula tortor libero ac mauris. Pellentesque pellentesque
-                    egestas nibh non pellentesque. Quisque dolor est, semper
-                    vitae interdum tincidunt, aliquam eu arcu. Pellentesque non
-                    libero a est vehicula congue. Phasellus orci metus,
-                    malesuada non dui ac, commodo pharetra tortor. Suspendisse
-                    quis condimentum velit. Nulla facilisi. Aenean commodo sit
-                    amet massa eget interdum. Aliquam erat volutpat.
+                    Ronnie is well versed in all of the latest trends which
+                    enables him to successfully guide his clients through the
+                    highs and lows of economic cycles. He considers himself a
+                    partner in his clients financial journey, and continuously
+                    works towards building the strong foundations of a secure
+                    financial future. When he is not advising clients he enjoys
+                    spending time with his wife and four children. He is an
+                    active member in the local church and he volunteers his free
+                    time to his local Little League, having been a baseball
+                    coach for over 6 years and serving on the board for three
+                    years as the vice president and coaching coordinator.
                   </p>
+                  <h4>Career History</h4>
+                  <ul>
+                    <li>In the financial advising field since 2003</li>
+                    <li>
+                      Registered Representative with LPL Financial, an
+                      independent Broker/Dealer and Registered Investment
+                      Advisor (August 2005 – Present)
+                    </li>
+                    <li>
+                      Former Financial Advisor at Trilogy Financial Services
+                      Inc., a Registered Investment Advisory firm (August 2002 –
+                      July 2005)
+                    </li>
+                  </ul>
+
+                  <h4>Education</h4>
+                  <ul>
+                    <li>BA in Economics, University of Redlands</li>
+                    <li>Minor in Business, University of Redlands</li>
+                  </ul>
                 </Col>
               </Row>
             </section>
@@ -108,7 +126,7 @@ const About = () => {
               <Row className="align-items-center">
                 <Col md={4} className="text-center mb-3 mb-md-0">
                   <Image
-                    src="/images/Placeholder_Location.jpg"
+                    src="/images/office_location.jpg"
                     alt="Office Location"
                     fluid
                     rounded

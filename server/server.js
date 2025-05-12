@@ -1,7 +1,7 @@
 // server.js — now includes /api/marketplace-articles route
 
 const dotenv = require("dotenv");
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || "production";
 dotenv.config({ path: `.env.${env}` });
 
 const express = require("express");
@@ -358,7 +358,11 @@ app.get("/test-db", async (req, res) => {
 // GET returns BLOGS for Search page
 const fs = require("fs");
 const blogDataPath = path.join(__dirname, "server-data", "blogData.json");
-const marketDataPath = path.join(__dirname, "server-data", "marketplaceArticles.json");
+const marketDataPath = path.join(
+  __dirname,
+  "server-data",
+  "marketplaceArticles.json"
+);
 
 // Search endpoint
 app.get("/api/search", (req, res) => {
@@ -376,7 +380,7 @@ app.get("/api/search", (req, res) => {
       title: article.title,
       description: article.description,
       badges: ["Marketplace"], // single badge
-      type: "marketplace",      // helpful for display
+      type: "marketplace", // helpful for display
     }));
 
     // Normalize blog posts
@@ -395,10 +399,11 @@ app.get("/api/search", (req, res) => {
     //console.log("All articles:", allArticles); // Debugging line
 
     const filtered = query
-      ? allArticles.filter((article) =>
-        article.title.toLowerCase().includes(query) ||
-        article.badges.some((badge) => badge.toLowerCase().includes(query))
-      )
+      ? allArticles.filter(
+          (article) =>
+            article.title.toLowerCase().includes(query) ||
+            article.badges.some((badge) => badge.toLowerCase().includes(query))
+        )
       : [];
 
     //console.log("Filtered results:", filtered); // Debugging line
@@ -409,7 +414,6 @@ app.get("/api/search", (req, res) => {
     res.status(500).json({ error: "Search failed." });
   }
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
