@@ -12,28 +12,28 @@ const ServiceSection = () => {
             <ServiceCard
               image="/images/senior_advisor.jpg"
               title="Retirement Planning"
-              description="Nullam ultrices risus id accumsan cursus. Maecenas scelerisque mi lacus, nec pellentesque nibh rutrum sit amet."
+              description="We help you build a personalized roadmap to retirement, focusing on long-term financial security and peace of mind."
             />
           </Col>
           <Col lg={3} md={6}>
             <ServiceCard
               image="/images/student_advisor.jpg"
               title="College Plans"
-              description="Duis vitae quam vitae orci condimentum rhoncus. Sed at justo risus. Etiam porttitor orci sit amet metus tincidunt egestas et non velit."
+              description="From 529 plans to custom savings strategies, we make it easier to prepare for your child’s education costs."
             />
           </Col>
           <Col lg={3} md={6}>
             <ServiceCard
               image="/images/couple_advisor.jpg"
               title="Insurance Reviews"
-              description="Aenean velit turpis, viverra et lacinia quis, cursus non leo. Donec pulvinar nisi vitae arcu viverra maximus."
+              description="Our team evaluates your current policies to ensure they align with your goals and protect what matters most."
             />
           </Col>
           <Col lg={3} md={6}>
             <ServiceCard
               image="/images/family_advisor.jpg"
               title="Tax Strategies"
-              description="Vivamus et rhoncus massa, efficitur dapibus quam. Proin sed tellus dolor. Fusce dui lacus, vestibulum vitae condimentum tincidunt, tincidunt ut magna."
+              description="We identify smart, legally sound strategies to reduce your tax burden and keep more of your income working for you."
             />
           </Col>
         </Row>
