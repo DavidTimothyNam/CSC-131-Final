@@ -14,8 +14,14 @@ function PageNavbar() {
   return (
     <Navbar className="navbar-custom" expand="lg" fixed="top">
       <Container>
-        <Navbar.Brand as={Link} to="/">
-          Ron Smithey Financial Services
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+          <img
+            src="/rs_financial_logo1.png"
+            alt="Logo"
+            height="30"
+            className="me-2"
+          />
+          Ron Smithey Financial
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -56,7 +62,7 @@ function PageNavbar() {
             </Nav.Link>
           </Nav>
           {/*Search Bar */}
-          <SearchBar/>
+          <SearchBar />
         </Navbar.Collapse>
       </Container>
     </Navbar>
