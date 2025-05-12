@@ -1,12 +1,23 @@
 const fs = require("fs");
 const path = require("path");
 const { Pool } = require("pg");
-require("dotenv").config();
+const dotenv = require("dotenv");
+const env = process.env.NODE_ENV || "production";
+console.log(`Loading environment variables from .env.${env}`);
+dotenv.config({ path: `.env.${env}` });
 
-const pool = new Pool();
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 async function loadMarketplaceArticles() {
-  const filePath = path.join(__dirname, "../server-data/marketplaceArticles.json");
+  const filePath = path.join(
+    __dirname,
+    "../server-data/marketplaceArticles.json"
+  );
   const raw = fs.readFileSync(filePath, "utf-8");
   const articles = JSON.parse(raw);
 
@@ -20,7 +31,13 @@ async function loadMarketplaceArticles() {
       await client.query(
         `INSERT INTO marketplace_articles (slug, title, description, content, category)
          VALUES ($1, $2, $3, $4, $5)`,
-        [article.slug, article.title, article.description, article.content, article.category]
+        [
+          article.slug,
+          article.title,
+          article.description,
+          article.content,
+          article.category,
+        ]
       );
     }
 
