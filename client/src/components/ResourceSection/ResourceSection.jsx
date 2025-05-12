@@ -12,7 +12,7 @@ const ResourceSection = () => {
             <ResourceCard
               image="/images/svgs/akar-icons--book.svg"
               title="Flipbooks"
-              description="Etiam faucibus, diam eget dictum facilisis, dolor ante posuere massa, a convallis justo tortor tincidunt nulla."
+              description="Browse our interactive flipbooks for quick, easy-to-read financial insights."
               link="/marketplace#flipbooks"
               buttonText="See Flipbooks"
             />
@@ -21,7 +21,7 @@ const ResourceSection = () => {
             <ResourceCard
               image="/images/svgs/icon-park-outline--calculator-one.svg"
               title="Calculators"
-              description="Mauris finibus purus sit amet velit euismod, ac eleifend tellus pretium."
+              description="Use our calculators to explore savings, retirement, and investment scenarios."
               link="/calculators"
               buttonText="Use Calculators"
             />
@@ -30,7 +30,7 @@ const ResourceSection = () => {
             <ResourceCard
               image="/images/svgs/akar-icons--video.svg"
               title="Videos"
-              description="Proin dignissim at lorem in convallis. Sed vitae risus eget sapien finibus ultricies."
+              description="Watch short videos that explain key financial concepts and planning strategies."
               link="/marketplace#videos"
               buttonText="Watch Videos"
             />
@@ -39,7 +39,7 @@ const ResourceSection = () => {
             <ResourceCard
               image="/images/svgs/iconoir--graph-up.svg"
               title="Newsletter"
-              description="In leo quam, vestibulum a dignissim non, ullamcorper interdum tortor."
+              description="Stay informed with our monthly newsletter featuring tips, updates, and market news."
               link="/marketplace#newsletter"
               buttonText="Read Newsletter"
             />
