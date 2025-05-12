@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Accordion, ButtonGroup, ToggleButton } from "react-bootstrap";
 import CalculatorField from "../../components/CalculatorComponents/calculatorField.jsx";
 import calculatorData from "../../data/calculatorData.json";
+import { useLocation } from "react-router-dom";
 
 const CalculatorSelector = () => {
-  const [selected, setSelected] = useState(1);
-
   const calculators = [
     {
       id: "loanCredit",
@@ -57,17 +56,30 @@ const CalculatorSelector = () => {
     },
   ];
 
+  const location = useLocation();
+  const initialSelection = location.state?.initialSelection ?? 1;
+  const [selected, setSelected] = useState(initialSelection);
+  const [activeKey, setActiveKey] = useState(
+    calculators.findIndex((calc) => calc.keys.includes(selected)).toString()
+  );
+
+  const handleAccordionChange = (key) => {
+    setActiveKey(key); // Update the active Accordion section when it's changed by the user
+  };
+
   return (
     <div className="container">
       <div className="row text-start mb-4">
         <div className="col-3">
-          <h1 className="bold text-center" style={{marginTop: '35px'}}>Calculators</h1>
+          <h1 className="bold text-center" style={{ marginTop: '35px' }}>Calculators</h1>
         </div>
         <div className="col-9"></div>
       </div>
       <div className="row">
         <div className="calculator-selection col-3 mb-5">
-          <Accordion defaultActiveKey="0">
+          <Accordion
+            activeKey={activeKey}
+            onSelect={handleAccordionChange}>
             {calculators.map((calc, listNum) => (
               <Accordion.Item eventKey={listNum.toString()} key={calc.id}>
                 <Accordion.Header>{calc.title}</Accordion.Header>

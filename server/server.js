@@ -355,6 +355,62 @@ app.get("/test-db", async (req, res) => {
   }
 });
 
+// GET returns BLOGS for Search page
+const fs = require("fs");
+const blogDataPath = path.join(__dirname, "server-data", "blogData.json");
+const marketDataPath = path.join(__dirname, "server-data", "marketplaceArticles.json");
+
+// Search endpoint
+app.get("/api/search", (req, res) => {
+  //console.log("Search route hit");
+  try {
+    //console.log('Blog data path:', blogDataPath);
+    //console.log('Market data path:', marketDataPath);
+    const blogData = JSON.parse(fs.readFileSync(blogDataPath, "utf-8"));
+    const marketData = JSON.parse(fs.readFileSync(marketDataPath, "utf-8"));
+    const query = req.query.search?.toLowerCase();
+
+    // Normalize marketplace articles
+    const marketArticles = marketData.map((article) => ({
+      id: `market-${article.id}`,
+      title: article.title,
+      description: article.description,
+      badges: ["Marketplace"], // single badge
+      type: "marketplace",      // helpful for display
+    }));
+
+    // Normalize blog posts
+    const blogArticles = blogData.map((article) => ({
+      id: `blog-${article.id}`,
+      title: article.title,
+      date: article.date,
+      excerpt: article.excerpt,
+      badges: article.badges,
+      link: article.link,
+      type: "blog",
+    }));
+
+    const allArticles = [...marketArticles, ...blogArticles];
+
+    //console.log("All articles:", allArticles); // Debugging line
+
+    const filtered = query
+      ? allArticles.filter((article) =>
+        article.title.toLowerCase().includes(query) ||
+        article.badges.some((badge) => badge.toLowerCase().includes(query))
+      )
+      : [];
+
+    //console.log("Filtered results:", filtered); // Debugging line
+
+    res.json(filtered);
+  } catch (err) {
+    //console.error("Search error:", err);
+    res.status(500).json({ error: "Search failed." });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

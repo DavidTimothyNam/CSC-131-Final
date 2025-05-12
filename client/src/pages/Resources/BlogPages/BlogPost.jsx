@@ -66,9 +66,11 @@ const BlogPost = () => {
           {Array.isArray(post.badges) && post.badges.length > 0 && (
             <div className="mb-4">
               {post.badges.map((badge, i) => (
-                <Badge key={i} bg="secondary" className="me-2">
-                  {badge}
-                </Badge>
+                <Link to={`/search?query=${encodeURIComponent(badge)}`} style={{ textDecoration: "none" }}>
+                  <Badge key={i} bg="secondary" className="me-2" style={{ cursor: "pointer" }}>
+                    {badge}
+                  </Badge>
+                </Link>
               ))}
             </div>
           )}

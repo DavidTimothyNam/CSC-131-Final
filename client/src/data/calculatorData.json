@@ -4,7 +4,8 @@
     "title": "Loan Payoff",
     "description": "Calculate the true cost of your loan.",
     "inputTitles": ["Borrow Amount", "Interest Rate (%)", "Length (Months)"],
-    "outputTitles": ["Monthly Payment", "Total Interest Payments"]
+    "outputTitles": ["Monthly Payment", "Total Interest Payments"],
+    "badges": ["Loans"]
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
       "Length of Loan (Months)",
       "Down Payment"
     ],
-    "outputTitles": ["Monthly Payment", "Maximum House Price"]
+    "outputTitles": ["Monthly Payment", "Maximum House Price"],
+    "badges": ["Home"]
   },
   {
     "id": 3,
@@ -29,7 +31,8 @@
       "New Loan Term (Months)",
       "Closing Costs"
     ],
-    "outputTitles": ["Monthly Payment", "Total Cost"]
+    "outputTitles": ["Monthly Payment", "Total Cost"],
+    "badges": ["Finance", "Home"]
   },
   {
     "id": 4,
@@ -42,7 +45,8 @@
       "Payments Made (Months)",
       "Addition to Monthly Payment"
     ],
-    "outputTitles": ["Interest Saved", "Time Saved (Months)"]
+    "outputTitles": ["Interest Saved", "Time Saved (Months)"],
+    "badges": ["Finance", "Home"]
   },
   {
     "id": 5,
@@ -53,7 +57,8 @@
       "Interest Rate on Your Card (%)",
       "Amount You'll Pay Each Month ($)"
     ],
-    "outputTitles": ["Total Months", "Total Interest Paid"]
+    "outputTitles": ["Total Months", "Total Interest Paid"],
+    "badges": ["Finance", "Budgeting"]
   },
   {
     "id": 6,
@@ -66,7 +71,8 @@
       "Lease Period (Months)",
       "Interest Rate (%)"
     ],
-    "outputTitles": ["Monthly Payment", "Total Lease Interest Payments"]
+    "outputTitles": ["Monthly Payment", "Total Lease Interest Payments"],
+    "badges": ["Finance", "Home"]
   },
   {
     "id": 7,
@@ -81,7 +87,8 @@
     "outputTitles": [
       "Total Amount You Can Afford",
       "Total Interest You Would Pay"
-    ]
+    ],
+    "badges": ["Finance"]
   },
   {
     "id": 8,
@@ -96,7 +103,8 @@
     "outputTitles": [
       "Total Cost Of Child's Education",
       "Amount Needed to Save Each Year to Cover the Costs"
-    ]
+    ],
+    "badges": ["Savings", "Home"]
   },
   {
     "id": 9,
@@ -107,7 +115,8 @@
       "Amount You'd Like to Have ($)",
       "Number of Years You Have to Save Up"
     ],
-    "outputTitles": ["Total Amount Needed to Save Each Year ($)"]
+    "outputTitles": ["Total Amount Needed to Save Each Year ($)"],
+    "badges": ["Savings", "Budgeting", "Finance"]
    },
   {
     "id": 10,
@@ -118,7 +127,8 @@
       "Anticipated Upcoming Yearly Savings",
       "Number of Years You Have to Save Up"
     ],
-    "outputTitles": ["Total Savings Accumulated"]
+    "outputTitles": ["Total Savings Accumulated"],
+    "badges": ["Savings", "Finance"]
      },
   {
     "id": 11,
@@ -128,7 +138,8 @@
       "Tax Bracket (%)",
       "Municipal Bond Yield (%)"
     ],
-    "outputTitles": ["Equivalent Risk"]
+    "outputTitles": ["Equivalent Risk"],
+    "badges": ["Finance", "Tax"]
      },
   {
     "id": 12,
@@ -140,7 +151,8 @@
       "Current Retirement Savings",
       "Current Annual Contribution"
     ],
-    "outputTitles": ["Total Savings at Retirement", "Yearly Spending during Retirement"]
+    "outputTitles": ["Total Savings at Retirement", "Yearly Spending during Retirement"],
+    "badges": ["Finance", "Budgeting", "Retirement", "Inflation"]
      },
   {
     "id": 13,
@@ -150,7 +162,8 @@
       "Current Age",
       "Retirement Account Balance"
     ],
-    "outputTitles": ["Minimum Distribution"]
+    "outputTitles": ["Minimum Distribution"],
+    "badges": ["Finance", "Retirement", "Inflation"]
   },
   {
     "id": 14,
@@ -161,7 +174,8 @@
       "Time Passed in Years",
       "Inflation (%)"
     ],
-    "outputTitles": ["Future Cost"]
+    "outputTitles": ["Future Cost"],
+    "badges": ["Budgeting", "Inflation"]
   },
     {
     "id": 15,
@@ -171,7 +185,8 @@
       "Expected Federal Income Tax",
       "Withdraw Amount"
     ],
-    "outputTitles": ["Taxes and Penalties", "Remaining Withdrawal"]
+    "outputTitles": ["Taxes and Penalties", "Remaining Withdrawal"],
+    "badges": ["Finance", "Budgeting", "Retirement", "Inflation"]
   },
     {
     "id": 16,
@@ -183,7 +198,8 @@
       "Expected Rate of Inflation (%)",
       "Monthly Costs"
     ],
-    "outputTitles": ["Porfolio Lifespan in Years"]
+    "outputTitles": ["Porfolio Lifespan in Years"],
+    "badges": ["Finance", "Budgeting", "Retirement"]
   },
     {
     "id": 17,
@@ -195,7 +211,8 @@
       "Pre-tax Contributions to Employee Plans",
       "Deductions"
     ],
-    "outputTitles": ["Income Tax"]
+    "outputTitles": ["Income Tax"],
+    "badges": ["Finance", "Tax"]
   },
     {
     "id": 18,
@@ -208,7 +225,8 @@
       "Expected Pre-tax Annual Rate of Return (%)",
       "Tax Bracket"
     ],
-    "outputTitles": ["Taxable Account Growth", "Tax-deffered Acount Growth"]
+    "outputTitles": ["Taxable Account Growth", "Tax-deffered Acount Growth"],
+    "badges": ["Finance", "Tax", "Savings"]
   },
     {
     "id": 19,
@@ -222,7 +240,8 @@
       "Expected Age of First Withdrawal",
       "Expected Pre-Tax Rate of Return on Withdrawals"
     ],
-    "outputTitles": ["Projected IRA Balance", "IRA After-tax Value", "Roth IRA After-tax Value"]
+    "outputTitles": ["Projected IRA Balance", "IRA After-tax Value", "Roth IRA After-tax Value"],
+    "badges": ["Finance", "IRA"]
   },
     {
     "id": 20,
@@ -232,6 +251,7 @@
       "Gross Value of Estate",
       "Allowable Debts, Expenses, and Deductions"
     ],
-    "outputTitles": ["Future Cost"]
+    "outputTitles": ["Future Cost"],
+    "badges": ["Finance", "Tax", "Home"]
   }
 ]
