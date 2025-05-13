@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import PageNavbar from "../components/Navbar";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 
-const ContactForm = () => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,6 +16,8 @@ const ContactForm = () => {
     topic: "",
     comment: "",
   });
+
+  const [submitStatus, setSubmitStatus] = useState(""); // "", "success", "error"
 
   const getCharStyle = (count) => {
     if (count < 100) return { color: "black", fontWeight: 400 };
@@ -51,14 +52,9 @@ const ContactForm = () => {
       .replace("floatingSelect", "")
       .toLowerCase();
 
-    if (key === "comment") {
-      setCharCount(value.length);
-    }
+    if (key === "comment") setCharCount(value.length);
 
-    setFormData((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [key]: value }));
 
     const valid = handleValidation(key, value);
     setInputValidation((prev) => ({
@@ -85,8 +81,6 @@ const ContactForm = () => {
     if (!isValid) {
       alert("Please fill out all fields correctly.");
     } else {
-      // alert("Form submitted successfully!");
-      // submit logic here
       sendToBackend();
     }
   };
@@ -107,106 +101,116 @@ const ContactForm = () => {
       });
 
       const result = await res.json();
-      console.log(result.message);
+
+      if (res.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", topic: "", comment: "" });
+        setInputValidation({ name: "", email: "", topic: "", comment: "" });
+        setCharCount(0);
+      } else {
+        setSubmitStatus("error");
+        console.error(result.message);
+      }
     } catch (error) {
+      setSubmitStatus("error");
       console.error(error);
     }
   };
 
   return (
-    <>
-      <Layout>
-        <div
-          className="container mt-5"
-          style={{ width: "60%", marginBottom: "50px" }}
-        >
-          <h1 style={{ marginTop: "75px" }}>Contact Us</h1>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <div className="form-floating mb-3">
-              <input
-                type="text"
-                id="floatingInputName"
-                className={`form-control ${inputValidation.name}`}
-                placeholder="Name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <label htmlFor="floatingInputName">First and Last Name</label>
-            </div>
+    <Layout>
+      <div className="container mt-5" style={{ width: "60%", marginBottom: "50px" }}>
+        <h1 style={{ marginTop: "75px" }}>Contact Us</h1>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              id="floatingInputName"
+              className={`form-control ${inputValidation.name}`}
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <label htmlFor="floatingInputName">First and Last Name</label>
+          </div>
 
-            <div className="form-floating mb-3">
-              <input
-                type="email"
-                id="floatingInputEmail"
-                className={`form-control ${inputValidation.email}`}
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <label htmlFor="floatingInputEmail">Email Address</label>
-            </div>
+          <div className="form-floating mb-3">
+            <input
+              type="email"
+              id="floatingInputEmail"
+              className={`form-control ${inputValidation.email}`}
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <label htmlFor="floatingInputEmail">Email Address</label>
+          </div>
 
-            <div className="form-floating mb-3">
-              <select
-                id="floatingSelectTopic"
-                className={`form-select ${inputValidation.topic}`}
-                value={formData.topic}
-                onChange={handleChange}
-              >
-                <option value="Select An Option">Select An Option</option>
-                <option value="401k">401k</option>
-                <option value="College Plan">College Plan</option>
-                <option value="Comprehensive Planning">
-                  Comprehensive Planning
-                </option>
-                <option value="Disability Insurance">
-                  Disability Insurance
-                </option>
-                <option value="Health Insurance">Health Insurance</option>
-                <option value="Life Insurance Review">
-                  Life Insurance Review
-                </option>
-                <option value="Long Term Care">Long Term Care</option>
-                <option value="Retirement Planning">Retirement Planning</option>
-                <option value="Roth IRA">Roth IRA</option>
-                <option value="Other">Other</option>
-              </select>
-              <label htmlFor="floatingSelectTopic">Topic</label>
-            </div>
+          <div className="form-floating mb-3">
+            <select
+              id="floatingSelectTopic"
+              className={`form-select ${inputValidation.topic}`}
+              value={formData.topic}
+              onChange={handleChange}
+            >
+              <option value="Select An Option">Select An Option</option>
+              <option value="401k">401k</option>
+              <option value="College Plan">College Plan</option>
+              <option value="Comprehensive Planning">Comprehensive Planning</option>
+              <option value="Disability Insurance">Disability Insurance</option>
+              <option value="Health Insurance">Health Insurance</option>
+              <option value="Life Insurance Review">Life Insurance Review</option>
+              <option value="Long Term Care">Long Term Care</option>
+              <option value="Retirement Planning">Retirement Planning</option>
+              <option value="Roth IRA">Roth IRA</option>
+              <option value="Other">Other</option>
+            </select>
+            <label htmlFor="floatingSelectTopic">Topic</label>
+          </div>
 
-            <div className="form-floating mb-3">
-              <textarea
-                id="floatingInputComment"
-                className={`form-control ${inputValidation.comment}`}
-                placeholder="Leave a comment"
-                maxLength="500"
-                value={formData.comment}
-                onChange={handleChange}
-                style={{ height: "100px" }}
-              />
-              <label htmlFor="floatingInputComment">Comments</label>
-            </div>
+          <div className="form-floating mb-3">
+            <textarea
+              id="floatingInputComment"
+              className={`form-control ${inputValidation.comment}`}
+              placeholder="Leave a comment"
+              maxLength="500"
+              value={formData.comment}
+              onChange={handleChange}
+              style={{ height: "100px" }}
+            />
+            <label htmlFor="floatingInputComment">Comments</label>
+          </div>
 
-            <div id="the-count" className="mb-3">
-              <span id="current" style={getCharStyle(charCount)}>
-                {charCount}
-              </span>
-              <span id="maximum"> / 500</span>
-            </div>
+          <div id="the-count" className="mb-3">
+            <span id="current" style={getCharStyle(charCount)}>
+              {charCount}
+            </span>
+            <span id="maximum"> / 500</span>
+          </div>
 
-            <div className="submitButton mb-5">
-              <input
-                type="button"
-                value="Send Now"
-                className="btn btn-success"
-                onClick={handleSubmit}
-              />
+          <div className="submitButton mb-3">
+            <input
+              type="button"
+              value="Send Now"
+              className="btn btn-success"
+              onClick={handleSubmit}
+            />
+          </div>
+
+          {submitStatus === "success" && (
+            <div className="alert alert-success" role="alert">
+              Message sent successfully!
             </div>
-          </form>
-        </div>
-      </Layout>
-    </>
+          )}
+          {submitStatus === "error" && (
+            <div className="alert alert-danger" role="alert">
+              Something went wrong. Please try again later.
+            </div>
+          )}
+        </form>
+      </div>
+    </Layout>
   );
 };
 
-export default ContactForm;
+export default Contact;
