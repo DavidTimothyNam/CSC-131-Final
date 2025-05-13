@@ -111,6 +111,11 @@ nav {
     object-fit: cover;
 }
 
+.logo404{
+    max-width: 256px !important;
+    height: auto !important;
+}
+
 /* circular images end */
 
 /* button styling start */
