@@ -32,14 +32,10 @@ setupAuthMiddleware(app);
 app.use("/auth", authRouter);
 app.use(cors());
 app.use(bodyParser.json());
-app.use(
-  "/images",
-  express.static(path.join(__dirname, "server-data/blog-images"))
-);
+app.use("/images", express.static(path.join(__dirname, "server-data/blog-images")));
 
 const useS3 = process.env.USE_S3 === "true";
 let s3 = null;
-
 if (useS3) {
   s3 = new S3Client({
     region: process.env.AWS_REGION,
@@ -57,63 +53,47 @@ const diskStorage = multer.diskStorage({
   },
 });
 const memoryStorage = multer.memoryStorage();
+const upload = useS3 ? multer({ storage: memoryStorage }) : multer({ storage: diskStorage });
 
-const upload = useS3
-  ? multer({ storage: memoryStorage })
-  : multer({ storage: diskStorage });
+app.post("/api/upload-image", authenticateToken, upload.single("image"), async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
 
-app.post(
-  "/api/upload-image",
-  authenticateToken,
-  upload.single("image"),
-  async (req, res) => {
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
+  if (useS3 && s3) {
+    const fileName = Date.now() + "-" + req.file.originalname;
+    const command = new PutObjectCommand({
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Key: fileName,
+      Body: req.file.buffer,
+      ContentType: req.file.mimetype,
+    });
 
-    if (useS3 && s3) {
-      const fileName = Date.now() + "-" + req.file.originalname;
-
-      const command = new PutObjectCommand({
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: fileName,
-        Body: req.file.buffer,
-        ContentType: req.file.mimetype,
+    try {
+      await s3.send(command);
+      return res.json({
+        url: `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`,
       });
-
-      try {
-        await s3.send(command);
-        return res.json({
-          url: `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`,
-        });
-      } catch (err) {
-        console.error("Upload to S3 failed:", err);
-        return res.status(500).json({ error: "Upload failed" });
-      }
-    } else {
-      return res.json({ url: `/images/${req.file.filename}` });
+    } catch (err) {
+      console.error("Upload to S3 failed:", err);
+      return res.status(500).json({ error: "Upload failed" });
     }
+  } else {
+    return res.json({ url: `/images/${req.file.filename}` });
   }
-);
+});
 
-// ✅ Contact Email (Resend) — Test Setup
 app.post("/contact", async (req, res) => {
   const { name, email, topic, comment } = req.body;
-
   if (!name || !email || !topic || !comment) {
     return res.status(400).json({ success: false, message: "Missing required fields." });
   }
 
   try {
-    console.log("Sending to:", process.env.EMAIL_TO); // ✅ Confirm this is set
-
     await resend.emails.send({
       from: process.env.EMAIL_FROM || "yourname@resend.dev",
       to: process.env.EMAIL_TO,
       subject: `Contact Form - ${topic}`,
       text: `From: ${name} <${email}>\n\n${comment}`,
     });
-
     res.status(200).json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
     console.error("Resend error:", error);
@@ -121,8 +101,6 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-
-// 🔎 Search Endpoint
 const blogDataPath = path.join(__dirname, "server-data", "blogData.json");
 const marketDataPath = path.join(__dirname, "server-data", "marketplaceArticles.json");
 
@@ -151,20 +129,164 @@ app.get("/api/search", (req, res) => {
     }));
 
     const allArticles = [...marketArticles, ...blogArticles];
-
     const filtered = query
       ? allArticles.filter(
         (article) =>
           article.title.toLowerCase().includes(query) ||
-          article.badges.some((badge) =>
-            badge.toLowerCase().includes(query)
-          )
+          article.badges.some((badge) => badge.toLowerCase().includes(query))
       )
       : [];
 
     res.json(filtered);
   } catch (err) {
     res.status(500).json({ error: "Search failed." });
+  }
+});
+
+app.get("/api/marketplace-articles", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM marketplace_articles ORDER BY id ASC");
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error loading marketplace articles:", err);
+    res.status(500).json({ error: "Could not load articles" });
+  }
+});
+
+app.get("/api/posts", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM blog_posts ORDER BY date DESC");
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching blog posts:", err);
+    res.status(500).json({ error: "Failed to fetch blog posts" });
+  }
+});
+
+app.get("/api/posts/:slug", async (req, res) => {
+  const { slug } = req.params;
+  try {
+    const postResult = await pool.query("SELECT * FROM blog_posts WHERE link = $1", [slug]);
+    if (postResult.rows.length === 0) return res.status(404).json({ error: "Post not found" });
+
+    const post = postResult.rows[0];
+    const badgeResult = await pool.query("SELECT badge FROM blog_post_badges WHERE post_id = $1", [post.id]);
+    const contentResult = await pool.query(
+      "SELECT paragraph FROM blog_post_content WHERE post_id = $1 ORDER BY paragraph_index",
+      [post.id]
+    );
+
+    const badges = badgeResult.rows.map((b) => b.badge);
+    const content = contentResult.rows.map((p) => p.paragraph);
+
+    res.json({ ...post, badges, content });
+  } catch (err) {
+    console.error("Error fetching full blog post:", err);
+    res.status(500).json({ error: "Failed to load post" });
+  }
+});
+
+app.get("/api/post-metadata", async (req, res) => {
+  try {
+    const authorsResult = await pool.query(
+      "SELECT DISTINCT author FROM blog_posts WHERE author IS NOT NULL ORDER BY author"
+    );
+    const badgesResult = await pool.query("SELECT DISTINCT badge FROM blog_post_badges ORDER BY badge");
+    const authors = authorsResult.rows.map((r) => r.author);
+    const badges = badgesResult.rows.map((r) => r.badge);
+    res.json({ authors, badges });
+  } catch (err) {
+    console.error("Error fetching post metadata:", err);
+    res.status(500).json({ error: "Failed to fetch metadata" });
+  }
+});
+
+app.post("/api/posts", authenticateToken, async (req, res) => {
+  const { image, date, title, excerpt, link, author, badges = [], content = [] } = req.body;
+
+  try {
+    await pool.query("BEGIN");
+    const result = await pool.query(
+      `INSERT INTO blog_posts (image, date, title, excerpt, link, author)
+       VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+      [image, date, title, excerpt, link, author]
+    );
+    const postId = result.rows[0].id;
+
+    for (const badge of badges) {
+      await pool.query("INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)", [postId, badge]);
+    }
+
+    for (let i = 0; i < content.length; i++) {
+      await pool.query(
+        "INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)",
+        [postId, i, content[i]]
+      );
+    }
+
+    await pool.query("COMMIT");
+    res.status(201).json({ success: true, post: result.rows[0] });
+  } catch (err) {
+    await pool.query("ROLLBACK");
+    console.error("Error creating blog post:", err);
+    res.status(500).json({ error: "Could not create blog post" });
+  }
+});
+
+app.put("/api/posts/:id", authenticateToken, async (req, res) => {
+  const { id } = req.params;
+  const { image, date, title, excerpt, link, author, badges = [], content = [] } = req.body;
+
+  try {
+    await pool.query("BEGIN");
+    const result = await pool.query(
+      `UPDATE blog_posts SET image = $1, date = $2, title = $3, excerpt = $4, link = $5, author = $6
+       WHERE id = $7 RETURNING *`,
+      [image, date, title, excerpt, link, author, id]
+    );
+
+    if (result.rows.length === 0) throw new Error("Post not found");
+
+    await pool.query("DELETE FROM blog_post_badges WHERE post_id = $1", [id]);
+    await pool.query("DELETE FROM blog_post_content WHERE post_id = $1", [id]);
+
+    for (const badge of badges) {
+      await pool.query("INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)", [id, badge]);
+    }
+
+    for (let i = 0; i < content.length; i++) {
+      await pool.query(
+        "INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)",
+        [id, i, content[i]]
+      );
+    }
+
+    await pool.query("COMMIT");
+    res.json({ success: true, post: result.rows[0] });
+  } catch (err) {
+    await pool.query("ROLLBACK");
+    console.error("Error updating post:", err);
+    res.status(500).json({ error: "Could not update post" });
+  }
+});
+
+app.delete("/api/posts/:id", authenticateToken, async (req, res) => {
+  try {
+    await pool.query("DELETE FROM blog_posts WHERE id = $1", [req.params.id]);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Error deleting post:", err);
+    res.status(500).json({ error: "Could not delete post" });
+  }
+});
+
+app.get("/test-db", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({ connected: true, time: result.rows[0].now });
+  } catch (err) {
+    console.error("DB test error:", err.message);
+    res.status(500).json({ connected: false, error: err.message });
   }
 });
 
