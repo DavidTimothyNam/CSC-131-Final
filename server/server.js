@@ -108,7 +108,7 @@ app.post("/contact", async (req, res) => {
     console.log("Sending to:", process.env.EMAIL_TO); // ✅ Confirm this is set
 
     await resend.emails.send({
-      from: process.env.EMAIL_FROM || "onboarding@resend.dev",
+      from: process.env.EMAIL_FROM || "yourname@resend.dev",
       to: process.env.EMAIL_TO,
       subject: `Contact Form - ${topic}`,
       text: `From: ${name} <${email}>\n\n${comment}`,
