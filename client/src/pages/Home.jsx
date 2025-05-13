@@ -16,13 +16,13 @@ function Home() {
     .slice(0, 3);
 
   return (
-    <Layout>
+    <Layout style={{padding:"0px"}}>
       <Container>
         <AboutHero />
       </Container>
 
       {/* 💼 Services */}
-      <Container fluid className="mt-4 py-4" id="backgroundPrimary">
+      <Container fluid className="mt-4 py-4 p-0" id="backgroundPrimary">
         <h2 className="text-center mb-4">What We Offer</h2>
         <ServiceSection />
       </Container>

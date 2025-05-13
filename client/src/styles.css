@@ -241,3 +241,8 @@ nav {
   .bi-twitter-x:hover, .bi-facebook:hover, .bi-linkedin:hover, .bi-youtube:hover{
         color: #283618 !important;
   }
+
+  .container-full{
+    margin: 0 auto;
+    width:100%;
+  }
