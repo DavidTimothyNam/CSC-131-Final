@@ -45,6 +45,10 @@ const BlogPost = () => {
 
   return (
     <Layout>
+      <div style={{
+          paddingTop: "40px",
+          paddingBottom: "40px",
+        }}>
       <Row style={{ margin: "100px", marginTop: "50px", marginBottom: "20px" }}>
         <Col lg={8}>
           <h1 className="mb-3">{post.title}</h1>
@@ -91,6 +95,7 @@ const BlogPost = () => {
           </div>
         </Col>
       </Row>
+      </div>
     </Layout>
   );
 };
