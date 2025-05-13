@@ -68,7 +68,7 @@ const Footer = () => {
             <p>Stay connected through our social media channels.</p>
             <div className="d-flex gap-3 align-items-center">
               <a
-                href="https://x.com/"
+                href="https://x.com/RonSmitheyLPL"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
@@ -84,7 +84,15 @@ const Footer = () => {
                 <i className="bi bi-facebook fs-4 text-white"></i>
               </a>
               <a
-                href="https://youtube.com/"
+                href="https://www.linkedin.com/in/ron-smithey/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <i className="bi bi-linkedin fs-4 text-white"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/@RonSmithey"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
