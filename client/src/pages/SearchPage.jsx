@@ -111,7 +111,7 @@ function SearchPage() {
                       </Link>
                     ) : article.type === "marketplace" ? (
                       // EDIT HERE TO FIX MARKETPLACE REDIRECTS
-                      <Link to={`/artcicle/{article.slug}`} className="text-decoration-none">
+                      <Link to={`/article/${article.slug}`} className="text-decoration-none">
                         {article.title}
                       </Link>
                     ) : article.type === "calculator" ? (
