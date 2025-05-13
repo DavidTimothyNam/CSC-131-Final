@@ -30,7 +30,7 @@ function SearchBar() {
         value={query} // Set the value to the query state
         onChange={(e) => setQuery(e.target.value)} // Update local state when user types
       />
-      <button type="submit" className="btn btn-light">
+      <button type="submit" className="btn btn-light buttonDark">
         <FaSearch />
       </button>
     </Form>

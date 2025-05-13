@@ -17,6 +17,7 @@ import Search from "./pages/SearchPage.jsx";
 
 import Contact from "./pages/Contact.jsx";
 
+import PageNotFound from "./pages/404Page.jsx";
 // Admin-related pages
 import PrivateRoute from "./admin/PrivateRoute.jsx";
 import Admin from "./admin/Admin";
@@ -36,6 +37,8 @@ export const router = createBrowserRouter([
   { path: "/blog", element: <Blog /> },
   { path: "/contact", element: <Contact /> },
   { path: "/search", element: <Search /> },
+  //
+  { path: "*", element: <PageNotFound />},
   // { path: "/legal", element: <Legal /> },
   // make legal page later
 

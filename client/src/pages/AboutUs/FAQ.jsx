@@ -1,11 +1,13 @@
 import React from "react";
-import { Accordion } from "react-bootstrap";
+import { Accordion, Col, Row } from "react-bootstrap";
 import Layout from "../../components/Layout";
 
 const FAQ = () => {
   return (
     <Layout>
-      <h1 className="mb-4 bold text-center" style={{marginTop: '75px'}}>Frequently Asked Questions</h1>
+      <h1 className="pt-4 bold text-center" style={{marginTop: '75px'}}>Frequently Asked Questions</h1>
+<Row>
+  <Col lg={7}>
       <Accordion flush className="m-5">
         <Accordion.Item eventKey="0">
           <Accordion.Header>What does a financial planner do?</Accordion.Header>
@@ -104,6 +106,16 @@ const FAQ = () => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
+      </Col>
+      <Col className="rect-img-container">
+                <img
+                  src="/images/office_location.jpg"
+                  alt="Profile Photo"
+                  className="rect-img p-5"
+                  id="imgShape"
+                />
+              </Col>
+      </Row>
     </Layout>
   );
 };

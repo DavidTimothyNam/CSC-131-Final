@@ -232,3 +232,7 @@ nav {
   .blogSidebar:hover, .footerLink:hover{
     color:#283618;
   }
+
+  .bi-twitter-x:hover, .bi-facebook:hover, .bi-linkedin:hover, .bi-youtube:hover{
+        color: #283618 !important;
+  }
