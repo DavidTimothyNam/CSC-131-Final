@@ -19,6 +19,10 @@ const Blog = () => {
 
   return (
     <Layout>
+      <div style={{
+          paddingTop: "40px",
+          paddingBottom: "40px",
+        }}>
       {heroPost && heroPost.image && (
         <BlogHeroCard
           image={heroPost.image}
@@ -28,6 +32,7 @@ const Blog = () => {
         />
       )}
       <BlogSection posts={visible} showAll={showAll} onToggle={() => setShowAll((p) => !p)} />
+      </div>
     </Layout>
   );
 };
