@@ -16,7 +16,7 @@ function PageNavbar() {
       <Container>
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
-            src="/rs_financial_logo1.png"
+            src="/public/rs_financial_logo_light.png"
             alt="Logo"
             height="30"
             className="me-2"
