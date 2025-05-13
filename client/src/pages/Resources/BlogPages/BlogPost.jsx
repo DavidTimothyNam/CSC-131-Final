@@ -46,7 +46,7 @@ const BlogPost = () => {
   return (
     <Layout>
       <div style={{
-          paddingTop: "20px",
+          paddingTop: "10px",
           paddingBottom: "40px",
         }}>
       <Row style={{ margin: "100px", marginTop: "50px", marginBottom: "20px" }}>
