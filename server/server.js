@@ -116,6 +116,7 @@ app.get("/api/search", (req, res) => {
       description: article.description,
       badges: ["Marketplace"],
       type: "marketplace",
+      slug: article.slug,
     }));
 
     const blogArticles = blogData.map((article) => ({
