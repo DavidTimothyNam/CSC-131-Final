@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || "production";
 dotenv.config({ path: `.env.${env}` });
 
 const express = require("express");
@@ -22,7 +22,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : false,
+  ssl:
+    process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : false,
 });
 
 const app = express();
@@ -32,7 +33,10 @@ setupAuthMiddleware(app);
 app.use("/auth", authRouter);
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/images", express.static(path.join(__dirname, "server-data/blog-images")));
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "server-data/blog-images")),
+);
 
 const useS3 = process.env.USE_S3 === "true";
 let s3 = null;
@@ -53,38 +57,47 @@ const diskStorage = multer.diskStorage({
   },
 });
 const memoryStorage = multer.memoryStorage();
-const upload = useS3 ? multer({ storage: memoryStorage }) : multer({ storage: diskStorage });
+const upload = useS3
+  ? multer({ storage: memoryStorage })
+  : multer({ storage: diskStorage });
 
-app.post("/api/upload-image", authenticateToken, upload.single("image"), async (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+app.post(
+  "/api/upload-image",
+  authenticateToken,
+  upload.single("image"),
+  async (req, res) => {
+    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
 
-  if (useS3 && s3) {
-    const fileName = Date.now() + "-" + req.file.originalname;
-    const command = new PutObjectCommand({
-      Bucket: process.env.AWS_BUCKET_NAME,
-      Key: fileName,
-      Body: req.file.buffer,
-      ContentType: req.file.mimetype,
-    });
-
-    try {
-      await s3.send(command);
-      return res.json({
-        url: `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`,
+    if (useS3 && s3) {
+      const fileName = Date.now() + "-" + req.file.originalname;
+      const command = new PutObjectCommand({
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: fileName,
+        Body: req.file.buffer,
+        ContentType: req.file.mimetype,
       });
-    } catch (err) {
-      console.error("Upload to S3 failed:", err);
-      return res.status(500).json({ error: "Upload failed" });
+
+      try {
+        await s3.send(command);
+        return res.json({
+          url: `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`,
+        });
+      } catch (err) {
+        console.error("Upload to S3 failed:", err);
+        return res.status(500).json({ error: "Upload failed" });
+      }
+    } else {
+      return res.json({ url: `/images/${req.file.filename}` });
     }
-  } else {
-    return res.json({ url: `/images/${req.file.filename}` });
-  }
-});
+  },
+);
 
 app.post("/contact", async (req, res) => {
   const { name, email, topic, comment } = req.body;
   if (!name || !email || !topic || !comment) {
-    return res.status(400).json({ success: false, message: "Missing required fields." });
+    return res
+      .status(400)
+      .json({ success: false, message: "Missing required fields." });
   }
 
   try {
@@ -94,7 +107,9 @@ app.post("/contact", async (req, res) => {
       subject: `Contact Form - ${topic}`,
       text: `From: ${name} <${email}>\n\n${comment}`,
     });
-    res.status(200).json({ success: true, message: "Email sent successfully!" });
+    res
+      .status(200)
+      .json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
     console.error("Resend error:", error);
     res.status(500).json({ success: false, message: "Failed to send email." });
@@ -102,7 +117,11 @@ app.post("/contact", async (req, res) => {
 });
 
 const blogDataPath = path.join(__dirname, "server-data", "blogData.json");
-const marketDataPath = path.join(__dirname, "server-data", "marketplaceArticles.json");
+const marketDataPath = path.join(
+  __dirname,
+  "server-data",
+  "marketplaceArticles.json",
+);
 
 app.get("/api/search", (req, res) => {
   try {
@@ -132,10 +151,10 @@ app.get("/api/search", (req, res) => {
     const allArticles = [...marketArticles, ...blogArticles];
     const filtered = query
       ? allArticles.filter(
-        (article) =>
-          article.title.toLowerCase().includes(query) ||
-          article.badges.some((badge) => badge.toLowerCase().includes(query))
-      )
+          (article) =>
+            article.title.toLowerCase().includes(query) ||
+            article.badges.some((badge) => badge.toLowerCase().includes(query)),
+        )
       : [];
 
     res.json(filtered);
@@ -146,7 +165,9 @@ app.get("/api/search", (req, res) => {
 
 app.get("/api/marketplace-articles", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM marketplace_articles ORDER BY id ASC");
+    const result = await pool.query(
+      "SELECT * FROM marketplace_articles ORDER BY id ASC",
+    );
     res.json(result.rows);
   } catch (err) {
     console.error("Error loading marketplace articles:", err);
@@ -156,7 +177,9 @@ app.get("/api/marketplace-articles", async (req, res) => {
 
 app.get("/api/posts", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM blog_posts ORDER BY date DESC");
+    const result = await pool.query(
+      "SELECT * FROM blog_posts ORDER BY date DESC",
+    );
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching blog posts:", err);
@@ -167,14 +190,21 @@ app.get("/api/posts", async (req, res) => {
 app.get("/api/posts/:slug", async (req, res) => {
   const { slug } = req.params;
   try {
-    const postResult = await pool.query("SELECT * FROM blog_posts WHERE link = $1", [slug]);
-    if (postResult.rows.length === 0) return res.status(404).json({ error: "Post not found" });
+    const postResult = await pool.query(
+      "SELECT * FROM blog_posts WHERE link = $1",
+      [slug],
+    );
+    if (postResult.rows.length === 0)
+      return res.status(404).json({ error: "Post not found" });
 
     const post = postResult.rows[0];
-    const badgeResult = await pool.query("SELECT badge FROM blog_post_badges WHERE post_id = $1", [post.id]);
+    const badgeResult = await pool.query(
+      "SELECT badge FROM blog_post_badges WHERE post_id = $1",
+      [post.id],
+    );
     const contentResult = await pool.query(
       "SELECT paragraph FROM blog_post_content WHERE post_id = $1 ORDER BY paragraph_index",
-      [post.id]
+      [post.id],
     );
 
     const badges = badgeResult.rows.map((b) => b.badge);
@@ -190,9 +220,11 @@ app.get("/api/posts/:slug", async (req, res) => {
 app.get("/api/post-metadata", async (req, res) => {
   try {
     const authorsResult = await pool.query(
-      "SELECT DISTINCT author FROM blog_posts WHERE author IS NOT NULL ORDER BY author"
+      "SELECT DISTINCT author FROM blog_posts WHERE author IS NOT NULL ORDER BY author",
     );
-    const badgesResult = await pool.query("SELECT DISTINCT badge FROM blog_post_badges ORDER BY badge");
+    const badgesResult = await pool.query(
+      "SELECT DISTINCT badge FROM blog_post_badges ORDER BY badge",
+    );
     const authors = authorsResult.rows.map((r) => r.author);
     const badges = badgesResult.rows.map((r) => r.badge);
     res.json({ authors, badges });
@@ -203,25 +235,37 @@ app.get("/api/post-metadata", async (req, res) => {
 });
 
 app.post("/api/posts", authenticateToken, async (req, res) => {
-  const { image, date, title, excerpt, link, author, badges = [], content = [] } = req.body;
+  const {
+    image,
+    date,
+    title,
+    excerpt,
+    link,
+    author,
+    badges = [],
+    content = [],
+  } = req.body;
 
   try {
     await pool.query("BEGIN");
     const result = await pool.query(
       `INSERT INTO blog_posts (image, date, title, excerpt, link, author)
        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-      [image, date, title, excerpt, link, author]
+      [image, date, title, excerpt, link, author],
     );
     const postId = result.rows[0].id;
 
     for (const badge of badges) {
-      await pool.query("INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)", [postId, badge]);
+      await pool.query(
+        "INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)",
+        [postId, badge],
+      );
     }
 
     for (let i = 0; i < content.length; i++) {
       await pool.query(
         "INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)",
-        [postId, i, content[i]]
+        [postId, i, content[i]],
       );
     }
 
@@ -236,14 +280,23 @@ app.post("/api/posts", authenticateToken, async (req, res) => {
 
 app.put("/api/posts/:id", authenticateToken, async (req, res) => {
   const { id } = req.params;
-  const { image, date, title, excerpt, link, author, badges = [], content = [] } = req.body;
+  const {
+    image,
+    date,
+    title,
+    excerpt,
+    link,
+    author,
+    badges = [],
+    content = [],
+  } = req.body;
 
   try {
     await pool.query("BEGIN");
     const result = await pool.query(
       `UPDATE blog_posts SET image = $1, date = $2, title = $3, excerpt = $4, link = $5, author = $6
        WHERE id = $7 RETURNING *`,
-      [image, date, title, excerpt, link, author, id]
+      [image, date, title, excerpt, link, author, id],
     );
 
     if (result.rows.length === 0) throw new Error("Post not found");
@@ -252,13 +305,16 @@ app.put("/api/posts/:id", authenticateToken, async (req, res) => {
     await pool.query("DELETE FROM blog_post_content WHERE post_id = $1", [id]);
 
     for (const badge of badges) {
-      await pool.query("INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)", [id, badge]);
+      await pool.query(
+        "INSERT INTO blog_post_badges (post_id, badge) VALUES ($1, $2)",
+        [id, badge],
+      );
     }
 
     for (let i = 0; i < content.length; i++) {
       await pool.query(
         "INSERT INTO blog_post_content (post_id, paragraph_index, paragraph) VALUES ($1, $2, $3)",
-        [id, i, content[i]]
+        [id, i, content[i]],
       );
     }
 
@@ -284,7 +340,7 @@ app.delete("/api/posts/:id", authenticateToken, async (req, res) => {
 app.get("/api/events", async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM calendar_events ORDER BY start ASC"
+      "SELECT * FROM calendar_events ORDER BY start ASC",
     );
     const grouped = groupEventsByDate(result.rows);
     res.json(grouped);
@@ -310,7 +366,7 @@ app.post("/api/events", authenticateToken, async (req, res) => {
 
       await pool.query(
         `DELETE FROM calendar_events WHERE start >= $1 AND start < $2`,
-        [date.toISOString(), nextDay.toISOString()]
+        [date.toISOString(), nextDay.toISOString()],
       );
 
       for (const ev of events) {
@@ -328,7 +384,7 @@ app.post("/api/events", authenticateToken, async (req, res) => {
         await pool.query(
           `INSERT INTO calendar_events (title, start, "end", location, description)
            VALUES ($1, $2, $3, $4, $5)`,
-          [ev.title, start, end, ev.location || "", ev.description || ""]
+          [ev.title, start, end, ev.location || "", ev.description || ""],
         );
       }
     }
