@@ -1,6 +1,6 @@
 // server.js
 const dotenv = require("dotenv");
-const env = process.env.NODE_ENV || "production";
+const env = process.env.NODE_ENV || "development";
 dotenv.config({ path: `.env.${env}` });
 const express = require("express");
 const cors = require("cors");
@@ -44,7 +44,9 @@ app.post(
   authenticateToken,
   upload.single("image"),
   async (req, res) => {
-    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
 
     if (useS3 && s3) {
       const fileName = Date.now() + "-" + req.file.originalname;
@@ -65,35 +67,36 @@ app.post(
         return res.status(500).json({ error: "Upload failed" });
       }
     } else {
-      return res.json({ url: `/images/${req.file.filename}` });
+      const fileUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+      return res.json({ url: fileUrl });
     }
   },
 );
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-app.post("/api/contact", async (req, res) => {
-  const { name, email, topic, comment } = req.body;
-  if (!name || !email || !topic || !comment) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Missing required fields." });
-  }
+// const resend = new Resend(process.env.RESEND_API_KEY);
+// app.post("/api/contact", async (req, res) => {
+//   const { name, email, topic, comment } = req.body;
+//   if (!name || !email || !topic || !comment) {
+//     return res
+//       .status(400)
+//       .json({ success: false, message: "Missing required fields." });
+//   }
 
-  try {
-    await resend.emails.send({
-      from: process.env.EMAIL_FROM || "yourname@resend.dev",
-      to: process.env.EMAIL_TO,
-      subject: `Contact Form - ${topic}`,
-      text: `From: ${name} <${email}>\n\n${comment}`,
-    });
-    res
-      .status(200)
-      .json({ success: true, message: "Email sent successfully!" });
-  } catch (error) {
-    console.error("Resend error:", error);
-    res.status(500).json({ success: false, message: "Failed to send email." });
-  }
-});
+//   try {
+//     await resend.emails.send({
+//       from: process.env.EMAIL_FROM || "yourname@resend.dev",
+//       to: process.env.EMAIL_TO,
+//       subject: `Contact Form - ${topic}`,
+//       text: `From: ${name} <${email}>\n\n${comment}`,
+//     });
+//     res
+//       .status(200)
+//       .json({ success: true, message: "Email sent successfully!" });
+//   } catch (error) {
+//     console.error("Resend error:", error);
+//     res.status(500).json({ success: false, message: "Failed to send email." });
+//   }
+// });
 
 app.get("/api/search", (req, res) => {
   try {

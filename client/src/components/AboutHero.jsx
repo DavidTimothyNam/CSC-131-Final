@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import profileImg from "../../../server/server-data/blog-images/10.jpg";
 
 const AboutHero = () => {
   return (
@@ -41,7 +40,7 @@ const AboutHero = () => {
           {/* Image Section */}
           <Col lg={6} className="rect-img-container">
             <img
-              src={profileImg}
+              src="/images/person1.jpg"
               alt="Profile Photo"
               className="rect-img p-5"
               id="imgShape"
