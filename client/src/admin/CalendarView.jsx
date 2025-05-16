@@ -1,5 +1,5 @@
 import React from "react";
-import AdminCalendar from "../components/AdminCalendar.jsx"; // ✅ Adjust path as needed
+import AdminCalendar from "../components/AdminCalendar.jsx";
 
 const CalendarView = () => {
   return (
