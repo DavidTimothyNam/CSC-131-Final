@@ -105,12 +105,6 @@ const Footer = () => {
         </Row>
 
         <div className="border-top pt-3 pb-0">
-          {/*
-          <Link to="/legal" className="nav-link p-0">
-            <p className="mb-0">
-              © 2025 Ron Smithey Financial Services. All rights reserved.
-            </p>
-          </Link>*/}
           <a
             target="_blank"
             href="https://www.lpl.com/content/dam/lpl-www/documents/disclosures/lpl-financial-relationship-summary.pdf"
