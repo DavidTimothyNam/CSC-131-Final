@@ -38,9 +38,7 @@ export const router = createBrowserRouter([
   { path: "/contact", element: <Contact /> },
   { path: "/search", element: <Search /> },
   //
-  { path: "*", element: <PageNotFound />},
-  // { path: "/legal", element: <Legal /> },
-  // make legal page later
+  { path: "*", element: <PageNotFound /> },
 
   // Admin routes
   {
