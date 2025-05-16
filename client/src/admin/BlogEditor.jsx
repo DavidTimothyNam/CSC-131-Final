@@ -131,7 +131,7 @@ const BlogEditor = () => {
 
   const handleDelete = () => {
     if (!selectedPost?.id) {
-      console.error("❌ Cannot delete: post ID is undefined.");
+      console.error("Cannot delete: post ID is undefined.");
       return;
     }
     if (!window.confirm("Are you sure you want to delete this post?")) return;
@@ -204,7 +204,7 @@ const BlogEditor = () => {
       )}
       {selectedPost ? (
         <div>
-          {saveSuccess && <p className="text-success">✅ Changes saved!</p>}
+          {saveSuccess && <p className="text-success">Changes saved!</p>}
           <div className="mb-3">
             <label>Title</label>
             <input
@@ -297,7 +297,6 @@ const BlogEditor = () => {
               <div className="mt-2">
                 <small>Current Image:</small>
                 <img
-                  // src={`${import.meta.env.VITE_API_BASE}${selectedPost.image}`}
                   src={selectedPost.image}
                   alt="preview"
                   style={{ maxHeight: "150px", display: "block" }}
