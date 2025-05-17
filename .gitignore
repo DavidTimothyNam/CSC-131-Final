@@ -2,6 +2,9 @@
 server/.env*
 server/schema.sql
 
+# Other stuff
+.vite
+
 # Logs
 logs
 *.log
